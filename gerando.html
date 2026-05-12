@@ -3,235 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulso — Sua campanha está sendo feita</title>
+<title>Pulso — Produção em andamento</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
       colors: {
-        navy: '#0A1B3D', navyLight: '#162B5C', navyDark: '#06122A',
-        gold: '#D4A04A', goldLight: '#E5B96A',
-        cream: '#F8F6F0', creamDark: '#EDE8DA',
-        graphite: '#1A1A1A',
+        ink: '#0A0A0A', paper: '#FAFAF7', silver: '#E5E5E5',
+        smoke: '#525252', mist: '#A3A3A3', gold: '#B8860B', goldDark: '#8B6914',
+        bone: '#F2EFE6', green: '#1B5E20',
       },
-      fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] }
+      letterSpacing: { tightest: '-0.05em', ultratight: '-0.04em' },
     }}
   }
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; font-size: 17px; }
-  .font-serif { font-family: 'Playfair Display', serif; }
-  @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-  .spin-slow { animation: spin-slow 2s linear infinite; }
-  @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
-  .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
-  @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-  .progress-bar { position: relative; overflow: hidden; }
-  .progress-bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmer 2s linear infinite; }
+  body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #525252; }
+  .mono { font-feature-settings: "tnum"; }
+
+  @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+  @keyframes progress-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .flowing { position: relative; overflow: hidden; }
+  .flowing::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: progress-flow 2.5s linear infinite;
+  }
 </style>
 </head>
-<body class="bg-cream text-graphite">
+<body class="bg-paper text-ink">
 
 <!-- HEADER -->
-<header class="bg-white border-b border-creamDark">
-  <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2">
-      <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="13" stroke="#0A1B3D" stroke-width="1.5"/>
-        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="font-serif text-2xl font-bold text-navy">Pulso</span>
+<header class="border-b border-silver bg-paper sticky top-0 z-50">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-baseline gap-2">
+      <span class="text-[19px] font-semibold tracking-tightest">Pulso</span>
+      <span class="label">Produção · Em andamento</span>
     </a>
     <div class="flex items-center gap-3">
-      <span class="w-3 h-3 rounded-full bg-emerald-500 pulse-dot"></span>
-      <span class="text-sm font-medium text-graphite/70">Trabalhando...</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-green-600 pulse-soft"></span>
+      <span class="text-[13px] text-smoke">Em execução</span>
     </div>
   </div>
 </header>
 
-<div class="max-w-5xl mx-auto px-6 py-10">
+<div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
 
-  <!-- TELA PRINCIPAL -->
-  <div class="bg-navy text-cream rounded-3xl p-10 lg:p-14 mb-8 relative overflow-hidden text-center">
-    <div class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl"></div>
+  <!-- TÍTULO -->
+  <div class="mb-16 lg:mb-20">
+    <div class="label mb-6">Operação · 2026-05-11 · 09:42</div>
+    <h1 class="text-[40px] lg:text-[64px] leading-[1] tracking-tightest font-medium max-w-3xl mb-8">
+      Sua campanha está sendo produzida.
+    </h1>
+    <p class="text-[17px] lg:text-[18px] leading-[1.6] text-smoke font-light max-w-xl">
+      Você não precisa permanecer nesta página. Enviaremos um email assim que tudo estiver concluído.
+    </p>
+  </div>
 
-    <div class="relative">
-      <div class="text-7xl mb-4">⚙️</div>
-      <h1 class="font-serif text-4xl lg:text-5xl font-bold leading-tight mb-4">
-        Estamos fazendo<br>
-        <span class="text-gold italic">sua campanha.</span>
-      </h1>
-      <p class="text-cream/70 text-xl mb-10 max-w-xl mx-auto">
-        Pode fechar essa página. A gente te avisa quando ficar pronto.
-      </p>
+  <!-- RESUMO -->
+  <section class="grid lg:grid-cols-12 gap-12 mb-20 pb-20 border-b border-silver">
 
-      <!-- Círculo de progresso grande -->
-      <div class="relative w-56 h-56 mx-auto mb-8">
-        <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="42" stroke="rgba(248,246,240,0.1)" stroke-width="10" fill="none"/>
-          <circle cx="50" cy="50" r="42" stroke="#D4A04A" stroke-width="10" fill="none"
-                  stroke-linecap="round"
-                  stroke-dasharray="263.89"
-                  stroke-dashoffset="139.86"/>
-        </svg>
-        <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <div class="font-serif text-7xl font-bold text-cream">47%</div>
-          <div class="text-sm uppercase tracking-wider text-cream/60 mt-2">pronto</div>
+    <div class="lg:col-span-6">
+      <!-- Barra de progresso linear -->
+      <div class="mb-8">
+        <div class="flex items-baseline justify-between mb-3">
+          <span class="label">Progresso geral</span>
+          <span class="mono text-[42px] lg:text-[56px] font-medium tracking-ultratight leading-none">47<span class="text-mist text-[28px]">%</span></span>
+        </div>
+        <div class="h-px bg-silver relative">
+          <div class="absolute top-0 left-0 h-px bg-ink flowing" style="width: 47%"></div>
         </div>
       </div>
 
-      <!-- Tempo restante -->
-      <div class="inline-flex items-center gap-2 bg-cream/10 rounded-full px-5 py-2.5">
-        <span class="text-2xl">⏰</span>
-        <span class="font-medium">Falta cerca de <strong>2 horas</strong></span>
+      <p class="text-[15px] leading-[1.7] text-smoke font-light max-w-md">
+        Vinte e duas das 47 peças concluídas. Estimativa de finalização: 2 horas e 12 minutos.
+      </p>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="lg:col-span-6 grid grid-cols-2 gap-px bg-silver border border-silver">
+      <div class="bg-paper p-6">
+        <div class="label mb-2">Concluídas</div>
+        <div class="mono text-[32px] font-medium tracking-ultratight">22</div>
+        <div class="text-[12px] text-mist mt-1">de 47 peças</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="label mb-2">Em produção</div>
+        <div class="mono text-[32px] font-medium tracking-ultratight text-gold">8</div>
+        <div class="text-[12px] text-mist mt-1">simultaneamente</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="label mb-2">Tempo decorrido</div>
+        <div class="mono text-[32px] font-medium tracking-ultratight">38<span class="text-mist text-[22px]">min</span></div>
+        <div class="text-[12px] text-mist mt-1">desde o início</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="label mb-2">Estimativa</div>
+        <div class="mono text-[32px] font-medium tracking-ultratight">2h 12m</div>
+        <div class="text-[12px] text-mist mt-1">para conclusão</div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- DETALHE POR CATEGORIA -->
+  <section>
+    <div class="grid lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-3">
+        <div class="label">Detalhamento</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="text-[28px] lg:text-[40px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
+          Status por categoria.
+        </h2>
+      </div>
+    </div>
+
+    <!-- Linhas de status -->
+    <div class="divide-y divide-silver border-t border-b border-silver">
+
+      <!-- IDENTIDADE -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Identidade visual</span>
+            <span class="text-[11px] font-medium text-green-700">CONCLUÍDO</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Logo, número estilizado, paleta, manual</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver">
+            <div class="h-px bg-ink" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">4 / 4</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-smoke">2m 04s</div>
+      </div>
+
+      <!-- TEXTOS -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Textos e copy</span>
+            <span class="text-[11px] font-medium text-green-700">CONCLUÍDO</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Plano de governo, biografia, banco de copy, Q&A</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver">
+            <div class="h-px bg-ink" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">5 / 5</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-smoke">7m 28s</div>
+      </div>
+
+      <!-- ÁUDIO -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Áudio · Jingles</span>
+            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Jingle principal (sertanejo)</div>
+          <div class="text-[13px] text-smoke font-light mt-1">Falta 2 minutos · Suno API</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver">
+            <div class="h-px bg-gold flowing" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">3 / 7</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">75%</div>
+      </div>
+
+      <!-- POSTS -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Posts · Instagram</span>
+            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Feed quadrado, carrossel, stories</div>
+          <div class="text-[13px] text-smoke font-light mt-1">8 minutos restantes · Bannerbear</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver">
+            <div class="h-px bg-gold flowing" style="width: 40%"></div>
+          </div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">12 / 50</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">40%</div>
+      </div>
+
+      <!-- SITE -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Site institucional</span>
+            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Páginas e SEO</div>
+          <div class="text-[13px] text-smoke font-light mt-1">2 páginas restantes</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver">
+            <div class="h-px bg-gold flowing" style="width: 60%"></div>
+          </div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">3 / 5</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">60%</div>
+      </div>
+
+      <!-- IMPRESSO -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Material impresso</span>
+            <span class="text-[11px] font-medium text-mist">NA FILA</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Santinho, panfleto, adesivos, outdoor</div>
+          <div class="text-[13px] text-smoke font-light mt-1">Aguardando finalização da identidade</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver"></div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-mist">0 / 12</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-mist">—</div>
+      </div>
+
+      <!-- BOT WHATSAPP -->
+      <div class="py-6 grid grid-cols-12 gap-6 items-center">
+        <div class="col-span-12 md:col-span-5">
+          <div class="flex items-baseline gap-3">
+            <span class="label">Bot WhatsApp</span>
+            <span class="text-[11px] font-medium text-mist">NA FILA</span>
+          </div>
+          <div class="text-[16px] font-medium mt-2">Setup Evolution API, flow, transmissão, QR</div>
+          <div class="text-[13px] text-smoke font-light mt-1">Início estimado: 1h 12min</div>
+        </div>
+        <div class="col-span-6 md:col-span-4">
+          <div class="h-px bg-silver"></div>
+        </div>
+        <div class="col-span-3 md:col-span-2 mono text-[13px] text-mist">0 / 4</div>
+        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-mist">—</div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- AVISO -->
-  <div class="bg-gold/15 border-2 border-gold/30 rounded-2xl p-6 mb-8 flex items-start gap-4">
-    <div class="text-4xl flex-shrink-0">📨</div>
-    <div>
-      <div class="font-bold text-navy text-lg mb-1">Você não precisa esperar aqui</div>
-      <p class="text-graphite/70">
-        Vamos te mandar um <strong>email</strong> e um <strong>WhatsApp</strong> quando tudo estiver pronto.
+  <section class="mt-16 lg:mt-20 grid lg:grid-cols-12 gap-12 pt-16 border-t border-silver">
+    <div class="lg:col-span-3">
+      <div class="label">Notificação</div>
+    </div>
+    <div class="lg:col-span-6">
+      <h3 class="text-[22px] lg:text-[28px] tracking-ultratight font-medium mb-3">
+        Você não precisa esperar nesta página.
+      </h3>
+      <p class="text-[15px] leading-[1.7] text-smoke font-light max-w-lg">
+        Quando a produção for finalizada, enviaremos uma notificação por email para <span class="text-ink font-medium">gabriel@exemplo.com</span> e por WhatsApp para <span class="text-ink font-medium">(31) 9 9876 5432</span>.
       </p>
     </div>
-  </div>
-
-  <!-- LISTA SIMPLES -->
-  <h2 class="font-serif text-2xl font-bold text-navy mb-4">O que já está pronto:</h2>
-
-  <div class="space-y-3 mb-8">
-    <!-- Identidade visual -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-emerald-200 flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 text-3xl">
-        🎨
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-navy text-lg">Logo e cores</div>
-        <div class="text-sm text-graphite/60">Pronto há 5 minutos</div>
-      </div>
-      <div class="text-emerald-600 font-bold flex items-center gap-2">
-        <span class="text-2xl">✅</span>
-        <span class="hidden sm:inline">Pronto</span>
-      </div>
+    <div class="lg:col-span-3 flex lg:justify-end">
+      <a href="kit.html" class="inline-flex items-center gap-3 text-[15px] font-medium border-b border-ink hover:pb-1 transition-all pb-0.5">
+        Ver prévia do kit
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
     </div>
-
-    <!-- Textos -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-emerald-200 flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 text-3xl">
-        ✍️
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-navy text-lg">Plano de governo e textos</div>
-        <div class="text-sm text-graphite/60">Pronto há 12 minutos</div>
-      </div>
-      <div class="text-emerald-600 font-bold flex items-center gap-2">
-        <span class="text-2xl">✅</span>
-        <span class="hidden sm:inline">Pronto</span>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="font-serif text-2xl font-bold text-navy mb-4">O que está sendo feito agora:</h2>
-
-  <div class="space-y-3 mb-8">
-    <!-- Música (fazendo) -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
-        🎵
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-navy text-lg">Sua música da campanha</div>
-        <div class="text-sm text-graphite/60 mb-2">Quase pronta, falta 2 minutos</div>
-        <div class="h-2 bg-cream rounded-full overflow-hidden">
-          <div class="progress-bar h-full bg-gold rounded-full" style="width: 75%"></div>
-        </div>
-      </div>
-      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M21 12a9 9 0 11-6.219-8.56"/>
-      </svg>
-    </div>
-
-    <!-- Posts (fazendo) -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
-        📱
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-navy text-lg">Posts pra Instagram</div>
-        <div class="text-sm text-graphite/60 mb-2">12 de 30 prontos</div>
-        <div class="h-2 bg-cream rounded-full overflow-hidden">
-          <div class="progress-bar h-full bg-gold rounded-full" style="width: 40%"></div>
-        </div>
-      </div>
-      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M21 12a9 9 0 11-6.219-8.56"/>
-      </svg>
-    </div>
-
-    <!-- Site (fazendo) -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
-        🌐
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-navy text-lg">Seu site na internet</div>
-        <div class="text-sm text-graphite/60 mb-2">3 de 5 páginas prontas</div>
-        <div class="h-2 bg-cream rounded-full overflow-hidden">
-          <div class="progress-bar h-full bg-gold rounded-full" style="width: 60%"></div>
-        </div>
-      </div>
-      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M21 12a9 9 0 11-6.219-8.56"/>
-      </svg>
-    </div>
-  </div>
-
-  <h2 class="font-serif text-2xl font-bold text-navy mb-4">Próximos da fila:</h2>
-
-  <div class="space-y-3 mb-10">
-    <!-- WhatsApp (aguardando) -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-creamDark flex items-center gap-4 opacity-70">
-      <div class="w-14 h-14 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-3xl">
-        💬
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-graphite/80 text-lg">Atendimento no WhatsApp</div>
-        <div class="text-sm text-graphite/50">Aguardando começar</div>
-      </div>
-      <div class="text-graphite/40 font-medium flex items-center gap-2">
-        <span class="text-2xl">⏳</span>
-        <span class="hidden sm:inline">Na fila</span>
-      </div>
-    </div>
-
-    <!-- Santinho (aguardando) -->
-    <div class="bg-white rounded-2xl p-5 border-2 border-creamDark flex items-center gap-4 opacity-70">
-      <div class="w-14 h-14 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-3xl">
-        📄
-      </div>
-      <div class="flex-1">
-        <div class="font-bold text-graphite/80 text-lg">Santinho e panfletos</div>
-        <div class="text-sm text-graphite/50">Aguardando começar</div>
-      </div>
-      <div class="text-graphite/40 font-medium flex items-center gap-2">
-        <span class="text-2xl">⏳</span>
-        <span class="hidden sm:inline">Na fila</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- VER PRÉVIA -->
-  <div class="text-center">
-    <a href="kit.html" class="inline-flex items-center gap-3 bg-navy text-cream font-bold px-8 py-4 rounded-full hover:bg-navyLight transition text-lg">
-      👀 Ver prévia do que já tá pronto
-    </a>
-  </div>
+  </section>
 
 </div>
 

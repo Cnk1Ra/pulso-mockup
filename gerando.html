@@ -7,40 +7,81 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
       colors: {
         ink: '#0A0A0A', paper: '#FAFAF7', silver: '#E5E5E5',
         smoke: '#525252', mist: '#A3A3A3',
-        iris: '#2E1655', irisDeep: '#1F0F3D', plum: '#4A2B7E',
+        iris: '#2E1655', irisDeep: '#1F0F3D', plum: '#4A2B7E', irisLight: '#7256B1',
         gold: '#F4C430', goldDark: '#D4A715', sun: '#F9D976',
-        bone: '#FAF6E8', cream: '#FBF8E9', green: '#1B5E20',
+        bone: '#FAF6E8', cream: '#FBF8E9',
       },
       letterSpacing: { tightest: '-0.05em', ultratight: '-0.04em' },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+      }
     }}
   }
 </script>
 <style>
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
   .label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #525252; }
-  .mono { font-feature-settings: "tnum"; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
 
-  @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+  /* Pulso de status ativo */
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
 
+  /* Skeleton shimmer */
+  @keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #E5E5E5 0%, #F2EFE6 50%, #E5E5E5 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+  .skeleton-iris {
+    background: linear-gradient(90deg, #4A2B7E 0%, #7256B1 50%, #4A2B7E 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+
+  /* Progress bar fluxo */
   @keyframes progress-flow {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 0; }
   }
-  .flowing { position: relative; overflow: hidden; }
-  .flowing::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    animation: progress-flow 2.5s linear infinite;
+  .flowing {
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.18) 75%, transparent 75%, transparent);
+    background-size: 28px 28px;
+    animation: progress-flow 1s linear infinite;
   }
+
+  /* Slide in feed */
+  @keyframes slide-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .feed-item { animation: slide-in 0.4s ease forwards; }
+
+  /* Fade-in suave nos cards */
+  @keyframes fade-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .delivered { animation: fade-in 0.5s ease forwards; }
+
+  /* Container do feed com scroll bonito */
+  .feed-container::-webkit-scrollbar { width: 4px; }
+  .feed-container::-webkit-scrollbar-track { background: transparent; }
+  .feed-container::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 2px; }
 </style>
 </head>
 <body class="bg-paper text-ink">
@@ -49,242 +90,423 @@
 <header class="border-b border-silver bg-paper sticky top-0 z-50">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-baseline gap-2">
-      <span class="text-[19px] font-semibold tracking-tightest">Pulso</span>
+      <span class="text-[19px] font-semibold tracking-tightest text-iris">Pulso</span>
       <span class="label">Produção · Em andamento</span>
     </a>
     <div class="flex items-center gap-3">
-      <span class="w-1.5 h-1.5 rounded-full bg-green-600 pulse-soft"></span>
-      <span class="text-[13px] text-smoke">Em execução</span>
+      <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
+      <span class="text-[13px] text-smoke">38 sistemas em execução</span>
     </div>
   </div>
 </header>
 
-<div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+<!-- ============================================================
+     HERO CINEMATOGRÁFICO
+     ============================================================ -->
+<section class="relative overflow-hidden bg-iris text-paper">
+  <div class="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-32 -bottom-32 w-[500px] h-[500px] rounded-full bg-plum/40 blur-3xl pointer-events-none"></div>
 
-  <!-- TÍTULO -->
-  <div class="mb-16 lg:mb-20">
-    <div class="label mb-6">Operação · 2026-05-11 · 09:42</div>
-    <h1 class="text-[40px] lg:text-[64px] leading-[1] tracking-tightest font-medium max-w-3xl mb-8">
-      Sua campanha está sendo produzida.
-    </h1>
-    <p class="text-[17px] lg:text-[18px] leading-[1.6] text-smoke font-light max-w-xl">
-      Você não precisa permanecer nesta página. Enviaremos um email assim que tudo estiver concluído.
-    </p>
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28 relative">
+    <div class="grid lg:grid-cols-12 gap-12 items-end">
+      <div class="lg:col-span-7">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="w-2 h-2 rounded-full bg-gold pulse-dot"></span>
+          <span class="label text-gold">Construindo sua campanha</span>
+        </div>
+
+        <h1 class="text-[44px] sm:text-[64px] lg:text-[88px] leading-[0.95] tracking-tightest font-medium mb-8">
+          Sua campanha está<br>
+          <span class="text-gold italic">tomando forma.</span>
+        </h1>
+
+        <p class="text-[17px] lg:text-[19px] leading-[1.55] text-paper/70 font-light max-w-xl mb-12">
+          Trinta e oito sistemas trabalhando em paralelo — gerando identidade, escrevendo textos, compondo música, diagramando documentos. Você não precisa permanecer nesta página. Avisaremos por email e WhatsApp quando estiver pronto.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-paper/15">
+          <div>
+            <div class="label text-paper/60 mb-2">Progresso</div>
+            <div class="mono text-[36px] lg:text-[48px] font-medium tracking-tightest text-gold leading-none" id="stat-progress">47%</div>
+          </div>
+          <div>
+            <div class="label text-paper/60 mb-2">Concluídas</div>
+            <div class="mono text-[36px] lg:text-[48px] font-medium tracking-tightest leading-none"><span id="stat-done">22</span><span class="text-paper/40 text-[24px]">/47</span></div>
+          </div>
+          <div>
+            <div class="label text-paper/60 mb-2">Restante</div>
+            <div class="mono text-[36px] lg:text-[48px] font-medium tracking-tightest leading-none" id="stat-remaining">2h 12m</div>
+          </div>
+        </div>
+
+        <!-- Barra geral -->
+        <div class="mt-10">
+          <div class="h-2 bg-paper/10 rounded-full overflow-hidden">
+            <div class="h-full bg-gold rounded-full flowing transition-all duration-700" style="width: 47%" id="progress-bar-main"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stream ao vivo -->
+      <div class="lg:col-span-5">
+        <div class="bg-irisDeep border border-paper/10 p-6 lg:p-8">
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-paper/10">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+              <span class="label text-gold">Stream ao vivo</span>
+            </div>
+            <span class="mono text-[11px] text-paper/50">SYSTEM</span>
+          </div>
+          <div class="feed-container max-h-[320px] overflow-y-auto space-y-3 pr-2" id="feed">
+            <!-- preenchido por JS -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <!-- RESUMO -->
-  <section class="grid lg:grid-cols-12 gap-12 mb-20 pb-20 border-b border-silver">
-
-    <div class="lg:col-span-6">
-      <!-- Barra de progresso linear -->
-      <div class="mb-8">
-        <div class="flex items-baseline justify-between mb-3">
-          <span class="label">Progresso geral</span>
-          <span class="mono text-[42px] lg:text-[56px] font-medium tracking-ultratight leading-none">47<span class="text-mist text-[28px]">%</span></span>
-        </div>
-        <div class="h-px bg-silver relative">
-          <div class="absolute top-0 left-0 h-px bg-iris flowing" style="width: 47%"></div>
-        </div>
-      </div>
-
-      <p class="text-[15px] leading-[1.7] text-smoke font-light max-w-md">
-        Vinte e duas das 47 peças concluídas. Estimativa de finalização: 2 horas e 12 minutos.
-      </p>
-    </div>
-
-    <!-- Indicadores -->
-    <div class="lg:col-span-6 grid grid-cols-2 gap-px bg-silver border border-silver">
-      <div class="bg-paper p-6">
-        <div class="label mb-2">Concluídas</div>
-        <div class="mono text-[32px] font-medium tracking-ultratight">22</div>
-        <div class="text-[12px] text-mist mt-1">de 47 peças</div>
-      </div>
-      <div class="bg-paper p-6">
-        <div class="label mb-2">Em produção</div>
-        <div class="mono text-[32px] font-medium tracking-ultratight text-gold">8</div>
-        <div class="text-[12px] text-mist mt-1">simultaneamente</div>
-      </div>
-      <div class="bg-paper p-6">
-        <div class="label mb-2">Tempo decorrido</div>
-        <div class="mono text-[32px] font-medium tracking-ultratight">38<span class="text-mist text-[22px]">min</span></div>
-        <div class="text-[12px] text-mist mt-1">desde o início</div>
-      </div>
-      <div class="bg-paper p-6">
-        <div class="label mb-2">Estimativa</div>
-        <div class="mono text-[32px] font-medium tracking-ultratight">2h 12m</div>
-        <div class="text-[12px] text-mist mt-1">para conclusão</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DETALHE POR CATEGORIA -->
-  <section>
+<!-- ============================================================
+     PEÇAS ENTREGUES — grid visual
+     ============================================================ -->
+<section>
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-24">
     <div class="grid lg:grid-cols-12 gap-12 mb-12">
       <div class="lg:col-span-3">
-        <div class="label">Detalhamento</div>
+        <div class="label">Peças do kit</div>
+        <div class="mono text-[12px] text-mist mt-1">Atualiza a cada segundo</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[28px] lg:text-[40px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Status por categoria.
+        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-2xl">
+          Acompanhe cada peça sendo entregue.
         </h2>
       </div>
     </div>
 
-    <!-- Linhas de status -->
-    <div class="divide-y divide-silver border-t border-b border-silver">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-silver border border-silver">
 
-      <!-- IDENTIDADE -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Identidade visual</span>
-            <span class="text-[11px] font-medium text-green-700">CONCLUÍDO</span>
-          </div>
-          <div class="text-[16px] font-medium mt-2">Logo, número estilizado, paleta, manual</div>
+      <!-- IDENTIDADE — concluído -->
+      <article class="bg-paper p-5 delivered">
+        <div class="aspect-[4/3] overflow-hidden bg-bone mb-4">
+          <img src="public/cards/card-identidade.png" alt="" class="w-full h-full object-cover">
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver">
-            <div class="h-px bg-iris" style="width: 100%"></div>
-          </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label">Identidade</span>
+          <span class="text-[10px] font-bold text-emerald-700 tracking-widest uppercase">Pronto</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">4 / 4</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-smoke">2m 04s</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris">Logo, número e paleta</div>
+        <div class="mono text-[11px] text-mist mt-2">2m 04s · há 36 min</div>
+      </article>
 
-      <!-- TEXTOS -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Textos e copy</span>
-            <span class="text-[11px] font-medium text-green-700">CONCLUÍDO</span>
-          </div>
-          <div class="text-[16px] font-medium mt-2">Plano de governo, biografia, banco de copy, Q&A</div>
+      <!-- TEXTOS — concluído -->
+      <article class="bg-paper p-5 delivered" style="animation-delay: 0.1s">
+        <div class="aspect-[4/3] overflow-hidden bg-bone mb-4">
+          <img src="public/cards/card-plano.png" alt="" class="w-full h-full object-cover">
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver">
-            <div class="h-px bg-iris" style="width: 100%"></div>
-          </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label">Plano de governo</span>
+          <span class="text-[10px] font-bold text-emerald-700 tracking-widest uppercase">Pronto</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">5 / 5</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-smoke">7m 28s</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris">40 páginas diagramadas</div>
+        <div class="mono text-[11px] text-mist mt-2">7m 28s · há 30 min</div>
+      </article>
 
-      <!-- ÁUDIO -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Áudio · Jingles</span>
-            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+      <!-- ÁUDIO — em produção -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 relative overflow-hidden bg-iris">
+          <div class="absolute inset-0 skeleton-iris opacity-40"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center text-paper">
+              <div class="flex items-end gap-1 h-8 mb-2 justify-center">
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 40%"></span>
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 80%; animation-delay: 0.1s"></span>
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 100%; animation-delay: 0.2s"></span>
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 60%; animation-delay: 0.3s"></span>
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 90%; animation-delay: 0.4s"></span>
+                <span class="w-1 bg-gold rounded-sm pulse-dot" style="height: 50%; animation-delay: 0.5s"></span>
+              </div>
+              <div class="mono text-[10px] text-gold">Suno · renderizando</div>
+            </div>
           </div>
-          <div class="text-[16px] font-medium mt-2">Jingle principal (sertanejo)</div>
-          <div class="text-[13px] text-smoke font-light mt-1">Falta 2 minutos · Suno API</div>
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver">
-            <div class="h-px bg-gold flowing" style="width: 75%"></div>
-          </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-gold">Jingle</span>
+          <span class="text-[10px] font-bold text-gold tracking-widest uppercase" id="audio-pct">73%</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">3 / 7</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">75%</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris">Sertanejo · 60s</div>
+        <div class="mono text-[11px] text-mist mt-2">~2 min restantes</div>
+      </article>
 
-      <!-- POSTS -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Posts · Instagram</span>
-            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+      <!-- POSTS — em produção -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 relative overflow-hidden">
+          <div class="grid grid-cols-3 grid-rows-3 gap-0.5 absolute inset-0">
+            <!-- 12 prontos -->
+            <div class="bg-iris"></div>
+            <div class="bg-gold"></div>
+            <div class="bg-bone border border-silver"></div>
+            <div class="bg-plum"></div>
+            <div class="bg-iris"></div>
+            <div class="bg-bone border border-silver"></div>
+            <!-- skeleton -->
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
           </div>
-          <div class="text-[16px] font-medium mt-2">Feed quadrado, carrossel, stories</div>
-          <div class="text-[13px] text-smoke font-light mt-1">8 minutos restantes · Bannerbear</div>
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver">
-            <div class="h-px bg-gold flowing" style="width: 40%"></div>
-          </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-gold">Posts Instagram</span>
+          <span class="text-[10px] font-bold text-gold tracking-widest uppercase" id="posts-counter">12/50</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">12 / 50</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">40%</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris">Bannerbear · diagramando</div>
+        <div class="mono text-[11px] text-mist mt-2">~8 min restantes</div>
+      </article>
 
-      <!-- SITE -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center bg-bone -mx-6 px-6 lg:-mx-12 lg:px-12">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Site institucional</span>
-            <span class="text-[11px] font-medium text-gold">EM PRODUÇÃO</span>
+      <!-- SITE — em produção -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 relative overflow-hidden bg-bone p-3 border border-silver">
+          <div class="bg-paper border border-silver h-full flex flex-col p-2">
+            <div class="flex gap-1 mb-2">
+              <div class="w-1 h-1 rounded-full bg-silver"></div>
+              <div class="w-1 h-1 rounded-full bg-silver"></div>
+              <div class="w-1 h-1 rounded-full bg-silver"></div>
+            </div>
+            <div class="h-1.5 w-3/5 bg-iris/30 rounded mb-1.5"></div>
+            <div class="h-1.5 w-2/5 bg-silver rounded mb-1.5"></div>
+            <div class="h-1.5 w-4/5 bg-silver rounded mb-1.5"></div>
+            <div class="h-1.5 skeleton rounded mb-1.5"></div>
+            <div class="h-1.5 skeleton rounded mb-1.5"></div>
+            <div class="h-1.5 skeleton rounded w-3/4"></div>
           </div>
-          <div class="text-[16px] font-medium mt-2">Páginas e SEO</div>
-          <div class="text-[13px] text-smoke font-light mt-1">2 páginas restantes</div>
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver">
-            <div class="h-px bg-gold flowing" style="width: 60%"></div>
-          </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-gold">Site institucional</span>
+          <span class="text-[10px] font-bold text-gold tracking-widest uppercase">3/5</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-smoke">3 / 5</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-gold">60%</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris">Páginas e SEO</div>
+        <div class="mono text-[11px] text-mist mt-2">~14 min restantes</div>
+      </article>
 
-      <!-- IMPRESSO -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Material impresso</span>
-            <span class="text-[11px] font-medium text-mist">NA FILA</span>
+      <!-- MATERIAL IMPRESSO — na fila -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 bg-bone border border-silver flex items-center justify-center">
+          <div class="text-center">
+            <svg class="mx-auto mb-2" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A3A3A3" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="mono text-[10px] text-mist tracking-widest uppercase">Na fila</div>
           </div>
-          <div class="text-[16px] font-medium mt-2">Santinho, panfleto, adesivos, outdoor</div>
-          <div class="text-[13px] text-smoke font-light mt-1">Aguardando finalização da identidade</div>
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver"></div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-mist">Material impresso</span>
+          <span class="text-[10px] font-bold text-mist tracking-widest uppercase">0/12</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-mist">0 / 12</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-mist">—</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris/50">Santinho, panfleto, outdoor</div>
+        <div class="mono text-[11px] text-mist mt-2">Inicia em ~12 min</div>
+      </article>
 
-      <!-- BOT WHATSAPP -->
-      <div class="py-6 grid grid-cols-12 gap-6 items-center">
-        <div class="col-span-12 md:col-span-5">
-          <div class="flex items-baseline gap-3">
-            <span class="label">Bot WhatsApp</span>
-            <span class="text-[11px] font-medium text-mist">NA FILA</span>
+      <!-- BOT WHATSAPP — na fila -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 bg-bone border border-silver flex items-center justify-center">
+          <div class="text-center">
+            <svg class="mx-auto mb-2" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A3A3A3" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="mono text-[10px] text-mist tracking-widest uppercase">Na fila</div>
           </div>
-          <div class="text-[16px] font-medium mt-2">Setup Evolution API, flow, transmissão, QR</div>
-          <div class="text-[13px] text-smoke font-light mt-1">Início estimado: 1h 12min</div>
         </div>
-        <div class="col-span-6 md:col-span-4">
-          <div class="h-px bg-silver"></div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-mist">Bot WhatsApp</span>
+          <span class="text-[10px] font-bold text-mist tracking-widest uppercase">0/4</span>
         </div>
-        <div class="col-span-3 md:col-span-2 mono text-[13px] text-mist">0 / 4</div>
-        <div class="col-span-3 md:col-span-1 text-right mono text-[13px] text-mist">—</div>
-      </div>
+        <div class="text-[14px] font-medium text-iris/50">Setup e fluxos de resposta</div>
+        <div class="mono text-[11px] text-mist mt-2">Inicia em ~32 min</div>
+      </article>
+
+      <!-- ESTRATÉGIA — em produção -->
+      <article class="bg-paper p-5">
+        <div class="aspect-[4/3] mb-4 relative overflow-hidden bg-bone p-3 border border-silver">
+          <div class="space-y-1.5">
+            <div class="h-1.5 w-full bg-iris/30 rounded"></div>
+            <div class="h-1.5 w-4/5 bg-iris/20 rounded"></div>
+            <div class="h-1.5 w-full bg-silver rounded"></div>
+            <div class="h-1.5 skeleton rounded"></div>
+            <div class="h-1.5 skeleton rounded w-5/6"></div>
+            <div class="h-1.5 skeleton rounded w-3/4"></div>
+            <div class="h-1.5 skeleton rounded w-4/5"></div>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="label text-gold">Kit estratégico</span>
+          <span class="text-[10px] font-bold text-gold tracking-widest uppercase">2/5</span>
+        </div>
+        <div class="text-[14px] font-medium text-iris">Argumentação e roteiros</div>
+        <div class="mono text-[11px] text-mist mt-2">~22 min restantes</div>
+      </article>
 
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- AVISO -->
-  <section class="mt-16 lg:mt-20 grid lg:grid-cols-12 gap-12 pt-16 border-t border-silver">
-    <div class="lg:col-span-3">
-      <div class="label">Notificação</div>
+<!-- ============================================================
+     ESTATÍSTICAS DA OPERAÇÃO
+     ============================================================ -->
+<section class="bg-bone border-y border-silver">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-16">
+    <div class="grid lg:grid-cols-12 gap-12 mb-10">
+      <div class="lg:col-span-3">
+        <div class="label">Bastidores</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="text-[28px] lg:text-[40px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-xl">
+          O que está acontecendo agora.
+        </h2>
+      </div>
     </div>
-    <div class="lg:col-span-6">
-      <h3 class="text-[22px] lg:text-[28px] tracking-ultratight font-medium mb-3">
-        Você não precisa esperar nesta página.
-      </h3>
-      <p class="text-[15px] leading-[1.7] text-smoke font-light max-w-lg">
-        Quando a produção for finalizada, enviaremos uma notificação por email para <span class="text-ink font-medium">gabriel@exemplo.com</span> e por WhatsApp para <span class="text-ink font-medium">(31) 9 9876 5432</span>.
-      </p>
-    </div>
-    <div class="lg:col-span-3 flex lg:justify-end">
-      <a href="kit.html" class="inline-flex items-center gap-3 text-[15px] font-medium border-b border-ink hover:pb-1 transition-all pb-0.5">
-        Ver prévia do kit
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
-    </div>
-  </section>
 
-</div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-silver border border-silver">
+      <div class="bg-paper p-7">
+        <div class="label mb-3">Palavras geradas</div>
+        <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none" id="counter-words">12.847</div>
+        <div class="text-[12px] text-mist mt-2">Claude · Anthropic</div>
+      </div>
+      <div class="bg-paper p-7">
+        <div class="label mb-3">Imagens criadas</div>
+        <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none" id="counter-images">47</div>
+        <div class="text-[12px] text-mist mt-2">Recraft · Bannerbear</div>
+      </div>
+      <div class="bg-paper p-7">
+        <div class="label mb-3">Segundos de áudio</div>
+        <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none" id="counter-audio">183</div>
+        <div class="text-[12px] text-mist mt-2">Suno · ElevenLabs</div>
+      </div>
+      <div class="bg-paper p-7">
+        <div class="label mb-3">Custo de IA até agora</div>
+        <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none">R$ <span id="counter-cost">14,32</span></div>
+        <div class="text-[12px] text-mist mt-2">Auditável no painel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NOTIFICAÇÃO
+     ============================================================ -->
+<section>
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+    <div class="grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8">
+        <div class="label mb-4 text-gold">Você não precisa esperar nesta página</div>
+        <h3 class="text-[24px] lg:text-[32px] tracking-ultratight font-medium text-iris mb-4">
+          Avisaremos quando estiver pronto.
+        </h3>
+        <p class="text-[15px] leading-[1.7] text-smoke font-light max-w-xl">
+          Quando a produção for finalizada, enviaremos uma notificação por email para <span class="text-iris font-medium">gabriel@exemplo.com</span> e por WhatsApp para <span class="text-iris font-medium">(31) 9 9876 5432</span>.
+        </p>
+      </div>
+      <div class="lg:col-span-4 lg:text-right">
+        <a href="kit.html" class="inline-flex items-center gap-3 bg-iris text-paper text-[15px] font-medium px-7 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
+          Ver prévia do kit
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Stream de atividade simulado
+  const feedItems = [
+    { time: '13:47:32', system: 'SUNO', msg: 'Jingle "Minas pode mais" renderizado · variação 03/04' },
+    { time: '13:47:18', system: 'BANNERBEAR', msg: 'Post Instagram 13/50 diagramado · feed quadrado' },
+    { time: '13:47:02', system: 'CLAUDE', msg: 'Roteiro de spot 30s revisado · 287 tokens' },
+    { time: '13:46:51', system: 'BANNERBEAR', msg: 'Post Instagram 12/50 diagramado · feed quadrado' },
+    { time: '13:46:34', system: 'CLAUDE', msg: 'Página 13 do plano de governo concluída' },
+    { time: '13:46:12', system: 'CLAUDE', msg: 'Argumentação · tema "segurança pública" finalizada' },
+    { time: '13:45:48', system: 'BANNERBEAR', msg: 'Post Instagram 11/50 diagramado · carrossel 4/5' },
+    { time: '13:45:21', system: 'RECRAFT', msg: 'Variação do logo · versão monocromática' },
+    { time: '13:44:55', system: 'CLAUDE', msg: 'Q&A para entrevistas · 7 perguntas adicionadas' },
+    { time: '13:44:32', system: 'SUNO', msg: 'Polling jingle principal · 78% concluído' },
+  ];
+
+  const feedEl = document.getElementById('feed');
+  feedItems.forEach((item, i) => {
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.className = 'feed-item flex items-start gap-3 text-[12px] leading-relaxed';
+      div.innerHTML = `
+        <span class="mono text-[10px] text-paper/40 mt-0.5">${item.time}</span>
+        <div class="flex-1 min-w-0">
+          <span class="mono text-[10px] font-bold text-gold tracking-wider">${item.system}</span>
+          <div class="text-paper/80">${item.msg}</div>
+        </div>
+      `;
+      feedEl.insertBefore(div, feedEl.firstChild);
+      while (feedEl.children.length > 8) feedEl.removeChild(feedEl.lastChild);
+    }, i * 600);
+  });
+
+  // Contadores que incrementam suavemente
+  function animateCounter(id, target, isFloat = false, step = 1) {
+    const el = document.getElementById(id);
+    let current = parseFloat(el.textContent.replace('.', '').replace(',', '.'));
+    setInterval(() => {
+      if (current < target) {
+        current += step;
+        el.textContent = isFloat
+          ? current.toFixed(2).replace('.', ',')
+          : current.toLocaleString('pt-BR');
+      }
+    }, 2200);
+  }
+
+  // Words: incrementa
+  setInterval(() => {
+    const el = document.getElementById('counter-words');
+    let n = parseInt(el.textContent.replace(/\./g, ''));
+    n += Math.floor(Math.random() * 47) + 12;
+    el.textContent = n.toLocaleString('pt-BR');
+  }, 1800);
+
+  // Images: incrementa raramente
+  setInterval(() => {
+    const el = document.getElementById('counter-images');
+    let n = parseInt(el.textContent);
+    el.textContent = n + 1;
+  }, 8000);
+
+  // Audio segundos: incrementa
+  setInterval(() => {
+    const el = document.getElementById('counter-audio');
+    let n = parseInt(el.textContent);
+    n += Math.floor(Math.random() * 3) + 1;
+    el.textContent = n;
+  }, 2400);
+
+  // Custo: incrementa devagar
+  setInterval(() => {
+    const el = document.getElementById('counter-cost');
+    let n = parseFloat(el.textContent.replace(',', '.'));
+    n += Math.random() * 0.07 + 0.02;
+    el.textContent = n.toFixed(2).replace('.', ',');
+  }, 1600);
+
+  // Audio percentage subindo
+  setInterval(() => {
+    const el = document.getElementById('audio-pct');
+    let n = parseInt(el.textContent);
+    if (n < 99) {
+      n += 1;
+      el.textContent = n + '%';
+    }
+  }, 3500);
+
+  // Posts counter
+  setInterval(() => {
+    const el = document.getElementById('posts-counter');
+    let [done, total] = el.textContent.split('/').map(s => parseInt(s));
+    if (done < total) {
+      done += 1;
+      el.textContent = done + '/' + total;
+    }
+  }, 7000);
+</script>
 
 </body>
 </html>

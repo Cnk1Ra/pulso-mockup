@@ -705,33 +705,77 @@
           <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Cadastro de cabos eleitorais</h2>
           <span class="text-[11px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-3 py-1">Plano Pro</span>
         </div>
-        <p class="text-[14px] text-smoke mb-8">Sistema completo para gerenciar sua rede de apoiadores em cada bairro e cidade.</p>
+        <p class="text-[14px] text-smoke mb-8">Painel de gestão completo para sua rede de apoiadores — com mapa de calor por bairro, geração de crachás e exportação para o TSE.</p>
 
-        <div class="lock-overlay">
-          <svg class="mx-auto mb-6" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="1.5">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
-          <h3 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-4 max-w-2xl mx-auto leading-tight">
-            Sua rede de cabos no painel
-          </h3>
-          <p class="text-[15px] leading-relaxed text-smoke mb-8 max-w-xl mx-auto">
-            Cadastro online, geração de crachá, mapa de cobertura por bairro e exportação para Excel. Tudo em conformidade com a Lei das Eleições.
-          </p>
+        <!-- Preview com overlay -->
+        <div class="relative rounded-2xl overflow-hidden mb-6 group">
+          <img src="public/cards/mapa-cabos.png" alt="Painel de cabos eleitorais com mapa de calor" class="w-full h-auto block">
+          <!-- Overlay gradient -->
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-paper/60 to-paper pointer-events-none"></div>
+          <!-- Selo "preview bloqueado" no topo -->
+          <div class="absolute top-5 left-5 flex items-center gap-2 bg-paper/95 backdrop-blur px-4 py-2 rounded-full shadow-lg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span class="text-[11px] font-bold tracking-widest uppercase text-iris">Preview do plano Pro</span>
+          </div>
+        </div>
 
-          <ul class="text-left max-w-md mx-auto space-y-2.5 mb-10 text-[14px]">
-            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Formulário público de inscrição (link compartilhável)</span></li>
-            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Geração automática de crachá com foto, número e identificação</span></li>
-            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Mapa de calor por bairro e cidade</span></li>
-            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Lista de transmissão segmentada por região</span></li>
-            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Exportação CSV/Excel para prestação de contas</span></li>
-          </ul>
+        <!-- Conteúdo do upsell embaixo da imagem -->
+        <div class="bg-bone rounded-2xl p-8 lg:p-10 border border-gold/30">
+          <div class="grid lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7">
+              <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
+              <h3 class="text-[24px] lg:text-[32px] tracking-ultratight font-medium text-iris mb-4 leading-tight">
+                Sua rede de cabos no painel — em tempo real.
+              </h3>
+              <p class="text-[15px] leading-relaxed text-smoke mb-6">
+                Cada cabo eleitoral se cadastra pelo link público da campanha. O sistema georreferencia automaticamente, mostra no mapa de calor onde sua base está forte e revela bairros sem cobertura.
+              </p>
 
-          <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
-            Fazer upgrade pro Pro
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
+              <ul class="space-y-2.5 text-[14px]">
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Mapa de calor por bairro e cidade</span></li>
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Formulário público de inscrição (link compartilhável)</span></li>
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Geração automática de crachá com foto e número</span></li>
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Identificação de "bairros sem cabos" como oportunidade</span></li>
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Lista de transmissão WhatsApp segmentada por região</span></li>
+                <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Exportação CSV/Excel para prestação de contas no TSE</span></li>
+              </ul>
+            </div>
+
+            <div class="lg:col-span-5 lg:border-l lg:border-silver lg:pl-8">
+              <div class="label mb-4">Como funciona tecnicamente</div>
+              <div class="space-y-4 text-[13px] text-smoke">
+                <div>
+                  <div class="text-iris font-semibold mb-1">1 · Coleta</div>
+                  Formulário público pede nome, CPF e CEP. ViaCEP resolve bairro/cidade automaticamente.
+                </div>
+                <div>
+                  <div class="text-iris font-semibold mb-1">2 · Georreferenciamento</div>
+                  API de geocoding (Nominatim/Mapbox) converte endereço em latitude/longitude.
+                </div>
+                <div>
+                  <div class="text-iris font-semibold mb-1">3 · Visualização</div>
+                  Leaflet.js + plugin de heatmap renderiza densidade colorida em tempo real.
+                </div>
+                <div>
+                  <div class="text-iris font-semibold mb-1">4 · Conformidade</div>
+                  Dados criptografados. Export CSV pronto pra prestação no DivulgaCand.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-silver flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p class="text-[13px] text-smoke max-w-md">
+              O upgrade libera essa categoria e mais três no kit completo Pro.
+            </p>
+            <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30 whitespace-nowrap">
+              Fazer upgrade pro Pro
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
         </div>
       </section>
 

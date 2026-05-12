@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulso — Gerando seu kit</title>
+<title>Pulso — Sua campanha está sendo feita</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
@@ -22,376 +22,214 @@
   }
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; font-size: 17px; }
   .font-serif { font-family: 'Playfair Display', serif; }
-
   @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
   .spin-slow { animation: spin-slow 2s linear infinite; }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
-  }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
   .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
-
-  @keyframes progress-shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
+  @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
   .progress-bar { position: relative; overflow: hidden; }
-  .progress-bar::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: progress-shimmer 2s linear infinite;
-  }
-
-  @keyframes wave {
-    0%, 100% { height: 30%; }
-    50% { height: 100%; }
-  }
-  .wave-bar { animation: wave 1.2s ease-in-out infinite; }
+  .progress-bar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmer 2s linear infinite; }
 </style>
 </head>
 <body class="bg-cream text-graphite">
 
 <!-- HEADER -->
-<header class="bg-cream border-b border-creamDark sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+<header class="bg-white border-b border-creamDark">
+  <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" stroke="#0A1B3D" stroke-width="1.5"/>
-        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
-      <span class="font-serif text-xl font-bold tracking-tight text-navy">Pulso</span>
+      <span class="font-serif text-2xl font-bold text-navy">Pulso</span>
     </a>
-    <div class="flex items-center gap-4">
-      <div class="hidden md:flex items-center gap-2 text-xs text-graphite/60">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span>
-        Geração em andamento
-      </div>
-      <div class="w-9 h-9 rounded-full bg-navy text-cream flex items-center justify-center font-bold text-sm">RC</div>
+    <div class="flex items-center gap-3">
+      <span class="w-3 h-3 rounded-full bg-emerald-500 pulse-dot"></span>
+      <span class="text-sm font-medium text-graphite/70">Trabalhando...</span>
     </div>
   </div>
 </header>
 
-<div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-14">
+<div class="max-w-5xl mx-auto px-6 py-10">
 
-  <!-- HERO STATUS -->
-  <div class="bg-navy text-cream rounded-3xl p-8 lg:p-12 mb-8 relative overflow-hidden">
-    <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-gold/10 blur-3xl"></div>
-    <div class="absolute -right-10 -bottom-10 w-60 h-60 rounded-full bg-gold/5 blur-3xl"></div>
+  <!-- TELA PRINCIPAL -->
+  <div class="bg-navy text-cream rounded-3xl p-10 lg:p-14 mb-8 relative overflow-hidden text-center">
+    <div class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl"></div>
 
-    <div class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-      <div class="flex-1">
-        <div class="inline-flex items-center gap-2 bg-cream/10 rounded-full px-3 py-1 mb-5">
-          <span class="w-2 h-2 rounded-full bg-gold pulse-dot"></span>
-          <span class="text-xs font-bold tracking-wider uppercase text-gold">Gerando agora</span>
-        </div>
-        <h1 class="font-serif text-3xl lg:text-5xl font-bold leading-tight mb-3">
-          Bom dia, Rafael.<br>
-          <span class="text-gold italic">Seu kit está sendo produzido.</span>
-        </h1>
-        <p class="text-cream/70 text-lg max-w-2xl">
-          11 de 23 peças concluídas. Tempo estimado restante: <strong class="text-gold">cerca de 2 horas</strong>.
-          Você receberá um email assim que tudo estiver pronto.
-        </p>
-      </div>
+    <div class="relative">
+      <div class="text-7xl mb-4">⚙️</div>
+      <h1 class="font-serif text-4xl lg:text-5xl font-bold leading-tight mb-4">
+        Estamos fazendo<br>
+        <span class="text-gold italic">sua campanha.</span>
+      </h1>
+      <p class="text-cream/70 text-xl mb-10 max-w-xl mx-auto">
+        Pode fechar essa página. A gente te avisa quando ficar pronto.
+      </p>
 
-      <!-- Circular progress -->
-      <div class="relative w-40 h-40 lg:w-48 lg:h-48 flex-shrink-0">
+      <!-- Círculo de progresso grande -->
+      <div class="relative w-56 h-56 mx-auto mb-8">
         <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="42" stroke="rgba(248,246,240,0.1)" stroke-width="8" fill="none"/>
-          <circle cx="50" cy="50" r="42" stroke="#D4A04A" stroke-width="8" fill="none"
+          <circle cx="50" cy="50" r="42" stroke="rgba(248,246,240,0.1)" stroke-width="10" fill="none"/>
+          <circle cx="50" cy="50" r="42" stroke="#D4A04A" stroke-width="10" fill="none"
                   stroke-linecap="round"
                   stroke-dasharray="263.89"
                   stroke-dashoffset="139.86"/>
         </svg>
         <div class="absolute inset-0 flex flex-col items-center justify-center">
-          <div class="font-serif text-5xl lg:text-6xl font-bold text-cream">47%</div>
-          <div class="text-xs uppercase tracking-wider text-cream/60 mt-1">concluído</div>
+          <div class="font-serif text-7xl font-bold text-cream">47%</div>
+          <div class="text-sm uppercase tracking-wider text-cream/60 mt-2">pronto</div>
         </div>
       </div>
-    </div>
 
-    <!-- Linear progress -->
-    <div class="mt-10 pt-8 border-t border-cream/10">
-      <div class="flex items-center justify-between text-xs text-cream/60 mb-3">
-        <span>0%</span><span>50%</span><span>100%</span>
-      </div>
-      <div class="h-2 bg-cream/10 rounded-full overflow-hidden">
-        <div class="progress-bar h-full bg-gold rounded-full" style="width: 47%"></div>
+      <!-- Tempo restante -->
+      <div class="inline-flex items-center gap-2 bg-cream/10 rounded-full px-5 py-2.5">
+        <span class="text-2xl">⏰</span>
+        <span class="font-medium">Falta cerca de <strong>2 horas</strong></span>
       </div>
     </div>
-  </div>
-
-  <!-- CATEGORIAS -->
-  <div class="grid lg:grid-cols-3 gap-4 mb-8">
-
-    <!-- IDENTIDADE -->
-    <div class="bg-white rounded-2xl p-6 border border-creamDark">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Identidade visual</div>
-            <div class="text-xs text-graphite/50">4 de 4 concluídos</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Pronto</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Logo</span></div>
-          <span class="text-xs text-graphite/40">12s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Número estilizado</span></div>
-          <span class="text-xs text-graphite/40">8s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Paleta de cores</span></div>
-          <span class="text-xs text-graphite/40">2s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Manual de marca</span></div>
-          <span class="text-xs text-graphite/40">35s</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- TEXTOS -->
-    <div class="bg-white rounded-2xl p-6 border border-creamDark">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Textos & copy</div>
-            <div class="text-xs text-graphite/50">5 de 5 concluídos</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Pronto</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Plano de governo</span></div>
-          <span class="text-xs text-graphite/40">2m</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>30 textos de copy</span></div>
-          <span class="text-xs text-graphite/40">3m</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Q&A para entrevistas</span></div>
-          <span class="text-xs text-graphite/40">1m</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Biografia</span></div>
-          <span class="text-xs text-graphite/40">30s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Roteiro spot rádio</span></div>
-          <span class="text-xs text-graphite/40">25s</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ÁUDIOS (gerando) -->
-    <div class="bg-white rounded-2xl p-6 border-2 border-gold">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center">
-            <svg class="spin-slow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5832A" stroke-width="2.5" stroke-linecap="round">
-              <path d="M21 12a9 9 0 11-6.219-8.56"/>
-            </svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Áudio & jingle</div>
-            <div class="text-xs text-graphite/50">2 de 5 concluídos</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-gold uppercase tracking-wider">Gerando</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Spot de rádio 30s</span></div>
-          <span class="text-xs text-graphite/40">5m</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>10 áudios WhatsApp</span></div>
-          <span class="text-xs text-graphite/40">8m</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 bg-gold/10 -mx-2 px-2 rounded">
-          <div class="flex items-center gap-2">
-            <div class="flex items-end gap-0.5 h-3.5 w-3.5">
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.2s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.4s"></div>
-            </div>
-            <span class="font-medium text-navy">Jingle 60s (sertanejo)</span>
-          </div>
-          <span class="text-xs text-gold font-semibold">2m restante</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Jingle 60s (funk)</span></div>
-          <span class="text-xs">aguardando</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Cortes 15s + 30s</span></div>
-          <span class="text-xs">aguardando</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- MATERIAL GRÁFICO (gerando) -->
-    <div class="bg-white rounded-2xl p-6 border-2 border-gold">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center">
-            <svg class="spin-slow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5832A" stroke-width="2.5" stroke-linecap="round">
-              <path d="M21 12a9 9 0 11-6.219-8.56"/>
-            </svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Material gráfico</div>
-            <div class="text-xs text-graphite/50">8 de 30 concluídos</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-gold uppercase tracking-wider">Gerando</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Santinho frente + verso</span></div>
-          <span class="text-xs text-graphite/40">22s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adesivo de carro</span></div>
-          <span class="text-xs text-graphite/40">14s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 bg-gold/10 -mx-2 px-2 rounded">
-          <div class="flex items-center gap-2">
-            <div class="flex items-end gap-0.5 h-3.5 w-3.5">
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.2s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.4s"></div>
-            </div>
-            <span class="font-medium text-navy">30 posts Instagram (12/30)</span>
-          </div>
-          <span class="text-xs text-gold font-semibold">8m restante</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Panfleto desdobrável</span></div>
-          <span class="text-xs">aguardando</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Bandeira + faixa</span></div>
-          <span class="text-xs">aguardando</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- SITE (gerando) -->
-    <div class="bg-white rounded-2xl p-6 border-2 border-gold">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center">
-            <svg class="spin-slow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5832A" stroke-width="2.5" stroke-linecap="round">
-              <path d="M21 12a9 9 0 11-6.219-8.56"/>
-            </svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Site institucional</div>
-            <div class="text-xs text-graphite/50">3 de 5 páginas</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-gold uppercase tracking-wider">Gerando</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Home</span></div>
-          <span class="text-xs text-graphite/40">18s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Biografia</span></div>
-          <span class="text-xs text-graphite/40">12s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5">
-          <div class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Propostas</span></div>
-          <span class="text-xs text-graphite/40">15s</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 bg-gold/10 -mx-2 px-2 rounded">
-          <div class="flex items-center gap-2">
-            <div class="flex items-end gap-0.5 h-3.5 w-3.5">
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.2s"></div>
-              <div class="w-0.5 bg-gold wave-bar" style="animation-delay:0.4s"></div>
-            </div>
-            <span class="font-medium text-navy">Agenda</span>
-          </div>
-          <span class="text-xs text-gold font-semibold">processando</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Contato + apoiadores</span></div>
-          <span class="text-xs">aguardando</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- BOT WHATSAPP (aguardando) -->
-    <div class="bg-white rounded-2xl p-6 border border-creamDark opacity-70">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-graphite/10 flex items-center justify-center">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="font-serif text-lg font-bold text-navy">Bot de WhatsApp</div>
-            <div class="text-xs text-graphite/50">0 de 4 concluídos</div>
-          </div>
-        </div>
-        <span class="text-xs font-bold text-graphite/50 uppercase tracking-wider">Aguardando</span>
-      </div>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Setup Evolution API</span></div>
-          <span class="text-xs">na fila</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Flow de respostas</span></div>
-          <span class="text-xs">na fila</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>Lista de transmissão</span></div>
-          <span class="text-xs">na fila</span>
-        </li>
-        <li class="flex items-center justify-between py-1.5 text-graphite/50">
-          <div class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full border border-graphite/20"></div><span>QR Code de conexão</span></div>
-          <span class="text-xs">na fila</span>
-        </li>
-      </ul>
-    </div>
-
   </div>
 
   <!-- AVISO -->
-  <div class="bg-cream border border-gold/30 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4">
-    <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5832A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-    </div>
-    <div class="flex-1">
-      <div class="font-serif text-lg font-bold text-navy mb-1">Você não precisa ficar nesta tela</div>
-      <p class="text-graphite/70 text-sm">
-        Pode fechar a aba. Assim que tudo estiver pronto, enviaremos um email para
-        <strong>rafael.costa@email.com</strong> e uma notificação no WhatsApp em
-        <strong>(31) 9 9876-5432</strong>.
+  <div class="bg-gold/15 border-2 border-gold/30 rounded-2xl p-6 mb-8 flex items-start gap-4">
+    <div class="text-4xl flex-shrink-0">📨</div>
+    <div>
+      <div class="font-bold text-navy text-lg mb-1">Você não precisa esperar aqui</div>
+      <p class="text-graphite/70">
+        Vamos te mandar um <strong>email</strong> e um <strong>WhatsApp</strong> quando tudo estiver pronto.
       </p>
     </div>
-    <a href="kit.html" class="text-sm bg-gold text-navy font-bold px-5 py-2.5 rounded-full hover:bg-goldLight transition flex-shrink-0">
-      Ver prévia do kit
+  </div>
+
+  <!-- LISTA SIMPLES -->
+  <h2 class="font-serif text-2xl font-bold text-navy mb-4">O que já está pronto:</h2>
+
+  <div class="space-y-3 mb-8">
+    <!-- Identidade visual -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-emerald-200 flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 text-3xl">
+        🎨
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-navy text-lg">Logo e cores</div>
+        <div class="text-sm text-graphite/60">Pronto há 5 minutos</div>
+      </div>
+      <div class="text-emerald-600 font-bold flex items-center gap-2">
+        <span class="text-2xl">✅</span>
+        <span class="hidden sm:inline">Pronto</span>
+      </div>
+    </div>
+
+    <!-- Textos -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-emerald-200 flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 text-3xl">
+        ✍️
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-navy text-lg">Plano de governo e textos</div>
+        <div class="text-sm text-graphite/60">Pronto há 12 minutos</div>
+      </div>
+      <div class="text-emerald-600 font-bold flex items-center gap-2">
+        <span class="text-2xl">✅</span>
+        <span class="hidden sm:inline">Pronto</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="font-serif text-2xl font-bold text-navy mb-4">O que está sendo feito agora:</h2>
+
+  <div class="space-y-3 mb-8">
+    <!-- Música (fazendo) -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
+        🎵
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-navy text-lg">Sua música da campanha</div>
+        <div class="text-sm text-graphite/60 mb-2">Quase pronta, falta 2 minutos</div>
+        <div class="h-2 bg-cream rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-gold rounded-full" style="width: 75%"></div>
+        </div>
+      </div>
+      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M21 12a9 9 0 11-6.219-8.56"/>
+      </svg>
+    </div>
+
+    <!-- Posts (fazendo) -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
+        📱
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-navy text-lg">Posts pra Instagram</div>
+        <div class="text-sm text-graphite/60 mb-2">12 de 30 prontos</div>
+        <div class="h-2 bg-cream rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-gold rounded-full" style="width: 40%"></div>
+        </div>
+      </div>
+      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M21 12a9 9 0 11-6.219-8.56"/>
+      </svg>
+    </div>
+
+    <!-- Site (fazendo) -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-gold flex items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0 text-3xl">
+        🌐
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-navy text-lg">Seu site na internet</div>
+        <div class="text-sm text-graphite/60 mb-2">3 de 5 páginas prontas</div>
+        <div class="h-2 bg-cream rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-gold rounded-full" style="width: 60%"></div>
+        </div>
+      </div>
+      <svg class="spin-slow text-gold flex-shrink-0" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M21 12a9 9 0 11-6.219-8.56"/>
+      </svg>
+    </div>
+  </div>
+
+  <h2 class="font-serif text-2xl font-bold text-navy mb-4">Próximos da fila:</h2>
+
+  <div class="space-y-3 mb-10">
+    <!-- WhatsApp (aguardando) -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-creamDark flex items-center gap-4 opacity-70">
+      <div class="w-14 h-14 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-3xl">
+        💬
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-graphite/80 text-lg">Atendimento no WhatsApp</div>
+        <div class="text-sm text-graphite/50">Aguardando começar</div>
+      </div>
+      <div class="text-graphite/40 font-medium flex items-center gap-2">
+        <span class="text-2xl">⏳</span>
+        <span class="hidden sm:inline">Na fila</span>
+      </div>
+    </div>
+
+    <!-- Santinho (aguardando) -->
+    <div class="bg-white rounded-2xl p-5 border-2 border-creamDark flex items-center gap-4 opacity-70">
+      <div class="w-14 h-14 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-3xl">
+        📄
+      </div>
+      <div class="flex-1">
+        <div class="font-bold text-graphite/80 text-lg">Santinho e panfletos</div>
+        <div class="text-sm text-graphite/50">Aguardando começar</div>
+      </div>
+      <div class="text-graphite/40 font-medium flex items-center gap-2">
+        <span class="text-2xl">⏳</span>
+        <span class="hidden sm:inline">Na fila</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VER PRÉVIA -->
+  <div class="text-center">
+    <a href="kit.html" class="inline-flex items-center gap-3 bg-navy text-cream font-bold px-8 py-4 rounded-full hover:bg-navyLight transition text-lg">
+      👀 Ver prévia do que já tá pronto
     </a>
   </div>
 

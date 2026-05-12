@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulso — Briefing estratégico</title>
+<title>Pulso — Conte sobre você</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: { extend: {
@@ -22,293 +22,199 @@
   }
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; font-size: 17px; }
   .font-serif { font-family: 'Playfair Display', serif; }
-  input:focus, textarea:focus, select:focus { outline: 2px solid #D4A04A; outline-offset: 2px; }
-  .chip-input:checked + label { background: #0A1B3D; color: #F8F6F0; border-color: #0A1B3D; }
+  input:focus, textarea:focus { outline: 3px solid #D4A04A; outline-offset: 2px; }
+  .chip:checked + label { background: #0A1B3D !important; color: #F8F6F0 !important; border-color: #0A1B3D !important; }
 </style>
 </head>
 <body class="bg-cream text-graphite">
 
 <!-- HEADER -->
-<header class="bg-cream border-b border-creamDark">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+<header class="bg-white border-b border-creamDark">
+  <div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="13" stroke="#0A1B3D" stroke-width="1.5"/>
-        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
-      <span class="font-serif text-xl font-bold tracking-tight text-navy">Pulso</span>
+      <span class="font-serif text-2xl font-bold text-navy">Pulso</span>
     </a>
-    <div class="text-sm text-graphite/60">
-      Logado como <strong class="text-navy">rafael.costa@email.com</strong>
-    </div>
+    <div class="text-sm text-graphite/60">Passo <strong class="text-navy">3 de 5</strong></div>
   </div>
 </header>
 
-<div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-16">
-  <div class="grid lg:grid-cols-12 gap-12">
+<!-- BARRA DE PROGRESSO -->
+<div class="bg-white">
+  <div class="max-w-5xl mx-auto px-6 pb-4">
+    <div class="h-2 bg-creamDark rounded-full overflow-hidden">
+      <div class="h-full bg-gold rounded-full" style="width: 60%"></div>
+    </div>
+    <div class="flex justify-between mt-3 text-xs text-graphite/60">
+      <span>✅ Cadastro</span>
+      <span>✅ Sobre você</span>
+      <span class="font-bold text-navy">📝 Suas propostas</span>
+      <span class="opacity-50">Fotos</span>
+      <span class="opacity-50">Plano</span>
+    </div>
+  </div>
+</div>
 
-    <!-- ============ SIDEBAR PROGRESSO ============ -->
-    <aside class="lg:col-span-4">
-      <div class="sticky top-8">
-        <div class="text-xs font-bold tracking-widest uppercase text-gold mb-3">Onboarding</div>
-        <h1 class="font-serif text-3xl lg:text-4xl font-bold text-navy leading-tight mb-8">
-          Vamos conhecer sua candidatura.
-        </h1>
-        <p class="text-graphite/70 mb-10 leading-relaxed">
-          Quanto mais detalhes você fornecer, mais personalizado e estratégico
-          será seu kit de campanha.
-        </p>
+<div class="max-w-3xl mx-auto px-6 py-10 lg:py-16">
 
-        <ol class="space-y-1">
-          <!-- Concluídos -->
-          <li class="flex items-center gap-4 py-3">
-            <div class="w-7 h-7 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F8F6F0" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="text-sm font-semibold text-navy">Cadastro</div>
-              <div class="text-xs text-graphite/50">Email e contato</div>
-            </div>
-          </li>
-          <li class="flex items-center gap-4 py-3">
-            <div class="w-7 h-7 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F8F6F0" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="text-sm font-semibold text-navy">Dados pessoais</div>
-              <div class="text-xs text-graphite/50">Nome, CPF, nascimento</div>
-            </div>
-          </li>
-          <li class="flex items-center gap-4 py-3">
-            <div class="w-7 h-7 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F8F6F0" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="text-sm font-semibold text-navy">Candidatura</div>
-              <div class="text-xs text-graphite/50">Cargo, partido, número</div>
-            </div>
-          </li>
-          <!-- Atual -->
-          <li class="flex items-center gap-4 py-3 -mx-4 px-4 bg-gold/10 rounded-xl border-l-4 border-gold">
-            <div class="w-7 h-7 rounded-full bg-gold flex items-center justify-center flex-shrink-0">
-              <span class="font-bold text-navy text-sm">4</span>
-            </div>
-            <div>
-              <div class="text-sm font-bold text-navy">Briefing estratégico</div>
-              <div class="text-xs text-graphite/60">Propostas, tom, identidade</div>
-            </div>
-          </li>
-          <!-- Pendentes -->
-          <li class="flex items-center gap-4 py-3 opacity-50">
-            <div class="w-7 h-7 rounded-full border-2 border-graphite/20 flex items-center justify-center flex-shrink-0">
-              <span class="font-medium text-graphite/50 text-sm">5</span>
-            </div>
-            <div>
-              <div class="text-sm font-medium text-graphite/70">Materiais base</div>
-              <div class="text-xs text-graphite/40">Fotos e plano de governo</div>
-            </div>
-          </li>
-          <li class="flex items-center gap-4 py-3 opacity-50">
-            <div class="w-7 h-7 rounded-full border-2 border-graphite/20 flex items-center justify-center flex-shrink-0">
-              <span class="font-medium text-graphite/50 text-sm">6</span>
-            </div>
-            <div>
-              <div class="text-sm font-medium text-graphite/70">Plano</div>
-              <div class="text-xs text-graphite/40">Plus ou Pro</div>
-            </div>
-          </li>
-          <li class="flex items-center gap-4 py-3 opacity-50">
-            <div class="w-7 h-7 rounded-full border-2 border-graphite/20 flex items-center justify-center flex-shrink-0">
-              <span class="font-medium text-graphite/50 text-sm">7</span>
-            </div>
-            <div>
-              <div class="text-sm font-medium text-graphite/70">Pagamento</div>
-              <div class="text-xs text-graphite/40">PIX ou cartão</div>
-            </div>
-          </li>
-        </ol>
+  <!-- Título -->
+  <div class="text-center mb-10">
+    <div class="text-6xl mb-4">📝</div>
+    <h1 class="font-serif text-4xl lg:text-5xl font-bold text-navy mb-3">
+      Conte suas propostas
+    </h1>
+    <p class="text-lg text-graphite/70">
+      A gente vai usar isso pra fazer todo o material da campanha.
+    </p>
+  </div>
 
-        <div class="mt-10 bg-navy text-cream rounded-2xl p-6">
-          <div class="text-xs font-bold tracking-wider uppercase text-gold mb-2">Dica</div>
-          <p class="text-sm leading-relaxed text-cream/80">
-            Responda com a voz que você usaria com seu eleitor.
-            Nossa IA vai refletir esse tom em todo o material.
-          </p>
+  <form class="space-y-8">
+
+    <!-- Frase principal -->
+    <div class="bg-white rounded-3xl p-8 border-2 border-creamDark">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="text-3xl">💬</div>
+        <label class="font-serif text-2xl font-bold text-navy">Sua frase principal</label>
+      </div>
+      <p class="text-graphite/60 mb-5">
+        Uma frase curta que resume sua campanha. Vai aparecer no santinho, no jingle, no site.
+      </p>
+      <input
+        type="text"
+        value="Minas Gerais que cuida da sua família."
+        class="w-full px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl text-xl font-serif text-navy"
+      />
+      <p class="text-sm text-graphite/50 mt-2">💡 Dica: tente algo fácil de lembrar.</p>
+    </div>
+
+    <!-- 5 propostas -->
+    <div class="bg-white rounded-3xl p-8 border-2 border-creamDark">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="text-3xl">⭐</div>
+        <label class="font-serif text-2xl font-bold text-navy">Suas 5 propostas</label>
+      </div>
+      <p class="text-graphite/60 mb-5">
+        O que você vai fazer pelo seu estado/cidade? Escreva 5 coisas.
+      </p>
+      <div class="space-y-3">
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-navy text-cream font-bold flex items-center justify-center flex-shrink-0">1</div>
+          <input type="text" value="Mais médicos e hospitais em todas as cidades de Minas" class="flex-1 px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-navy text-cream font-bold flex items-center justify-center flex-shrink-0">2</div>
+          <input type="text" value="Escolas de qualidade pros nossos filhos" class="flex-1 px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-navy text-cream font-bold flex items-center justify-center flex-shrink-0">3</div>
+          <input type="text" value="Apoio ao pequeno comerciante mineiro" class="flex-1 px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-navy text-cream font-bold flex items-center justify-center flex-shrink-0">4</div>
+          <input type="text" value="Estradas e ônibus melhores em todo o estado" class="flex-1 px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-navy text-cream font-bold flex items-center justify-center flex-shrink-0">5</div>
+          <input type="text" value="Segurança pra você andar na rua sem medo" class="flex-1 px-5 py-4 bg-cream border-2 border-creamDark rounded-2xl" />
         </div>
       </div>
-    </aside>
+    </div>
 
-    <!-- ============ FORMULÁRIO ============ -->
-    <main class="lg:col-span-8">
-      <form class="space-y-12">
+    <!-- Como você é -->
+    <div class="bg-white rounded-3xl p-8 border-2 border-creamDark">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="text-3xl">🙋</div>
+        <label class="font-serif text-2xl font-bold text-navy">Como você se descreve?</label>
+      </div>
+      <p class="text-graphite/60 mb-5">
+        Escolha 3 palavras que combinam com você.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <input type="checkbox" id="a1" class="chip hidden" checked>
+        <label for="a1" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base bg-navy text-cream border-navy font-medium">✅ Honesto</label>
 
-        <!-- Frase-chave -->
-        <div class="bg-white rounded-2xl p-8 border border-creamDark">
-          <label class="block">
-            <div class="flex items-baseline justify-between mb-3">
-              <span class="font-serif text-2xl font-bold text-navy">Sua frase-chave</span>
-              <span class="text-xs text-graphite/50">Obrigatório · ~10 palavras</span>
-            </div>
-            <p class="text-sm text-graphite/60 mb-4">
-              A frase que resume sua candidatura. Vai aparecer no jingle, no santinho, no site.
-            </p>
-            <input
-              type="text"
-              value="Por um Vale do Aço com saúde, trabalho e dignidade."
-              class="w-full px-5 py-4 bg-cream border border-creamDark rounded-xl text-lg font-serif text-navy"
-            />
-          </label>
-        </div>
+        <input type="checkbox" id="a2" class="chip hidden">
+        <label for="a2" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Experiente</label>
 
-        <!-- Propostas -->
-        <div class="bg-white rounded-2xl p-8 border border-creamDark">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="font-serif text-2xl font-bold text-navy">Suas 5 propostas principais</span>
-            <span class="text-xs text-graphite/50">Obrigatório</span>
-          </div>
-          <p class="text-sm text-graphite/60 mb-6">
-            Vão guiar todo o conteúdo gerado — posts, plano de governo, discursos.
-          </p>
+        <input type="checkbox" id="a3" class="chip hidden" checked>
+        <label for="a3" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base bg-navy text-cream border-navy font-medium">✅ Trabalhador</label>
 
-          <div class="space-y-3">
-            <div class="flex gap-3 items-start">
-              <span class="w-7 h-7 rounded-full bg-navy text-cream font-bold text-sm flex items-center justify-center flex-shrink-0 mt-1">1</span>
-              <input type="text" value="Reabertura imediata da maternidade de Coronel Fabriciano" class="flex-1 px-4 py-3 bg-cream border border-creamDark rounded-lg" />
-            </div>
-            <div class="flex gap-3 items-start">
-              <span class="w-7 h-7 rounded-full bg-navy text-cream font-bold text-sm flex items-center justify-center flex-shrink-0 mt-1">2</span>
-              <input type="text" value="Investimento em escolas técnicas para a juventude do Vale do Aço" class="flex-1 px-4 py-3 bg-cream border border-creamDark rounded-lg" />
-            </div>
-            <div class="flex gap-3 items-start">
-              <span class="w-7 h-7 rounded-full bg-navy text-cream font-bold text-sm flex items-center justify-center flex-shrink-0 mt-1">3</span>
-              <input type="text" value="Linha de crédito estadual para pequenos comerciantes" class="flex-1 px-4 py-3 bg-cream border border-creamDark rounded-lg" />
-            </div>
-            <div class="flex gap-3 items-start">
-              <span class="w-7 h-7 rounded-full bg-navy text-cream font-bold text-sm flex items-center justify-center flex-shrink-0 mt-1">4</span>
-              <input type="text" value="Plano de mobilidade urbana com prioridade para o transporte coletivo" class="flex-1 px-4 py-3 bg-cream border border-creamDark rounded-lg" />
-            </div>
-            <div class="flex gap-3 items-start">
-              <span class="w-7 h-7 rounded-full bg-navy text-cream font-bold text-sm flex items-center justify-center flex-shrink-0 mt-1">5</span>
-              <input type="text" value="Programa de qualificação profissional para trabalhadores metalúrgicos" class="flex-1 px-4 py-3 bg-cream border border-creamDark rounded-lg" />
-            </div>
-          </div>
-        </div>
+        <input type="checkbox" id="a4" class="chip hidden">
+        <label for="a4" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Jovem</label>
 
-        <!-- Adjetivos -->
-        <div class="bg-white rounded-2xl p-8 border border-creamDark">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="font-serif text-2xl font-bold text-navy">3 adjetivos que descrevem você</span>
-            <span class="text-xs text-graphite/50">Obrigatório · 3 selecionados</span>
-          </div>
-          <p class="text-sm text-graphite/60 mb-6">
-            Vamos usar para calibrar a identidade visual e o tom dos textos.
-          </p>
+        <input type="checkbox" id="a5" class="chip hidden" checked>
+        <label for="a5" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base bg-navy text-cream border-navy font-medium">✅ Próximo do povo</label>
 
-          <div class="flex flex-wrap gap-2">
-            <input type="checkbox" id="adj-1" class="chip-input hidden" checked>
-            <label for="adj-1" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm bg-navy text-cream border-navy">Honesto</label>
+        <input type="checkbox" id="a6" class="chip hidden">
+        <label for="a6" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Renovador</label>
 
-            <input type="checkbox" id="adj-2" class="chip-input hidden">
-            <label for="adj-2" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Experiente</label>
+        <input type="checkbox" id="a7" class="chip hidden">
+        <label for="a7" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Conservador</label>
 
-            <input type="checkbox" id="adj-3" class="chip-input hidden" checked>
-            <label for="adj-3" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm bg-navy text-cream border-navy">Trabalhador</label>
+        <input type="checkbox" id="a8" class="chip hidden">
+        <label for="a8" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Cristão</label>
 
-            <input type="checkbox" id="adj-4" class="chip-input hidden">
-            <label for="adj-4" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Jovem</label>
+        <input type="checkbox" id="a9" class="chip hidden">
+        <label for="a9" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Empreendedor</label>
 
-            <input type="checkbox" id="adj-5" class="chip-input hidden" checked>
-            <label for="adj-5" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm bg-navy text-cream border-navy">Conectado com o povo</label>
+        <input type="checkbox" id="a10" class="chip hidden">
+        <label for="a10" class="cursor-pointer px-5 py-3 rounded-full border-2 border-graphite/15 text-base font-medium hover:border-navy">Defensor da família</label>
+      </div>
+    </div>
 
-            <input type="checkbox" id="adj-6" class="chip-input hidden">
-            <label for="adj-6" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Renovador</label>
+    <!-- Como você fala -->
+    <div class="bg-white rounded-3xl p-8 border-2 border-creamDark">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="text-3xl">🗣️</div>
+        <label class="font-serif text-2xl font-bold text-navy">Como você fala com as pessoas?</label>
+      </div>
+      <p class="text-graphite/60 mb-5">
+        A gente vai usar esse jeito em todos os textos.
+      </p>
+      <div class="grid md:grid-cols-3 gap-3">
+        <label class="cursor-pointer p-6 rounded-2xl border-2 border-graphite/15 hover:border-navy transition text-center">
+          <input type="radio" name="tom" class="hidden">
+          <div class="text-3xl mb-2">🎩</div>
+          <div class="font-bold text-navy text-lg">Sério</div>
+          <div class="text-sm text-graphite/60 mt-1">Como num discurso</div>
+        </label>
+        <label class="cursor-pointer p-6 rounded-2xl border-2 border-graphite/15 hover:border-navy transition text-center">
+          <input type="radio" name="tom" class="hidden">
+          <div class="text-3xl mb-2">💼</div>
+          <div class="font-bold text-navy text-lg">Direto</div>
+          <div class="text-sm text-graphite/60 mt-1">Como numa conversa</div>
+        </label>
+        <label class="cursor-pointer p-6 rounded-2xl border-2 border-gold bg-gold/10 transition text-center">
+          <input type="radio" name="tom" class="hidden" checked>
+          <div class="text-3xl mb-2">🤝</div>
+          <div class="font-bold text-navy text-lg">Próximo</div>
+          <div class="text-sm text-graphite/60 mt-1">Como com um vizinho</div>
+          <div class="mt-2 text-xs font-bold text-gold">✓ Escolhido</div>
+        </label>
+      </div>
+    </div>
 
-            <input type="checkbox" id="adj-7" class="chip-input hidden">
-            <label for="adj-7" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Conservador</label>
+    <!-- BOTÕES -->
+    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+      <button type="button" class="flex-1 sm:flex-initial sm:px-8 py-5 bg-white border-2 border-creamDark text-graphite/70 font-bold rounded-full hover:bg-cream transition text-lg">
+        ← Voltar
+      </button>
+      <a href="gerando.html" class="flex-1 inline-flex items-center justify-center gap-3 bg-navy text-cream font-bold py-5 rounded-full hover:bg-navyLight transition text-lg shadow-xl">
+        Continuar
+        <span class="text-2xl">→</span>
+      </a>
+    </div>
 
-            <input type="checkbox" id="adj-8" class="chip-input hidden">
-            <label for="adj-8" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Cristão</label>
-
-            <input type="checkbox" id="adj-9" class="chip-input hidden">
-            <label for="adj-9" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Empreendedor</label>
-
-            <input type="checkbox" id="adj-10" class="chip-input hidden">
-            <label for="adj-10" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Defensor da família</label>
-
-            <input type="checkbox" id="adj-11" class="chip-input hidden">
-            <label for="adj-11" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Progressista</label>
-
-            <input type="checkbox" id="adj-12" class="chip-input hidden">
-            <label for="adj-12" class="cursor-pointer px-4 py-2 rounded-full border border-graphite/20 text-sm hover:border-navy">Forte</label>
-          </div>
-        </div>
-
-        <!-- Tom de voz -->
-        <div class="bg-white rounded-2xl p-8 border border-creamDark">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="font-serif text-2xl font-bold text-navy">Tom de voz</span>
-            <span class="text-xs text-graphite/50">Obrigatório</span>
-          </div>
-          <p class="text-sm text-graphite/60 mb-6">
-            Como você fala com seu eleitor no dia a dia?
-          </p>
-
-          <div class="grid md:grid-cols-3 gap-3">
-            <label class="cursor-pointer p-5 rounded-xl border-2 border-graphite/10 hover:border-navy/30 transition">
-              <input type="radio" name="tone" class="hidden">
-              <div class="font-bold text-navy mb-1">Formal</div>
-              <div class="text-xs text-graphite/60">Linguagem institucional, técnica, ponderada.</div>
-            </label>
-            <label class="cursor-pointer p-5 rounded-xl border-2 border-graphite/10 hover:border-navy/30 transition">
-              <input type="radio" name="tone" class="hidden">
-              <div class="font-bold text-navy mb-1">Informal</div>
-              <div class="text-xs text-graphite/60">Próximo, conversado, direto.</div>
-            </label>
-            <label class="cursor-pointer p-5 rounded-xl border-2 border-gold bg-gold/5 transition">
-              <input type="radio" name="tone" class="hidden" checked>
-              <div class="font-bold text-navy mb-1 flex items-center justify-between">
-                Popular
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="text-xs text-graphite/60">Linguagem do povo, regional, sem distância.</div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Referências regionais -->
-        <div class="bg-white rounded-2xl p-8 border border-creamDark">
-          <div class="flex items-baseline justify-between mb-3">
-            <span class="font-serif text-2xl font-bold text-navy">Referências regionais</span>
-            <span class="text-xs text-graphite/50">Opcional</span>
-          </div>
-          <p class="text-sm text-graphite/60 mb-4">
-            Bairros, gírias, lugares, expressões locais que devem aparecer.
-            Quanto mais específico, mais a campanha ressoa.
-          </p>
-          <textarea rows="4" class="w-full px-5 py-4 bg-cream border border-creamDark rounded-xl text-base text-graphite">Vale do Aço (Ipatinga, Coronel Fabriciano, Timóteo, Santana do Paraíso). Gente do "Trevo", do bairro Cariru, da Vila dos Marajás. Referências à Usiminas, à siderurgia. Expressões: "uai", "trem bão", "sô". O Pico do Caraça é um símbolo importante.</textarea>
-        </div>
-
-        <!-- Botões -->
-        <div class="flex items-center justify-between pt-4">
-          <button type="button" class="flex items-center gap-2 text-graphite/60 font-medium hover:text-navy transition">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Voltar
-          </button>
-          <div class="flex items-center gap-4">
-            <button type="button" class="text-sm text-graphite/60 font-medium hover:text-navy transition">
-              Salvar e continuar depois
-            </button>
-            <a href="gerando.html" class="inline-flex items-center gap-2 bg-navy text-cream font-semibold px-8 py-4 rounded-full hover:bg-navyLight transition">
-              Próximo passo
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </form>
-    </main>
-  </div>
+    <!-- Salvar -->
+    <p class="text-center text-sm text-graphite/50 pt-2">
+      💾 A gente salva tudo automático. Você pode voltar depois.
+    </p>
+  </form>
 </div>
 
 </body>

@@ -26,42 +26,94 @@
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   .label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #525252; }
 
-  /* Inputs intuitivos */
+  /* Inputs */
   .field {
     width: 100%;
     background: #FAFAF7;
     border: 2px solid #E5E5E5;
-    border-radius: 12px;
-    padding: 20px 24px;
-    font-size: 18px;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 15px;
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
   }
-  .field:hover { border-color: #7256B1; }
+  .field:hover { border-color: #C9C9C9; }
   .field:focus {
     outline: none;
     border-color: #2E1655;
-    box-shadow: 0 0 0 4px rgba(244, 196, 48, 0.25);
+    box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.25);
+    background: #fff;
   }
-  .field-lg {
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    padding: 28px 32px;
+  .field::placeholder { color: #A3A3A3; }
+  textarea.field { resize: vertical; line-height: 1.5; min-height: 120px; }
+
+  /* Field group */
+  .field-group { margin-bottom: 24px; }
+  .field-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0A0A0A;
+    margin-bottom: 6px;
+  }
+  .field-hint {
+    font-size: 12px;
+    color: #A3A3A3;
+    margin-top: 6px;
+  }
+  .required { color: #B8860B; }
+
+  /* Sidebar nav */
+  .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 14px;
+    color: #525252;
+  }
+  .nav-section:hover { background: #FBF8E9; color: #0A0A0A; }
+  .nav-section.active {
+    background: #2E1655;
+    color: #F4C430;
+  }
+  .nav-section.active .nav-num {
+    background: #F4C430;
+    color: #2E1655;
+  }
+  .nav-section.done .nav-num {
+    background: #2E1655;
+    color: #F4C430;
+  }
+  .nav-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #E5E5E5;
+    color: #525252;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
-  /* Chip selecionável */
+  /* Chip seleção */
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 22px;
+    gap: 8px;
+    padding: 10px 18px;
     border: 2px solid #E5E5E5;
     border-radius: 999px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.18s ease;
+    transition: all 0.15s ease;
     background: #FAFAF7;
     user-select: none;
   }
@@ -73,55 +125,75 @@
   }
   .chip-input:checked + .chip::before {
     content: '';
-    width: 16px; height: 16px;
+    width: 14px; height: 14px;
     background: #F4C430;
     border-radius: 50%;
     flex-shrink: 0;
   }
 
-  /* Radio cards */
+  /* Card radio */
   .radio-card {
     border: 2px solid #E5E5E5;
-    border-radius: 16px;
-    padding: 32px 28px;
+    border-radius: 12px;
+    padding: 20px;
     cursor: pointer;
     background: #FAFAF7;
-    transition: all 0.2s ease;
-    position: relative;
+    transition: all 0.15s ease;
   }
   .radio-card:hover { border-color: #7256B1; background: #FBF8E9; }
   .radio-input:checked + .radio-card {
     border-color: #2E1655;
     background: #FBF8E9;
-    box-shadow: 0 0 0 4px rgba(244, 196, 48, 0.3);
+    box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.3);
   }
 
-  /* Steps */
-  .step { display: none; animation: fadeIn 0.3s ease; }
-  .step.active { display: block; }
+  /* Color picker swatch */
+  .color-swatch {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.15s ease;
+  }
+  .color-swatch:hover { transform: scale(1.06); }
+  .color-swatch.selected {
+    border-color: #0A0A0A;
+    box-shadow: 0 0 0 2px #F4C430;
+  }
+
+  /* Upload box */
+  .upload-box {
+    border: 2px dashed #E5E5E5;
+    border-radius: 12px;
+    padding: 32px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background: #FAFAF7;
+  }
+  .upload-box:hover {
+    border-color: #2E1655;
+    background: #FBF8E9;
+  }
+
+  /* Sections */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  textarea.field {
-    resize: none;
-    line-height: 1.5;
-    min-height: 140px;
-  }
-
-  /* Footer sticky de navegação */
+  /* Sticky nav-bar */
   .nav-bar {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     background: #FAFAF7;
     border-top: 1px solid #E5E5E5;
     box-shadow: 0 -8px 32px -8px rgba(46, 22, 85, 0.12);
     z-index: 9999;
   }
-
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -145,7 +217,6 @@
     box-shadow: 0 6px 14px -6px rgba(244, 196, 48, 0.5);
   }
   .btn-primary.final:hover { background: #F9D976; }
-
   .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -162,261 +233,889 @@
   }
   .btn-secondary:hover { border-color: #2E1655; color: #2E1655; background: #FBF8E9; }
   .btn-secondary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* Pergunta+resposta do bot */
+  .qa-block {
+    background: #FBF8E9;
+    border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
 </style>
 </head>
 <body class="bg-paper text-ink">
 
 <!-- HEADER -->
-<header class="border-b border-silver bg-paper">
-  <div class="max-w-[840px] mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+<header class="border-b border-silver bg-paper sticky top-0 z-50">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-baseline gap-2">
       <span class="text-[19px] font-semibold tracking-tightest text-iris">Pulso</span>
-      <span class="label">Briefing</span>
+      <span class="label">Briefing da candidatura</span>
     </a>
-    <a href="index.html" class="text-[13px] text-smoke hover:text-iris transition">Salvar e sair</a>
+    <div class="flex items-center gap-5">
+      <div class="hidden md:flex items-center gap-2 text-[12px] text-mist">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Salvamento automático
+      </div>
+      <a href="index.html" class="text-[13px] text-smoke hover:text-iris transition">Salvar e sair</a>
+    </div>
   </div>
 </header>
 
-<!-- PROGRESSO -->
-<div class="border-b border-silver bg-paper sticky top-0 z-50">
-  <div class="max-w-[840px] mx-auto px-6 lg:px-8 py-5">
-    <div class="flex items-center justify-between mb-3">
-      <div class="text-[13px] font-medium">
-        <span class="text-iris" id="step-current">1</span>
-        <span class="text-mist">de 5</span>
+<div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 lg:py-12 pb-32">
+
+  <!-- INTRODUÇÃO -->
+  <div class="mb-12 max-w-3xl">
+    <div class="label text-iris mb-4">Pulso · Configuração</div>
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-4">
+      Vamos conhecer sua candidatura.
+    </h1>
+    <p class="text-[16px] leading-[1.65] text-smoke max-w-2xl">
+      Estas informações vão alimentar todas as 47 peças do seu kit — do logo ao bot do WhatsApp.
+      Quanto mais detalhes você fornecer, mais autêntica e estratégica a campanha vai ser. Estimativa: 25 a 40 minutos.
+    </p>
+  </div>
+
+  <div class="grid lg:grid-cols-12 gap-10">
+
+    <!-- ============================================================
+         SIDEBAR — NAVEGAÇÃO ENTRE SEÇÕES
+         ============================================================ -->
+    <aside class="lg:col-span-3">
+      <div class="lg:sticky lg:top-24">
+        <div class="label mb-4">Seções</div>
+        <nav class="space-y-1" id="nav-list">
+          <a class="nav-section active" data-target="1"><span class="nav-num">1</span><span>Identificação</span></a>
+          <a class="nav-section" data-target="2"><span class="nav-num">2</span><span>Identidade visual</span></a>
+          <a class="nav-section" data-target="3"><span class="nav-num">3</span><span>Biografia</span></a>
+          <a class="nav-section" data-target="4"><span class="nav-num">4</span><span>Propostas</span></a>
+          <a class="nav-section" data-target="5"><span class="nav-num">5</span><span>Voz e comunicação</span></a>
+          <a class="nav-section" data-target="6"><span class="nav-num">6</span><span>Bot WhatsApp</span></a>
+          <a class="nav-section" data-target="7"><span class="nav-num">7</span><span>Eventos e locais</span></a>
+        </nav>
+
+        <div class="mt-8 pt-6 border-t border-silver">
+          <div class="label mb-3">Progresso</div>
+          <div class="h-1.5 bg-silver rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-iris rounded-full transition-all duration-500" style="width: 14%"></div>
+          </div>
+          <div class="text-[12px] text-mist mt-2">
+            <span id="progress-text">1 de 7 · 14%</span>
+          </div>
+        </div>
       </div>
-      <div class="text-[13px] text-smoke" id="step-name">Frase de campanha</div>
-    </div>
-    <div class="h-1.5 bg-silver rounded-full overflow-hidden">
-      <div id="progress-bar" class="h-full bg-iris rounded-full transition-all duration-500" style="width: 20%"></div>
-    </div>
+    </aside>
+
+    <!-- ============================================================
+         CONTEÚDO DE CADA SEÇÃO
+         ============================================================ -->
+    <main class="lg:col-span-9">
+
+      <!-- ====== SEÇÃO 1 — IDENTIFICAÇÃO ====== -->
+      <section class="section active" data-section="1">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 01 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Identificação da candidatura</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            Dados básicos do candidato e da candidatura. Esses campos aparecem em todo material gerado.
+          </p>
+        </div>
+
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="field-group md:col-span-2">
+              <label class="field-label">Nome completo <span class="required">*</span></label>
+              <input type="text" class="field" value="Gabriel Sousa Marques de Azevedo" placeholder="Ex: Maria Eduarda Santos de Oliveira">
+              <p class="field-hint">Como aparece no seu RG. Aparece no plano de governo e documentos oficiais.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Nome de campanha <span class="required">*</span></label>
+              <input type="text" class="field" value="Gabriel Azevedo" placeholder="Ex: Duda Oliveira">
+              <p class="field-hint">Como você quer ser chamado nos materiais. Aparece em santinhos e posts.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Data de nascimento</label>
+              <input type="date" class="field" value="1988-04-23">
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">CPF <span class="required">*</span></label>
+              <input type="text" class="field" value="000.000.000-00" placeholder="000.000.000-00">
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Telefone / WhatsApp <span class="required">*</span></label>
+              <input type="tel" class="field" value="(31) 9 9876-5432" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="field-group md:col-span-2">
+              <label class="field-label">Email <span class="required">*</span></label>
+              <input type="email" class="field" value="contato@gabrielazevedo.com" placeholder="seu@email.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-silver rounded-2xl p-8 mt-6">
+          <div class="label mb-5">Sobre a candidatura</div>
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="field-group">
+              <label class="field-label">Cargo pretendido <span class="required">*</span></label>
+              <select class="field">
+                <option value="">Selecione o cargo</option>
+                <option>Vereador</option>
+                <option>Prefeito</option>
+                <option>Vice-prefeito</option>
+                <option>Deputado Estadual</option>
+                <option>Deputado Federal</option>
+                <option>Senador</option>
+                <option selected>Governador</option>
+                <option>Vice-governador</option>
+                <option>Presidente</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Partido <span class="required">*</span></label>
+              <select class="field">
+                <option value="">Selecione o partido</option>
+                <option selected>MDB</option><option>PSDB</option><option>PT</option><option>PL</option>
+                <option>PP</option><option>União Brasil</option><option>Republicanos</option>
+                <option>PSD</option><option>PDT</option><option>PSOL</option><option>PV</option>
+                <option>Cidadania</option><option>Avante</option><option>Solidariedade</option>
+                <option>Podemos</option><option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Número eleitoral <span class="required">*</span></label>
+              <input type="text" class="field" value="15" placeholder="Ex: 15123">
+              <p class="field-hint">Vai aparecer GIGANTE em todos os materiais. Confira no portal do TSE.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Estado da candidatura <span class="required">*</span></label>
+              <select class="field">
+                <option value="">Selecione o estado</option>
+                <option>Acre</option><option>Alagoas</option><option>Amapá</option><option>Amazonas</option>
+                <option>Bahia</option><option>Ceará</option><option>Distrito Federal</option>
+                <option>Espírito Santo</option><option>Goiás</option><option>Maranhão</option>
+                <option>Mato Grosso</option><option>Mato Grosso do Sul</option><option selected>Minas Gerais</option>
+                <option>Pará</option><option>Paraíba</option><option>Paraná</option><option>Pernambuco</option>
+                <option>Piauí</option><option>Rio de Janeiro</option><option>Rio Grande do Norte</option>
+                <option>Rio Grande do Sul</option><option>Rondônia</option><option>Roraima</option>
+                <option>Santa Catarina</option><option>São Paulo</option><option>Sergipe</option><option>Tocantins</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Cidade base da campanha</label>
+              <input type="text" class="field" value="Belo Horizonte" placeholder="Onde mora e tem mais força eleitoral">
+            </div>
+
+            <div class="field-group md:col-span-2">
+              <label class="field-label">Coligação (opcional)</label>
+              <input type="text" class="field" placeholder="Ex: Coligação Avança Minas (MDB · Cidadania · PV)">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 2 — IDENTIDADE VISUAL ====== -->
+      <section class="section" data-section="2">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 02 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Identidade visual</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            As cores, o estilo gráfico e os elementos visuais que vão definir todo o material da campanha.
+          </p>
+        </div>
+
+        <!-- Paleta de cores -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Paleta de cores</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-4">Escolha sua paleta principal</h3>
+          <p class="text-[13px] text-smoke mb-6">Selecione duas cores principais e uma cor de destaque. Vão aparecer em todo material.</p>
+
+          <div class="field-group">
+            <label class="field-label">Cor principal</label>
+            <div class="flex flex-wrap gap-3 items-center">
+              <div class="color-swatch selected" style="background: #2E1655"></div>
+              <div class="color-swatch" style="background: #0F3F73"></div>
+              <div class="color-swatch" style="background: #1B5E20"></div>
+              <div class="color-swatch" style="background: #B71C1C"></div>
+              <div class="color-swatch" style="background: #E65100"></div>
+              <div class="color-swatch" style="background: #0A0A0A"></div>
+              <div class="color-swatch border-2 border-silver" style="background: #fff"></div>
+              <span class="text-[13px] text-smoke ml-2">ou</span>
+              <input type="color" class="w-12 h-11 rounded-lg cursor-pointer border-2 border-silver" value="#2E1655">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Cor secundária</label>
+            <div class="flex flex-wrap gap-3 items-center">
+              <div class="color-swatch" style="background: #FAF6E8"></div>
+              <div class="color-swatch selected" style="background: #F4C430"></div>
+              <div class="color-swatch" style="background: #FFFFFF"></div>
+              <div class="color-swatch" style="background: #E5E5E5"></div>
+              <div class="color-swatch" style="background: #FFEB3B"></div>
+              <span class="text-[13px] text-smoke ml-2">ou</span>
+              <input type="color" class="w-12 h-11 rounded-lg cursor-pointer border-2 border-silver" value="#F4C430">
+            </div>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Cor de destaque (acentos)</label>
+            <div class="flex flex-wrap gap-3 items-center">
+              <div class="color-swatch" style="background: #F4C430"></div>
+              <div class="color-swatch selected" style="background: #B8860B"></div>
+              <div class="color-swatch" style="background: #C62828"></div>
+              <div class="color-swatch" style="background: #0277BD"></div>
+              <div class="color-swatch" style="background: #2E7D32"></div>
+              <span class="text-[13px] text-smoke ml-2">ou</span>
+              <input type="color" class="w-12 h-11 rounded-lg cursor-pointer border-2 border-silver" value="#B8860B">
+            </div>
+          </div>
+        </div>
+
+        <!-- Estilo desejado -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Estilo gráfico</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-4">Qual estilo combina com sua campanha?</h3>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <input type="radio" id="style1" name="style" class="radio-input hidden">
+            <label for="style1" class="radio-card">
+              <div class="label mb-2">Estilo A</div>
+              <div class="text-[17px] font-medium text-iris mb-2">Institucional</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Tipografia clássica, sobriedade, lembra material de governo. Bom para cargos executivos e legislativos federais.</p>
+            </label>
+
+            <input type="radio" id="style2" name="style" class="radio-input hidden" checked>
+            <label for="style2" class="radio-card">
+              <div class="label mb-2">Estilo B</div>
+              <div class="text-[17px] font-medium text-iris mb-2">Editorial moderno</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Tipografia condensada, espaço generoso, design contemporâneo. Bom para candidaturas de renovação.</p>
+            </label>
+
+            <input type="radio" id="style3" name="style" class="radio-input hidden">
+            <label for="style3" class="radio-card">
+              <div class="label mb-2">Estilo C</div>
+              <div class="text-[17px] font-medium text-iris mb-2">Popular regional</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Cores vibrantes, tipografia direta, vibe de festa popular. Bom para candidaturas locais com forte base de bairro.</p>
+            </label>
+
+            <input type="radio" id="style4" name="style" class="radio-input hidden">
+            <label for="style4" class="radio-card">
+              <div class="label mb-2">Estilo D</div>
+              <div class="text-[17px] font-medium text-iris mb-2">Tradicional clássico</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Brasão, tipografia serif, ouro e azul-marinho. Bom para candidaturas de centro-direita ou tradicionalistas.</p>
+            </label>
+          </div>
+        </div>
+
+        <!-- Logo existente -->
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="label mb-2">Material existente</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-4">Já tem logo ou identidade?</h3>
+          <p class="text-[13px] text-smoke mb-5">Se sim, envie. A Pulso adapta as outras peças à sua marca existente.</p>
+
+          <div class="upload-box">
+            <svg class="mx-auto mb-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <div class="text-[14px] font-medium text-iris">Clique ou arraste arquivos aqui</div>
+            <div class="text-[12px] text-mist mt-1">PNG, SVG, PDF, AI · até 20 MB</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 3 — BIOGRAFIA ====== -->
+      <section class="section" data-section="3">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 03 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Quem é você</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            Sua história alimenta o site, o plano de governo, os posts de apresentação e as respostas do bot.
+          </p>
+        </div>
+
+        <!-- Fotos -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Fotos do candidato</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-2">Envie de 5 a 10 fotos</h3>
+          <p class="text-[13px] text-smoke mb-5">Inclua: 1 retrato profissional, 2-3 fotos em eventos/rua, 1 em família (opcional), 1 vertical para Instagram Stories. Recomendado: alta resolução, fundo limpo.</p>
+
+          <div class="upload-box">
+            <svg class="mx-auto mb-3" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+            <div class="text-[14px] font-medium text-iris">Clique ou arraste suas fotos</div>
+            <div class="text-[12px] text-mist mt-1">JPG, PNG · até 10 MB cada · mínimo 5 fotos</div>
+          </div>
+        </div>
+
+        <!-- Biografia -->
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="label mb-5">Sua história</div>
+
+          <div class="field-group">
+            <label class="field-label">Resumo curto (bio)</label>
+            <input type="text" class="field" value="Vereador por três mandatos em Belo Horizonte. Ex-presidente da Câmara Municipal. Professor de Direito Constitucional." placeholder="Ex: Médica há 20 anos, mãe de três, presidente do conselho municipal de saúde.">
+            <p class="field-hint">Até 140 caracteres. Aparece no site como subtítulo da página inicial.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Biografia completa</label>
+            <textarea class="field" rows="6" placeholder="Conte sua trajetória...">Nascido em Belo Horizonte. Advogado, jornalista e professor de Direito Constitucional. Atuou como vereador da capital mineira por três mandatos consecutivos (2017–2024) e foi presidente da Câmara Municipal de Belo Horizonte entre 2023 e 2024. Em 2024, foi candidato a Prefeito de Belo Horizonte, recebendo mais de 130 mil votos. É presidente do diretório municipal do MDB em BH. Defensor intransigente da democracia, da liberdade econômica e da modernização do serviço público.</textarea>
+            <p class="field-hint">Sem limite. Vai alimentar o site, posts de apresentação e respostas do bot.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Formação acadêmica</label>
+            <textarea class="field" rows="3" placeholder="Ex: Graduação em Direito...">Graduação em Comunicação Social (PUC-Minas). Graduação em Direito. Mestrado em Direito. Pós-graduação em Competitividade Global pela McDonough School of Business (Georgetown University). Mestrado em Cidades pela London School of Economics and Political Science.</textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Trajetória profissional e política</label>
+            <textarea class="field" rows="4" placeholder="Liste cargos públicos anteriores...">2016 — Eleito vereador de Belo Horizonte com 10.185 votos.
+2020 — Reeleito vereador com 13.088 votos.
+2023–2024 — Presidente da Câmara Municipal de Belo Horizonte.
+2024 — Candidato a Prefeito de Belo Horizonte (133.728 votos).
+2014–presente — Professor de Direito Constitucional e Teoria do Estado em instituições de ensino superior.
+2025–presente — Presidente do diretório municipal do MDB em Belo Horizonte.</textarea>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Por que se candidatou? (sua motivação)</label>
+            <textarea class="field" rows="4" placeholder="O que te tira da inércia?...">Minas Gerais é o segundo maior eleitorado do país e o primeiro em produção mineral. Tem tudo para liderar o Brasil em educação técnica, inovação pública e competitividade — mas tem sido tratada como periferia política. Vivi os 853 municípios mineiros como vereador e como brasileiro que estudou cidades em três continentes. Sei o que é preciso fazer.</textarea>
+            <p class="field-hint">É a base do "manifesto" da campanha e dos discursos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 4 — PROPOSTAS ====== -->
+      <section class="section" data-section="4">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 04 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Propostas e plano de governo</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            O coração da campanha. Estas propostas alimentam o plano de governo, posts, discursos e respostas do bot.
+          </p>
+        </div>
+
+        <!-- Frase de campanha -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Identidade verbal</div>
+          <div class="field-group">
+            <label class="field-label">Frase principal da campanha <span class="required">*</span></label>
+            <input type="text" class="field" value="Minas pode mais." placeholder="Ex: Por uma Belo Horizonte que cuida da gente.">
+            <p class="field-hint">Frase âncora. Vai no santinho, no jingle, no site.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Slogans alternativos (até 3)</label>
+            <input type="text" class="field mb-2" value="Um cidadão que ama, estuda e transforma Minas Gerais." placeholder="Slogan 1">
+            <input type="text" class="field mb-2" value="Gabriel 15. Minas no Brasil. Brasil em Minas." placeholder="Slogan 2">
+            <input type="text" class="field" value="Os 853 municípios merecem ser ouvidos." placeholder="Slogan 3">
+            <p class="field-hint">Variações que podem ser usadas em diferentes peças.</p>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Hashtags da campanha</label>
+            <input type="text" class="field" value="#Gabriel15 #MinasPodeMais #MDBemMinas" placeholder="Ex: #BHQueCuida #DudaPrefeita10 #JuntosPorBH">
+          </div>
+        </div>
+
+        <!-- Eixos e propostas -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Eixos da campanha</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-2">Quais são os 3 a 5 eixos principais?</h3>
+          <p class="text-[13px] text-smoke mb-6">Ex: Saúde, Educação, Segurança, Economia, Meio Ambiente. Para cada eixo, descreva 2-3 propostas concretas.</p>
+
+          <div class="space-y-5">
+            <div class="border border-silver rounded-xl p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-8 h-8 rounded-full bg-iris text-gold font-bold flex items-center justify-center text-[14px]">1</span>
+                <input type="text" class="field" value="Inovação Pública e Tecnologia" placeholder="Nome do eixo" style="flex: 1">
+              </div>
+              <textarea class="field" rows="3" placeholder="Propostas...">Centro de Inovação Pública do Estado de Minas: digitalizar 100% dos serviços públicos estaduais até o final do mandato. Parceria com universidades federais e centros tecnológicos (Cefet, UFMG, PUC) para acelerar o TecnoPARQ como modelo de inovação para Minas. Programa de bolsas para servidores em formação tecnológica.</textarea>
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-8 h-8 rounded-full bg-iris text-gold font-bold flex items-center justify-center text-[14px]">2</span>
+                <input type="text" class="field" value="Educação Técnica e Profissional" placeholder="Nome do eixo" style="flex: 1">
+              </div>
+              <textarea class="field" rows="3" placeholder="Propostas...">Expandir as escolas técnicas estaduais para os 853 municípios via parceria com sistema S. Programa Minas Forma: bolsa-formação para jovens de 16 a 24 anos em cursos profissionalizantes alinhados às vocações regionais (mineração, agronegócio, turismo, tecnologia). Meta de 100 mil novos formados até 2030.</textarea>
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-8 h-8 rounded-full bg-iris text-gold font-bold flex items-center justify-center text-[14px]">3</span>
+                <input type="text" class="field" value="Saúde Humanizada e Moderna" placeholder="Nome do eixo" style="flex: 1">
+              </div>
+              <textarea class="field" rows="3" placeholder="Propostas...">Construção e reforma de 200 unidades de saúde da família. Programa Minas Cuida: garantia de atendimento em até 30 minutos para urgências em todos os municípios. Digitalização total dos prontuários estaduais até 2027.</textarea>
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-8 h-8 rounded-full bg-iris text-gold font-bold flex items-center justify-center text-[14px]">4</span>
+                <input type="text" class="field" value="Liberdade Econômica e Apoio ao Pequeno Comércio" placeholder="Nome do eixo" style="flex: 1">
+              </div>
+              <textarea class="field" rows="3" placeholder="Propostas...">Programa de desburocratização: abertura de empresa em até 48 horas no estado. Linha de crédito estadual subsidiada para pequenos comerciantes via Banco de Desenvolvimento de Minas (BDMG). Microcrédito sem garantia para empreendedores informais.</textarea>
+            </div>
+
+            <button class="btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+              Adicionar outro eixo
+            </button>
+          </div>
+        </div>
+
+        <!-- Plano de governo -->
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="label mb-2">Plano de governo</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-4">Já tem rascunho do plano?</h3>
+
+          <div class="grid md:grid-cols-2 gap-4 mb-5">
+            <input type="radio" id="plan1" name="plan" class="radio-input hidden">
+            <label for="plan1" class="radio-card">
+              <div class="text-[16px] font-medium text-iris mb-2">Sim, vou enviar</div>
+              <p class="text-[13px] text-smoke">A Pulso vai usar como base e diagramar. Mantém suas ideias originais.</p>
+            </label>
+
+            <input type="radio" id="plan2" name="plan" class="radio-input hidden" checked>
+            <label for="plan2" class="radio-card">
+              <div class="text-[16px] font-medium text-iris mb-2">Não, gerar do zero</div>
+              <p class="text-[13px] text-smoke">A Pulso cria a partir das suas propostas dos eixos acima.</p>
+            </label>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Cole aqui partes que você já escreveu (opcional)</label>
+            <textarea class="field" rows="6" placeholder="Tem trechos prontos? Cole aqui...">CARTA DE COMPROMISSO
+
+Minas Gerais é o segundo estado mais populoso do Brasil. Tem 853 municípios. Tem a vocação cultural mais rica do país. E ainda assim, tem sido tratada como periferia política do Brasil.
+
+Estou candidato a governador porque acredito que Minas pode mais. Mais do que a soma do que entrega hoje. Mais do que ser uma sigla menor entre os estados grandes.
+
+Esse plano de governo está dividido em quatro pilares — Inovação Pública, Educação Técnica, Saúde Humanizada e Liberdade Econômica — porque são as alavancas que vi funcionarem nas cidades que estudei (em três continentes) e que faltam em Minas.
+
+[continuar editando aqui...]</textarea>
+            <p class="field-hint">Você também pode subir um documento PDF/DOC depois.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 5 — VOZ E COMUNICAÇÃO ====== -->
+      <section class="section" data-section="5">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 05 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Voz e comunicação</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            O jeito de falar com o eleitor. Define todos os textos do site, posts, áudios e do bot.
+          </p>
+        </div>
+
+        <!-- Tom de voz -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Tom de voz</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-5">Como você fala com seus eleitores?</h3>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <input type="radio" id="tone1" name="tone" class="radio-input hidden">
+            <label for="tone1" class="radio-card">
+              <div class="text-[16px] font-medium text-iris mb-2">Formal</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Linguagem técnica. Como num discurso oficial. Ex: "Defendemos a implementação de políticas públicas que..."</p>
+            </label>
+
+            <input type="radio" id="tone2" name="tone" class="radio-input hidden" checked>
+            <label for="tone2" class="radio-card">
+              <div class="text-[16px] font-medium text-iris mb-2">Direto</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Sem rodeios. Como numa conversa de trabalho. Ex: "Vamos resolver. Em 100 dias, você vai ver."</p>
+            </label>
+
+            <input type="radio" id="tone3" name="tone" class="radio-input hidden">
+            <label for="tone3" class="radio-card">
+              <div class="text-[16px] font-medium text-iris mb-2">Próximo</div>
+              <p class="text-[13px] text-smoke leading-relaxed">Linguagem regional. Como bate-papo. Ex: "Olha, gente, tá na hora da nossa cidade respirar."</p>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pronome de tratamento -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="field-group mb-0">
+            <label class="field-label">Pronome de tratamento principal</label>
+            <div class="flex gap-3">
+              <input type="radio" id="p1" name="pronoun" class="chip-input hidden">
+              <label for="p1" class="chip">Você</label>
+              <input type="radio" id="p2" name="pronoun" class="chip-input hidden">
+              <label for="p2" class="chip">Vocês</label>
+              <input type="radio" id="p3" name="pronoun" class="chip-input hidden" checked>
+              <label for="p3" class="chip">A gente</label>
+              <input type="radio" id="p4" name="pronoun" class="chip-input hidden">
+              <label for="p4" class="chip">Nós</label>
+              <input type="radio" id="p5" name="pronoun" class="chip-input hidden">
+              <label for="p5" class="chip">Cidadão / cidadã</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Palavras-chave e a evitar -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="field-group">
+            <label class="field-label">Palavras e expressões que devem aparecer</label>
+            <textarea class="field" rows="3" placeholder="Ex: 'compromisso'...">compromisso, transformar, estudar, mineiro de verdade, no campo, na cidade, 853 municípios, democracia, modernização, liberdade econômica, gente que trabalha, inovação pública, escolas técnicas, futuro</textarea>
+            <p class="field-hint">Vocabulário próprio que vai dar a sua voz aos textos gerados.</p>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Palavras a evitar</label>
+            <textarea class="field" rows="2" placeholder="Ex: 'cidadão'...">populismo, militante, esquerdopata, comunista, fascista, ataques pessoais, "vai dar errado", "sempre foi assim"</textarea>
+            <p class="field-hint">Termos que não combinam com sua imagem ou que você prefere evitar.</p>
+          </div>
+        </div>
+
+        <!-- Referências regionais -->
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="field-group mb-0">
+            <label class="field-label">Referências regionais e culturais</label>
+            <textarea class="field" rows="5" placeholder="Bairros, ruas, lugares emblemáticos...">Belo Horizonte como base: Praça da Liberdade, Mercado Central, Pampulha, Savassi, Cidade Administrativa. Bairros de origem popular: Cariru, Barreiro, Venda Nova, Confisco. Mineiridade: queijo Canastra, doce de leite, pão de queijo, café com leite, Cerrado. Expressões: "uai", "trem", "sô", "minas gerais inteira", "no rumo". Outras cidades a mencionar com força: Uberlândia (Triângulo), Juiz de Fora (Zona da Mata), Montes Claros (Norte), Ipatinga (Vale do Aço), Poços de Caldas (Sul). Eventos: Festa do Congado em Diamantina, Festival de Inverno de Tiradentes.</textarea>
+            <p class="field-hint">Ex: Mercado Central, Praça da Liberdade, expressões 'uai', 'sô', 'trem bão'.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 6 — BOT WHATSAPP ====== -->
+      <section class="section" data-section="6">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 06 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Bot WhatsApp</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            O que o bot deve dizer ao eleitor que entra em contato. Quanto mais perguntas você antecipar, mais inteligente o bot vai parecer.
+          </p>
+        </div>
+
+        <!-- Saudação -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Primeiras palavras</div>
+          <div class="field-group">
+            <label class="field-label">Mensagem de saudação <span class="required">*</span></label>
+            <textarea class="field" rows="3" placeholder="Ex: 'Olá!...'">Olá! Aqui é o Gabriel Azevedo, candidato a Governador de Minas Gerais pelo MDB. Respondo com ajuda da minha equipe e de inteligência artificial — sempre transparente sobre isso. Em que posso te ajudar?</textarea>
+            <p class="field-hint">Primeira mensagem que aparece quando alguém abre o chat. Apresente-se e seja transparente sobre o uso de IA.</p>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Resposta padrão quando o bot não souber</label>
+            <textarea class="field" rows="2" placeholder="Ex: 'Boa pergunta!...'">Boa pergunta — e eu não quero responder sem conferir. Vou anotar e minha equipe te retorna em até 48 horas. Pode me deixar seu nome e em qual cidade você está?</textarea>
+          </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Perguntas frequentes</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-2">Antecipe as perguntas mais comuns</h3>
+          <p class="text-[13px] text-smoke mb-5">Para cada pergunta, escreva a resposta no seu tom. O bot vai responder igual, sem inventar nada.</p>
+
+          <div class="space-y-3">
+            <div class="qa-block">
+              <input type="text" class="field mb-2" value="Quais são suas principais propostas?" placeholder="Pergunta">
+              <textarea class="field" rows="3" placeholder="Resposta...">A gente trabalha em quatro frentes: Inovação Pública (digitalizar 100% dos serviços do estado), Educação Técnica (escolas profissionalizantes nos 853 municípios), Saúde Humanizada (atendimento em até 30 minutos para urgências) e Liberdade Econômica (abertura de empresa em 48 horas). Quer que eu detalhe alguma dessas?</textarea>
+            </div>
+            <div class="qa-block">
+              <input type="text" class="field mb-2" value="Como faço pra votar no Gabriel?" placeholder="Pergunta">
+              <textarea class="field" rows="3" placeholder="Resposta...">No primeiro turno, no dia 4 de outubro, é só digitar 15 e confirmar. Gabriel Azevedo, governador, número quinze. Se quiser, me deixe seu CEP que eu te mando o local de votação.</textarea>
+            </div>
+            <div class="qa-block">
+              <input type="text" class="field mb-2" value="Como posso contribuir com a campanha?" placeholder="Pergunta">
+              <textarea class="field" rows="3" placeholder="Resposta...">A gente agradece muito. Tem várias formas: divulgar nas redes, ajudar nos atos públicos, virar cabo eleitoral oficial, ou contribuir financeiramente via Pix oficial pelo site (gabrielazevedo.com/contribua). Em qual delas você quer ajudar?</textarea>
+            </div>
+            <div class="qa-block">
+              <input type="text" class="field mb-2" value="O Gabriel já foi eleito antes?" placeholder="Pergunta">
+              <textarea class="field" rows="3" placeholder="Resposta...">Sim — três mandatos consecutivos como vereador de Belo Horizonte (2017 a 2024), incluindo a presidência da Câmara Municipal entre 2023 e 2024. Em 2024 foi candidato a Prefeito de BH e teve mais de 130 mil votos. Agora a candidatura é a Governador de Minas.</textarea>
+            </div>
+
+            <button class="btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+              Adicionar outra pergunta
+            </button>
+          </div>
+        </div>
+
+        <!-- Como lidar com situações específicas -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Comportamento em situações específicas</div>
+
+          <div class="field-group">
+            <label class="field-label">Quando alguém pedir pra doar dinheiro</label>
+            <div class="flex flex-wrap gap-2">
+              <input type="radio" id="d1" name="donation" class="chip-input hidden">
+              <label for="d1" class="chip">Aceitar e mandar pix</label>
+              <input type="radio" id="d2" name="donation" class="chip-input hidden" checked>
+              <label for="d2" class="chip">Redirecionar ao site</label>
+              <input type="radio" id="d3" name="donation" class="chip-input hidden">
+              <label for="d3" class="chip">Pedir contato e equipe responde</label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Quando perguntarem sobre um adversário</label>
+            <div class="flex flex-wrap gap-2">
+              <input type="radio" id="adv1" name="adv" class="chip-input hidden">
+              <label for="adv1" class="chip">Não comentar</label>
+              <input type="radio" id="adv2" name="adv" class="chip-input hidden">
+              <label for="adv2" class="chip">Falar das diferenças</label>
+              <input type="radio" id="adv3" name="adv" class="chip-input hidden" checked>
+              <label for="adv3" class="chip">Redirecionar ao próprio plano</label>
+            </div>
+          </div>
+
+          <div class="field-group mb-0">
+            <label class="field-label">Quando pedirem reunião pessoal</label>
+            <textarea class="field" rows="2" placeholder="Ex: 'Adoraria!...'">Fico feliz com o interesse. Pode me deixar seu nome, cidade e o assunto que quer tratar? Minha equipe te retorna em até 48 horas com horários disponíveis.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SEÇÃO 7 — EVENTOS E LOCAIS ====== -->
+      <section class="section" data-section="7">
+        <div class="mb-8">
+          <div class="text-[11px] font-bold tracking-[0.2em] uppercase text-gold mb-3">Seção 07 de 07</div>
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-3">Eventos e locais específicos</h2>
+          <p class="text-[15px] leading-[1.6] text-smoke max-w-xl">
+            Materiais sob medida. Se você sabe onde vai usar (outdoor numa avenida específica, banner num evento), nos diga. A Pulso ajusta dimensões e mensagens.
+          </p>
+        </div>
+
+        <!-- Outdoors específicos -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Outdoors e banners físicos</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-2">Locais e dimensões específicas</h3>
+          <p class="text-[13px] text-smoke mb-5">Se você já contratou pontos físicos, informe medida e local. A Pulso gera arte na dimensão correta.</p>
+
+          <div class="space-y-4">
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3">
+                <input type="text" class="field" value="Av. Cristiano Machado · Belo Horizonte" placeholder="Local">
+                <input type="text" class="field" value="9×3 m" placeholder="Dimensão">
+                <select class="field">
+                  <option value="">Tipo</option>
+                  <option selected>Outdoor frontlight</option>
+                  <option>Outdoor backlight</option>
+                  <option>Painel LED</option>
+                  <option>Empena</option>
+                  <option>Banner</option>
+                </select>
+              </div>
+              <textarea class="field mt-3" rows="2" placeholder="Mensagem específica...">Foco em mobilidade urbana. Mensagem: "Mais transporte público de qualidade. Gabriel 15."</textarea>
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3">
+                <input type="text" class="field" value="Av. Antônio Carlos · BH" placeholder="Local">
+                <input type="text" class="field" value="9×3 m" placeholder="Dimensão">
+                <select class="field">
+                  <option value="">Tipo</option>
+                  <option selected>Outdoor frontlight</option>
+                  <option>Outdoor backlight</option>
+                  <option>Painel LED</option>
+                  <option>Empena</option>
+                  <option>Banner</option>
+                </select>
+              </div>
+              <textarea class="field mt-3" rows="2" placeholder="Mensagem específica...">Usar a frase principal "Minas pode mais."</textarea>
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3">
+                <input type="text" class="field" value="Praça Tubal Vilela · Uberlândia" placeholder="Local">
+                <input type="text" class="field" value="6×3 m" placeholder="Dimensão">
+                <select class="field">
+                  <option value="">Tipo</option>
+                  <option>Outdoor frontlight</option>
+                  <option selected>Outdoor backlight</option>
+                  <option>Painel LED</option>
+                  <option>Empena</option>
+                  <option>Banner</option>
+                </select>
+              </div>
+              <textarea class="field mt-3" rows="2" placeholder="Mensagem específica...">Foco regional Triângulo: "Triângulo Mineiro também é Minas Gerais. Gabriel 15."</textarea>
+            </div>
+
+            <button class="btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+              Adicionar outro outdoor
+            </button>
+          </div>
+        </div>
+
+        <!-- Eventos -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Eventos planejados</div>
+          <h3 class="text-[20px] tracking-ultratight font-medium text-iris mb-2">Material para eventos específicos</h3>
+          <p class="text-[13px] text-smoke mb-5">Para cada evento, geramos arte de convite, post de divulgação e backdrop de palanque.</p>
+
+          <div class="space-y-4">
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3 mb-3">
+                <input type="text" class="field" value="Convenção MDB Minas Gerais" placeholder="Nome do evento">
+                <input type="date" class="field" value="2026-07-20">
+                <input type="text" class="field" value="Expominas · Belo Horizonte" placeholder="Local">
+              </div>
+              <input type="text" class="field" value="Oficialização da candidatura e apresentação dos eixos de governo" placeholder="Tema/objetivo">
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3 mb-3">
+                <input type="text" class="field" value="Caminhada pelo Centro" placeholder="Nome do evento">
+                <input type="date" class="field" value="2026-08-15">
+                <input type="text" class="field" value="Praça da Estação · BH" placeholder="Local">
+              </div>
+              <input type="text" class="field" value="Lançamento simbólico no centro histórico" placeholder="Tema/objetivo">
+            </div>
+
+            <div class="border border-silver rounded-xl p-5">
+              <div class="grid md:grid-cols-3 gap-3 mb-3">
+                <input type="text" class="field" value="Encontro com Empresariado do Triângulo" placeholder="Nome do evento">
+                <input type="date" class="field" value="2026-08-28">
+                <input type="text" class="field" value="ACIUB · Uberlândia" placeholder="Local">
+              </div>
+              <input type="text" class="field" value="Apresentação do plano de Liberdade Econômica" placeholder="Tema/objetivo">
+            </div>
+
+            <button class="btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg>
+              Adicionar outro evento
+            </button>
+          </div>
+        </div>
+
+        <!-- Cidades-foco -->
+        <div class="bg-white border border-silver rounded-2xl p-8 mb-6">
+          <div class="label mb-2">Cidades-foco da campanha</div>
+          <div class="field-group mb-0">
+            <label class="field-label">Onde sua campanha precisa estar mais forte?</label>
+            <textarea class="field" rows="3" placeholder="Liste cidades...">Capital: Belo Horizonte (toda RMBH).
+Regiões prioritárias: Triângulo (Uberlândia, Uberaba), Vale do Aço (Ipatinga, Coronel Fabriciano, Timóteo), Sul de Minas (Pouso Alegre, Varginha, Poços de Caldas), Zona da Mata (Juiz de Fora, Viçosa), Norte de Minas (Montes Claros).</textarea>
+            <p class="field-hint">Para candidaturas estaduais ou federais, isso permite produzir material regional sem precisar refazer.</p>
+          </div>
+        </div>
+
+        <!-- Materiais adicionais -->
+        <div class="bg-white border border-silver rounded-2xl p-8">
+          <div class="label mb-2">Outros materiais e observações</div>
+          <div class="field-group mb-0">
+            <label class="field-label">Pedido especial ou observação</label>
+            <textarea class="field" rows="4" placeholder="Algum material específico que você precisa e ainda não foi mencionado? Restrição importante? Religião a respeitar? Qualquer coisa que ajude a equipe a entregar melhor."></textarea>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 </div>
 
-<!-- QUIZ CONTAINER -->
-<main class="max-w-[840px] mx-auto px-6 lg:px-8 py-12 lg:py-16 pb-40">
-
-  <!-- ====== STEP 1 — FRASE ====== -->
-  <section class="step active" data-step="1" data-name="Frase de campanha">
-    <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 01 de 05</div>
-    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
-      Qual é a frase principal da sua campanha?
-    </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
-      Uma frase curta que resume o que você defende. Vai aparecer no santinho, no jingle, no site e em toda a campanha.
-    </p>
-
-    <input
-      type="text"
-      class="field field-lg text-iris"
-      placeholder="Ex: Minas Gerais que cuida da sua família."
-      value="Minas Gerais que cuida da sua família."
-    />
-    <p class="text-[13px] text-mist mt-3 pl-1">Dica: tente algo memorável. Até 60 caracteres funcionam melhor.</p>
-  </section>
-
-  <!-- ====== STEP 2 — PROPOSTAS ====== -->
-  <section class="step" data-step="2" data-name="Cinco propostas">
-    <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 02 de 05</div>
-    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
-      Quais são suas 5 propostas?
-    </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
-      O que você vai fazer pelo seu estado? As propostas guiam todo o conteúdo: plano de governo, posts, discursos, respostas do bot.
-    </p>
-
-    <div class="space-y-4">
-      <div class="flex items-center gap-4">
-        <span class="w-10 h-10 rounded-full bg-iris text-gold font-bold text-[16px] flex items-center justify-center flex-shrink-0">1</span>
-        <input type="text" class="field" placeholder="Sua primeira proposta..." value="Mais médicos e estrutura nos hospitais de todas as 853 cidades">
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-10 h-10 rounded-full bg-iris text-gold font-bold text-[16px] flex items-center justify-center flex-shrink-0">2</span>
-        <input type="text" class="field" placeholder="Sua segunda proposta..." value="Escolas de qualidade em tempo integral nos bairros periféricos">
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-10 h-10 rounded-full bg-iris text-gold font-bold text-[16px] flex items-center justify-center flex-shrink-0">3</span>
-        <input type="text" class="field" placeholder="Sua terceira proposta..." value="Linha de crédito estadual para pequenos comerciantes">
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-10 h-10 rounded-full bg-iris text-gold font-bold text-[16px] flex items-center justify-center flex-shrink-0">4</span>
-        <input type="text" class="field" placeholder="Sua quarta proposta..." value="Investimento em rodovias e transporte público intermunicipal">
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="w-10 h-10 rounded-full bg-iris text-gold font-bold text-[16px] flex items-center justify-center flex-shrink-0">5</span>
-        <input type="text" class="field" placeholder="Sua quinta proposta..." value="Programa de segurança pública integrado com municípios">
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== STEP 3 — ADJETIVOS ====== -->
-  <section class="step" data-step="3" data-name="Adjetivos da campanha">
-    <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 03 de 05</div>
-    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
-      Como você se descreve?
-    </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
-      Escolha 3 palavras que combinam com a sua candidatura. Vão definir a estética visual e o vocabulário dos textos.
-    </p>
-
-    <div class="flex flex-wrap gap-3">
-      <input type="checkbox" id="a1" class="chip-input hidden" checked>
-      <label for="a1" class="chip">Honesto</label>
-      <input type="checkbox" id="a2" class="chip-input hidden">
-      <label for="a2" class="chip">Experiente</label>
-      <input type="checkbox" id="a3" class="chip-input hidden" checked>
-      <label for="a3" class="chip">Trabalhador</label>
-      <input type="checkbox" id="a4" class="chip-input hidden">
-      <label for="a4" class="chip">Jovem</label>
-      <input type="checkbox" id="a5" class="chip-input hidden" checked>
-      <label for="a5" class="chip">Próximo do povo</label>
-      <input type="checkbox" id="a6" class="chip-input hidden">
-      <label for="a6" class="chip">Renovador</label>
-      <input type="checkbox" id="a7" class="chip-input hidden">
-      <label for="a7" class="chip">Conservador</label>
-      <input type="checkbox" id="a8" class="chip-input hidden">
-      <label for="a8" class="chip">Cristão</label>
-      <input type="checkbox" id="a9" class="chip-input hidden">
-      <label for="a9" class="chip">Empreendedor</label>
-      <input type="checkbox" id="a10" class="chip-input hidden">
-      <label for="a10" class="chip">Defensor da família</label>
-      <input type="checkbox" id="a11" class="chip-input hidden">
-      <label for="a11" class="chip">Progressista</label>
-      <input type="checkbox" id="a12" class="chip-input hidden">
-      <label for="a12" class="chip">Tradicional</label>
-    </div>
-
-    <p class="text-[13px] text-mist mt-6" id="adj-counter">Selecionados: 3 de 3</p>
-  </section>
-
-  <!-- ====== STEP 4 — TOM DE VOZ ====== -->
-  <section class="step" data-step="4" data-name="Tom de voz">
-    <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 04 de 05</div>
-    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
-      Como você fala com as pessoas?
-    </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
-      A linguagem do seu material vai seguir esse tom. Escolha um.
-    </p>
-
-    <div class="grid md:grid-cols-3 gap-4">
-      <input type="radio" id="t1" name="tone" class="radio-input hidden">
-      <label for="t1" class="radio-card">
-        <div class="label mb-3">Opção 01</div>
-        <div class="text-[22px] font-medium text-iris tracking-ultratight mb-3">Formal</div>
-        <p class="text-[14px] leading-[1.6] text-smoke">Linguagem técnica, institucional. Como num discurso oficial.</p>
-      </label>
-
-      <input type="radio" id="t2" name="tone" class="radio-input hidden">
-      <label for="t2" class="radio-card">
-        <div class="label mb-3">Opção 02</div>
-        <div class="text-[22px] font-medium text-iris tracking-ultratight mb-3">Direto</div>
-        <p class="text-[14px] leading-[1.6] text-smoke">Linguagem clara, sem distância. Como numa conversa de trabalho.</p>
-      </label>
-
-      <input type="radio" id="t3" name="tone" class="radio-input hidden" checked>
-      <label for="t3" class="radio-card">
-        <div class="label mb-3">Opção 03</div>
-        <div class="text-[22px] font-medium text-iris tracking-ultratight mb-3">Próximo</div>
-        <p class="text-[14px] leading-[1.6] text-smoke">Linguagem regional, com expressões locais. Como num bate-papo com vizinho.</p>
-      </label>
-    </div>
-  </section>
-
-  <!-- ====== STEP 5 — REFERÊNCIAS ====== -->
-  <section class="step" data-step="5" data-name="Referências regionais">
-    <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 05 de 05</div>
-    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
-      Quais expressões da sua região devem aparecer?
-    </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
-      Bairros, gírias, lugares e expressões locais. Quanto mais específicas, mais a campanha vai soar como você de verdade.
-    </p>
-
-    <textarea class="field" placeholder="Ex: Vale do Aço, Triângulo Mineiro. Expressões: 'uai', 'trem bão', 'sô'. Referências: Inhotim, Mineirão...">Minas Gerais inteira: Belo Horizonte como base, Triângulo, Norte de Minas, Zona da Mata, Sul de Minas, Vale do Aço. Expressões mineiras devem aparecer naturalmente: "uai", "trem", "sô". Referências culturais: Inhotim, Pico do Caraça, Mineirão, Mercado Central, queijo Canastra, doce de leite, festa de Congado em Diamantina.</textarea>
-    <p class="text-[13px] text-mist mt-3 pl-1">Opcional. Mas recomendado para resultados mais autênticos.</p>
-  </section>
-
-</main>
-
-<!-- ============================================================
-     BARRA DE NAVEGAÇÃO STICKY
-     ============================================================ -->
+<!-- BARRA STICKY -->
 <div class="nav-bar">
-  <div class="max-w-[840px] mx-auto px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-    <button id="btn-back" onclick="prevStep()" class="btn-secondary" disabled>
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-3 flex items-center justify-between gap-4">
+    <button id="btn-back" onclick="prevSection()" class="btn-secondary" disabled>
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
       Voltar
     </button>
 
-    <button id="btn-next" onclick="nextStep()" class="btn-primary">
-      <span id="btn-next-text">Continuar</span>
+    <div class="hidden md:block text-[12px] text-mist">
+      <span id="footer-section-name">Identificação da candidatura</span>
+    </div>
+
+    <button id="btn-next" onclick="nextSection()" class="btn-primary">
+      <span id="btn-next-text">Próxima seção</span>
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </button>
   </div>
 </div>
 
 <script>
-  let currentStep = 1;
-  const totalSteps = 5;
+  let currentSection = 1;
+  const totalSections = 7;
+  const sectionNames = [
+    'Identificação da candidatura',
+    'Identidade visual',
+    'Quem é você',
+    'Propostas e plano de governo',
+    'Voz e comunicação',
+    'Bot WhatsApp',
+    'Eventos e locais específicos',
+  ];
+
   const btnBack = document.getElementById('btn-back');
   const btnNext = document.getElementById('btn-next');
   const btnNextText = document.getElementById('btn-next-text');
 
-  function showStep(n) {
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    const step = document.querySelector(`.step[data-step="${n}"]`);
-    step.classList.add('active');
+  function showSection(n) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.section[data-section="${n}"]`).classList.add('active');
 
-    document.getElementById('step-current').textContent = n;
-    document.getElementById('step-name').textContent = step.dataset.name;
-    document.getElementById('progress-bar').style.width = (n / totalSteps * 100) + '%';
+    document.querySelectorAll('.nav-section').forEach((el, i) => {
+      el.classList.remove('active', 'done');
+      const target = parseInt(el.dataset.target);
+      if (target === n) el.classList.add('active');
+      else if (target < n) el.classList.add('done');
+    });
 
-    // Estado do botão "Voltar"
+    const pct = Math.round((n / totalSections) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `${n} de ${totalSections} · ${pct}%`;
+    document.getElementById('footer-section-name').textContent = sectionNames[n - 1];
+
     btnBack.disabled = n === 1;
 
-    // Texto do botão "Avançar"
-    if (n === totalSteps) {
-      btnNextText.textContent = 'Finalizar e produzir';
+    if (n === totalSections) {
+      btnNextText.textContent = 'Concluir e produzir';
       btnNext.classList.add('final');
       btnNext.onclick = () => window.location.href = 'gerando.html';
     } else {
-      btnNextText.textContent = 'Continuar';
+      btnNextText.textContent = 'Próxima seção';
       btnNext.classList.remove('final');
-      btnNext.onclick = nextStep;
+      btnNext.onclick = nextSection;
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    currentStep = n;
+    currentSection = n;
   }
 
-  function nextStep() {
-    if (currentStep < totalSteps) showStep(currentStep + 1);
-  }
+  function nextSection() { if (currentSection < totalSections) showSection(currentSection + 1); }
+  function prevSection() { if (currentSection > 1) showSection(currentSection - 1); }
 
-  function prevStep() {
-    if (currentStep > 1) showStep(currentStep - 1);
-  }
-
-  // Limite de 3 adjetivos
-  document.querySelectorAll('.chip-input').forEach(chip => {
-    chip.addEventListener('change', () => {
-      const checked = document.querySelectorAll('.chip-input:checked').length;
-      const counter = document.getElementById('adj-counter');
-      if (counter) counter.textContent = `Selecionados: ${checked} de 3`;
-      if (checked > 3) chip.checked = false;
+  // Navegação clicável nas seções da sidebar
+  document.querySelectorAll('.nav-section').forEach(el => {
+    el.addEventListener('click', () => {
+      showSection(parseInt(el.dataset.target));
     });
   });
 
-  // Atalhos teclado
-  document.addEventListener('keydown', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.key === 'ArrowRight') nextStep();
-    if (e.key === 'ArrowLeft') prevStep();
+  // Color swatch selection
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      const group = sw.parentElement;
+      group.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+      sw.classList.add('selected');
+    });
   });
 
-  // Inicializar estado
-  showStep(1);
+  // Upload box click feedback
+  document.querySelectorAll('.upload-box').forEach(box => {
+    box.addEventListener('click', () => {
+      box.style.background = '#FBF8E9';
+      box.style.borderColor = '#2E1655';
+      setTimeout(() => {
+        box.style.background = '';
+        box.style.borderColor = '';
+      }, 200);
+    });
+  });
+
+  showSection(1);
 </script>
 
 </body>

@@ -37,9 +37,7 @@
     font-family: inherit;
     transition: all 0.2s ease;
   }
-  .field:hover {
-    border-color: #7256B1;
-  }
+  .field:hover { border-color: #7256B1; }
   .field:focus {
     outline: none;
     border-color: #2E1655;
@@ -67,10 +65,7 @@
     background: #FAFAF7;
     user-select: none;
   }
-  .chip:hover {
-    border-color: #7256B1;
-    background: #FBF8E9;
-  }
+  .chip:hover { border-color: #7256B1; background: #FBF8E9; }
   .chip-input:checked + .chip {
     background: #2E1655;
     color: #F4C430;
@@ -94,25 +89,11 @@
     transition: all 0.2s ease;
     position: relative;
   }
-  .radio-card:hover {
-    border-color: #7256B1;
-    background: #FBF8E9;
-  }
+  .radio-card:hover { border-color: #7256B1; background: #FBF8E9; }
   .radio-input:checked + .radio-card {
     border-color: #2E1655;
     background: #FBF8E9;
     box-shadow: 0 0 0 4px rgba(244, 196, 48, 0.3);
-  }
-  .radio-input:checked + .radio-card::after {
-    content: '';
-    position: absolute;
-    top: 16px; right: 16px;
-    width: 28px; height: 28px;
-    background: #2E1655;
-    border-radius: 50%;
-  }
-  .radio-input:checked + .radio-card .check-dot {
-    display: flex;
   }
 
   /* Steps */
@@ -128,6 +109,58 @@
     line-height: 1.5;
     min-height: 140px;
   }
+
+  /* Footer sticky de navegação */
+  .nav-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(250, 250, 247, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid #E5E5E5;
+    z-index: 100;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #2E1655;
+    color: #FAFAF7;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 32px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 20px -8px rgba(46, 22, 85, 0.4);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: #4A2B7E; transform: translateY(-1px); }
+  .btn-primary.final {
+    background: #F4C430;
+    color: #2E1655;
+    font-weight: 700;
+    box-shadow: 0 10px 20px -8px rgba(244, 196, 48, 0.5);
+  }
+  .btn-primary.final:hover { background: #F9D976; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #525252;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 16px 24px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid #E5E5E5;
+  }
+  .btn-secondary:hover { border-color: #2E1655; color: #2E1655; background: #FBF8E9; }
+  .btn-secondary:disabled { opacity: 0.3; cursor: not-allowed; }
 </style>
 </head>
 <body class="bg-paper text-ink">
@@ -160,15 +193,15 @@
 </div>
 
 <!-- QUIZ CONTAINER -->
-<main class="max-w-[840px] mx-auto px-6 lg:px-8 py-16 lg:py-24 min-h-[80vh]">
+<main class="max-w-[840px] mx-auto px-6 lg:px-8 py-12 lg:py-16 pb-32">
 
   <!-- ====== STEP 1 — FRASE ====== -->
   <section class="step active" data-step="1" data-name="Frase de campanha">
     <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 01 de 05</div>
-    <h1 class="text-[40px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
       Qual é a frase principal da sua campanha?
     </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-12 max-w-xl">
+    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
       Uma frase curta que resume o que você defende. Vai aparecer no santinho, no jingle, no site e em toda a campanha.
     </p>
 
@@ -179,22 +212,15 @@
       value="Minas Gerais que cuida da sua família."
     />
     <p class="text-[13px] text-mist mt-3 pl-1">Dica: tente algo memorável. Até 60 caracteres funcionam melhor.</p>
-
-    <div class="flex items-center justify-end pt-16">
-      <button onclick="nextStep()" class="inline-flex items-center gap-3 bg-iris text-paper text-[16px] font-medium px-8 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
-        Continuar
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
   </section>
 
   <!-- ====== STEP 2 — PROPOSTAS ====== -->
   <section class="step" data-step="2" data-name="Cinco propostas">
     <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 02 de 05</div>
-    <h1 class="text-[40px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
       Quais são suas 5 propostas?
     </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-12 max-w-xl">
+    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
       O que você vai fazer pelo seu estado? As propostas guiam todo o conteúdo: plano de governo, posts, discursos, respostas do bot.
     </p>
 
@@ -220,88 +246,55 @@
         <input type="text" class="field" placeholder="Sua quinta proposta..." value="Programa de segurança pública integrado com municípios">
       </div>
     </div>
-
-    <div class="flex items-center justify-between pt-16">
-      <button onclick="prevStep()" class="inline-flex items-center gap-3 text-[15px] font-medium text-smoke hover:text-iris transition">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
-        Voltar
-      </button>
-      <button onclick="nextStep()" class="inline-flex items-center gap-3 bg-iris text-paper text-[16px] font-medium px-8 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
-        Continuar
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
   </section>
 
   <!-- ====== STEP 3 — ADJETIVOS ====== -->
   <section class="step" data-step="3" data-name="Adjetivos da campanha">
     <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 03 de 05</div>
-    <h1 class="text-[40px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
       Como você se descreve?
     </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-12 max-w-xl">
+    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
       Escolha 3 palavras que combinam com a sua candidatura. Vão definir a estética visual e o vocabulário dos textos.
     </p>
 
     <div class="flex flex-wrap gap-3">
       <input type="checkbox" id="a1" class="chip-input hidden" checked>
       <label for="a1" class="chip">Honesto</label>
-
       <input type="checkbox" id="a2" class="chip-input hidden">
       <label for="a2" class="chip">Experiente</label>
-
       <input type="checkbox" id="a3" class="chip-input hidden" checked>
       <label for="a3" class="chip">Trabalhador</label>
-
       <input type="checkbox" id="a4" class="chip-input hidden">
       <label for="a4" class="chip">Jovem</label>
-
       <input type="checkbox" id="a5" class="chip-input hidden" checked>
       <label for="a5" class="chip">Próximo do povo</label>
-
       <input type="checkbox" id="a6" class="chip-input hidden">
       <label for="a6" class="chip">Renovador</label>
-
       <input type="checkbox" id="a7" class="chip-input hidden">
       <label for="a7" class="chip">Conservador</label>
-
       <input type="checkbox" id="a8" class="chip-input hidden">
       <label for="a8" class="chip">Cristão</label>
-
       <input type="checkbox" id="a9" class="chip-input hidden">
       <label for="a9" class="chip">Empreendedor</label>
-
       <input type="checkbox" id="a10" class="chip-input hidden">
       <label for="a10" class="chip">Defensor da família</label>
-
       <input type="checkbox" id="a11" class="chip-input hidden">
       <label for="a11" class="chip">Progressista</label>
-
       <input type="checkbox" id="a12" class="chip-input hidden">
       <label for="a12" class="chip">Tradicional</label>
     </div>
 
-    <p class="text-[13px] text-mist mt-6">Selecionados: 3 de 3</p>
-
-    <div class="flex items-center justify-between pt-16">
-      <button onclick="prevStep()" class="inline-flex items-center gap-3 text-[15px] font-medium text-smoke hover:text-iris transition">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
-        Voltar
-      </button>
-      <button onclick="nextStep()" class="inline-flex items-center gap-3 bg-iris text-paper text-[16px] font-medium px-8 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
-        Continuar
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
+    <p class="text-[13px] text-mist mt-6" id="adj-counter">Selecionados: 3 de 3</p>
   </section>
 
   <!-- ====== STEP 4 — TOM DE VOZ ====== -->
   <section class="step" data-step="4" data-name="Tom de voz">
     <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 04 de 05</div>
-    <h1 class="text-[40px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
       Como você fala com as pessoas?
     </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-12 max-w-xl">
+    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
       A linguagem do seu material vai seguir esse tom. Escolha um.
     </p>
 
@@ -327,60 +320,53 @@
         <p class="text-[14px] leading-[1.6] text-smoke">Linguagem regional, com expressões locais. Como num bate-papo com vizinho.</p>
       </label>
     </div>
-
-    <div class="flex items-center justify-between pt-16">
-      <button onclick="prevStep()" class="inline-flex items-center gap-3 text-[15px] font-medium text-smoke hover:text-iris transition">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
-        Voltar
-      </button>
-      <button onclick="nextStep()" class="inline-flex items-center gap-3 bg-iris text-paper text-[16px] font-medium px-8 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
-        Continuar
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
   </section>
 
   <!-- ====== STEP 5 — REFERÊNCIAS ====== -->
   <section class="step" data-step="5" data-name="Referências regionais">
     <div class="text-[12px] font-bold tracking-[0.2em] uppercase text-gold mb-6">Pergunta 05 de 05</div>
-    <h1 class="text-[40px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
+    <h1 class="text-[36px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium text-iris mb-5">
       Quais expressões da sua região devem aparecer?
     </h1>
-    <p class="text-[17px] leading-[1.6] text-smoke mb-12 max-w-xl">
+    <p class="text-[17px] leading-[1.6] text-smoke mb-10 max-w-xl">
       Bairros, gírias, lugares e expressões locais. Quanto mais específicas, mais a campanha vai soar como você de verdade.
     </p>
 
     <textarea class="field" placeholder="Ex: Vale do Aço, Triângulo Mineiro. Expressões: 'uai', 'trem bão', 'sô'. Referências: Inhotim, Mineirão...">Minas Gerais inteira: Belo Horizonte como base, Triângulo, Norte de Minas, Zona da Mata, Sul de Minas, Vale do Aço. Expressões mineiras devem aparecer naturalmente: "uai", "trem", "sô". Referências culturais: Inhotim, Pico do Caraça, Mineirão, Mercado Central, queijo Canastra, doce de leite, festa de Congado em Diamantina.</textarea>
     <p class="text-[13px] text-mist mt-3 pl-1">Opcional. Mas recomendado para resultados mais autênticos.</p>
-
-    <div class="flex items-center justify-between pt-16">
-      <button onclick="prevStep()" class="inline-flex items-center gap-3 text-[15px] font-medium text-smoke hover:text-iris transition">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
-        Voltar
-      </button>
-      <a href="gerando.html" class="inline-flex items-center gap-3 bg-gold text-iris text-[16px] font-bold px-8 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
-        Finalizar e produzir
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
-    </div>
   </section>
 
 </main>
 
-<!-- AUTOSAVE FOOTER -->
-<footer class="border-t border-silver py-5">
-  <div class="max-w-[840px] mx-auto px-6 lg:px-8 flex items-center justify-between text-[12px] text-mist">
-    <div class="flex items-center gap-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-iris"></span>
-      Salvamento automático
+<!-- ============================================================
+     BARRA DE NAVEGAÇÃO STICKY
+     ============================================================ -->
+<div class="nav-bar">
+  <div class="max-w-[840px] mx-auto px-6 lg:px-8 py-5 flex items-center justify-between gap-4">
+    <button id="btn-back" onclick="prevStep()" class="btn-secondary" disabled>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
+      Voltar
+    </button>
+
+    <div class="hidden sm:flex items-center gap-2 text-[12px] text-mist">
+      <span>Use as setas</span>
+      <kbd class="px-2 py-1 border border-silver rounded text-[10px] bg-paper">←</kbd>
+      <kbd class="px-2 py-1 border border-silver rounded text-[10px] bg-paper">→</kbd>
     </div>
-    <div>Suas respostas são privadas</div>
+
+    <button id="btn-next" onclick="nextStep()" class="btn-primary">
+      <span id="btn-next-text">Continuar</span>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </button>
   </div>
-</footer>
+</div>
 
 <script>
   let currentStep = 1;
   const totalSteps = 5;
+  const btnBack = document.getElementById('btn-back');
+  const btnNext = document.getElementById('btn-next');
+  const btnNextText = document.getElementById('btn-next-text');
 
   function showStep(n) {
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -390,6 +376,21 @@
     document.getElementById('step-current').textContent = n;
     document.getElementById('step-name').textContent = step.dataset.name;
     document.getElementById('progress-bar').style.width = (n / totalSteps * 100) + '%';
+
+    // Estado do botão "Voltar"
+    btnBack.disabled = n === 1;
+
+    // Texto do botão "Avançar"
+    if (n === totalSteps) {
+      btnNextText.textContent = 'Finalizar e produzir';
+      btnNext.classList.add('final');
+      btnNext.onclick = () => window.location.href = 'gerando.html';
+    } else {
+      btnNextText.textContent = 'Continuar';
+      btnNext.classList.remove('final');
+      btnNext.onclick = nextStep;
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
     currentStep = n;
   }
@@ -406,7 +407,7 @@
   document.querySelectorAll('.chip-input').forEach(chip => {
     chip.addEventListener('change', () => {
       const checked = document.querySelectorAll('.chip-input:checked').length;
-      const counter = document.querySelector('.step[data-step="3"] p.text-mist');
+      const counter = document.getElementById('adj-counter');
       if (counter) counter.textContent = `Selecionados: ${checked} de 3`;
       if (checked > 3) chip.checked = false;
     });
@@ -418,6 +419,9 @@
     if (e.key === 'ArrowRight') nextStep();
     if (e.key === 'ArrowLeft') prevStep();
   });
+
+  // Inicializar estado
+  showStep(1);
 </script>
 
 </body>

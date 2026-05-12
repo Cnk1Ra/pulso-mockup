@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulso — Sua campanha completa em 72 horas, gerada por IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:      '#0A1B3D',
+          navyLight: '#162B5C',
+          navyDark:  '#06122A',
+          gold:      '#D4A04A',
+          goldLight: '#E5B96A',
+          goldDark:  '#B5832A',
+          cream:     '#F8F6F0',
+          creamDark: '#EDE8DA',
+          graphite:  '#1A1A1A',
+        },
+        fontFamily: {
+          serif: ['Playfair Display', 'serif'],
+          sans:  ['Inter', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .text-balance { text-wrap: balance; }
+  .grain {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(212,160,74,0.08) 0px, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(212,160,74,0.06) 0px, transparent 50%);
+  }
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4A04A, transparent);
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-anim { animation: float 6s ease-in-out infinite; }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .badge-live {
+    background: linear-gradient(90deg, rgba(212,160,74,0.15), rgba(212,160,74,0.3), rgba(212,160,74,0.15));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+</style>
+</head>
+<body class="bg-cream text-graphite">
+
+<!-- ================ HEADER ================ -->
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-creamDark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#0A1B3D" stroke-width="1.5"/>
+        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="font-serif text-xl font-bold tracking-tight text-navy">Pulso</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-graphite/80">
+      <a href="#como-funciona" class="hover:text-navy transition">Como funciona</a>
+      <a href="#planos" class="hover:text-navy transition">Planos</a>
+      <a href="#exemplos" class="hover:text-navy transition">Exemplos</a>
+      <a href="#faq" class="hover:text-navy transition">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#" class="hidden sm:block text-sm font-medium text-graphite/70 hover:text-navy">Entrar</a>
+      <a href="onboarding.html" class="bg-navy text-cream text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-navyLight transition">
+        Começar agora
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================ HERO ================ -->
+<section class="relative grain overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-20 pb-24 lg:pt-28 lg:pb-32">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2 bg-navy/5 border border-navy/10 rounded-full px-4 py-1.5 mb-8">
+          <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+          <span class="text-xs font-semibold tracking-wider uppercase text-navy">Eleições 2026 · Inscrições abertas</span>
+        </div>
+        <h1 class="font-serif text-5xl lg:text-7xl font-bold text-navy leading-[1.05] tracking-tight text-balance">
+          Sua campanha<br>
+          <span class="italic text-gold">completa</span>,<br>
+          gerada em 72 horas.
+        </h1>
+        <p class="mt-8 text-lg lg:text-xl text-graphite/70 max-w-xl leading-relaxed">
+          Jingle, identidade visual, santinho, posts, site, bot de WhatsApp e mais.
+          Tudo personalizado para sua candidatura, produzido por inteligência artificial,
+          em conformidade com a Resolução TSE 23.732.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href="onboarding.html" class="inline-flex items-center justify-center gap-2 bg-navy text-cream font-semibold px-8 py-4 rounded-full hover:bg-navyLight transition">
+            Começar meu briefing
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="kit.html" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-navy/15 text-navy font-semibold px-8 py-4 rounded-full hover:bg-navy/5 transition">
+            Ver kit de demonstração
+          </a>
+        </div>
+        <div class="mt-10 flex items-center gap-6 text-sm text-graphite/60">
+          <div class="flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Entrega garantida em até 72h</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Pagamento único</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup visual -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative float-anim">
+          <!-- Card flutuante: identidade -->
+          <div class="absolute -top-6 -left-6 bg-white rounded-2xl shadow-xl p-5 w-56 z-20 border border-creamDark">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-bold tracking-widest uppercase text-graphite/50">Identidade visual</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            </div>
+            <div class="flex gap-1.5 mb-3">
+              <div class="w-8 h-8 rounded bg-emerald-700"></div>
+              <div class="w-8 h-8 rounded bg-amber-100"></div>
+              <div class="w-8 h-8 rounded bg-graphite"></div>
+              <div class="w-8 h-8 rounded bg-rose-600"></div>
+            </div>
+            <div class="font-serif text-2xl font-bold text-emerald-900">15.789</div>
+            <div class="text-xs text-graphite/60">Rafael Costa · MDB</div>
+          </div>
+
+          <!-- Card central: jingle -->
+          <div class="bg-navy rounded-3xl p-8 text-cream shadow-2xl relative z-10 mt-12">
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-[10px] font-bold tracking-widest uppercase text-gold">Jingle · 60s</span>
+              <span class="badge-live text-gold text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full">Gerando</span>
+            </div>
+            <div class="font-serif text-2xl font-semibold leading-snug mb-6">
+              "Rafael Costa, com você, lutando pelo Vale do Aço."
+            </div>
+            <!-- Waveform mock -->
+            <div class="flex items-end gap-1 h-12 mb-4">
+              <div class="flex-1 bg-gold/30 rounded-t" style="height:30%"></div>
+              <div class="flex-1 bg-gold/50 rounded-t" style="height:60%"></div>
+              <div class="flex-1 bg-gold/70 rounded-t" style="height:90%"></div>
+              <div class="flex-1 bg-gold rounded-t" style="height:75%"></div>
+              <div class="flex-1 bg-gold/70 rounded-t" style="height:95%"></div>
+              <div class="flex-1 bg-gold/50 rounded-t" style="height:55%"></div>
+              <div class="flex-1 bg-gold/40 rounded-t" style="height:80%"></div>
+              <div class="flex-1 bg-gold/60 rounded-t" style="height:70%"></div>
+              <div class="flex-1 bg-gold/80 rounded-t" style="height:45%"></div>
+              <div class="flex-1 bg-gold/40 rounded-t" style="height:90%"></div>
+              <div class="flex-1 bg-gold/30 rounded-t" style="height:50%"></div>
+              <div class="flex-1 bg-gold/50 rounded-t" style="height:70%"></div>
+              <div class="flex-1 bg-gold/70 rounded-t" style="height:35%"></div>
+              <div class="flex-1 bg-gold/40 rounded-t" style="height:60%"></div>
+              <div class="flex-1 bg-gold/60 rounded-t" style="height:85%"></div>
+              <div class="flex-1 bg-gold/30 rounded-t" style="height:40%"></div>
+            </div>
+            <div class="flex items-center justify-between text-xs text-cream/60">
+              <span>0:00</span>
+              <span>1:00</span>
+            </div>
+          </div>
+
+          <!-- Card flutuante: post -->
+          <div class="absolute -bottom-8 -right-4 bg-white rounded-2xl shadow-xl p-3 w-44 z-20 border border-creamDark">
+            <div class="bg-emerald-800 rounded-lg aspect-square flex flex-col justify-between p-4 text-cream relative overflow-hidden">
+              <div class="absolute top-3 right-3 bg-cream text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded">15.789</div>
+              <div class="font-serif text-sm font-bold leading-tight">Por um Vale do Aço com saúde de verdade.</div>
+              <div class="text-[9px] uppercase tracking-wider opacity-70">Rafael Costa · Dep. Estadual</div>
+            </div>
+            <div class="text-[10px] text-graphite/50 mt-2 px-1">Post 12 de 30 · Feed</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ TICKER DE CONFIANÇA ================ -->
+<section class="bg-navy text-cream/70 py-8 border-y border-navyLight">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-xs font-medium tracking-wider uppercase">
+    <span>Em conformidade com Resolução TSE 23.732/2024</span>
+    <span class="text-gold">·</span>
+    <span>Rotulagem obrigatória aplicada</span>
+    <span class="text-gold">·</span>
+    <span>LGPD compliance</span>
+    <span class="text-gold">·</span>
+    <span>Acesso válido até 4 de outubro de 2026</span>
+  </div>
+</section>
+
+<!-- ================ COMO FUNCIONA ================ -->
+<section id="como-funciona" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-2xl mb-16">
+      <div class="text-xs font-bold tracking-widest uppercase text-gold mb-4">Como funciona</div>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
+        Três passos para sua campanha estar pronta.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Passo 1 -->
+      <div class="bg-white rounded-2xl p-8 border border-creamDark relative">
+        <div class="font-serif text-7xl font-bold text-cream absolute -top-2 right-6 leading-none" style="text-shadow: 0 0 0 #D4A04A; -webkit-text-stroke: 2px #D4A04A;">1</div>
+        <div class="pt-10">
+          <h3 class="font-serif text-2xl font-bold text-navy mb-3">Preencha o briefing</h3>
+          <p class="text-graphite/70 leading-relaxed mb-6">
+            Em 15 minutos você responde sobre cargo, propostas, base regional,
+            tom de voz e envia 5 fotos. Nossa IA cuida do resto.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-graphite/50">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>~15 minutos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 2 -->
+      <div class="bg-white rounded-2xl p-8 border border-creamDark relative">
+        <div class="font-serif text-7xl font-bold absolute -top-2 right-6 leading-none" style="-webkit-text-stroke: 2px #D4A04A; color: transparent;">2</div>
+        <div class="pt-10">
+          <h3 class="font-serif text-2xl font-bold text-navy mb-3">A IA produz seu kit</h3>
+          <p class="text-graphite/70 leading-relaxed mb-6">
+            Enquanto você acompanha o progresso em tempo real,
+            geramos jingle, logo, posts, site, bot, áudios e tudo mais.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-graphite/50">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Até 72 horas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 3 -->
+      <div class="bg-white rounded-2xl p-8 border border-creamDark relative">
+        <div class="font-serif text-7xl font-bold absolute -top-2 right-6 leading-none" style="-webkit-text-stroke: 2px #D4A04A; color: transparent;">3</div>
+        <div class="pt-10">
+          <h3 class="font-serif text-2xl font-bold text-navy mb-3">Baixe e use</h3>
+          <p class="text-graphite/70 leading-relaxed mb-6">
+            Todo o material disponível no painel para download. Site no ar.
+            Bot do WhatsApp ativo. Você só precisa fazer campanha.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-graphite/50">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Acesso até a eleição</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PLANOS ================ -->
+<section id="planos" class="py-24 lg:py-32 bg-white border-y border-creamDark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <div class="text-xs font-bold tracking-widest uppercase text-gold mb-4">Planos</div>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
+        Pagamento único.<br>Acesso até a eleição.
+      </h2>
+      <p class="mt-6 text-graphite/70 text-lg">
+        Sem mensalidade, sem fidelidade. Você paga uma vez e recebe tudo.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Plus -->
+      <div class="bg-cream rounded-3xl p-10 border border-creamDark">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-serif text-3xl font-bold text-navy">Plus</h3>
+          <span class="text-xs font-bold tracking-wider uppercase text-graphite/50">Entrada</span>
+        </div>
+        <p class="text-graphite/70 mb-8">Tudo o que uma campanha de base precisa.</p>
+        <div class="mb-8">
+          <span class="font-serif text-5xl font-bold text-navy">R$ 4.997</span>
+          <span class="text-graphite/50 ml-2">à vista</span>
+        </div>
+        <ul class="space-y-3 mb-10 text-sm">
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Identidade visual completa (logo, número, paleta, manual)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>1 jingle (60s + cortes de 15s e 30s)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Spot de rádio de 30s + 10 áudios de WhatsApp</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Site institucional (5 páginas) + landing de apoiadores</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Bot de WhatsApp básico (respostas + transmissão)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Material gráfico (santinho, panfleto, adesivo, bandeira, faixa)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>30 posts Instagram + 30 textos de copy + plano de governo</li>
+        </ul>
+        <a href="onboarding.html" class="block w-full text-center bg-navy/5 border-2 border-navy/15 text-navy font-semibold py-4 rounded-full hover:bg-navy/10 transition">
+          Escolher Plus
+        </a>
+      </div>
+
+      <!-- Pro -->
+      <div class="bg-navy rounded-3xl p-10 text-cream relative overflow-hidden border-2 border-gold">
+        <div class="absolute top-6 right-6 bg-gold text-navy text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-full">Mais escolhido</div>
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-serif text-3xl font-bold text-gold">Pro</h3>
+        </div>
+        <p class="text-cream/70 mb-8">Para campanhas que querem todas as ferramentas.</p>
+        <div class="mb-8">
+          <span class="font-serif text-5xl font-bold">R$ 9.997</span>
+          <span class="text-cream/50 ml-2">à vista</span>
+        </div>
+        <ul class="space-y-3 mb-10 text-sm">
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><strong>Tudo do Plus</strong>, com volumes expandidos</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>4 jingles regionais (sertanejo, funk, forró, axé/MPB)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Bot WhatsApp com IA (respostas dinâmicas + qualificação de leads)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>50 posts feed + 20 stories + 10 roteiros de vídeo</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Material gráfico ampliado (outdoor, envelopamento de carro, +)</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Kit de defesa + discurso de palanque + e-book do plano</li>
+          <li class="flex gap-3"><svg class="flex-shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Sistema de cadastro de cabos eleitorais + 90 textos de copy</li>
+        </ul>
+        <a href="onboarding.html" class="block w-full text-center bg-gold text-navy font-bold py-4 rounded-full hover:bg-goldLight transition">
+          Escolher Pro
+        </a>
+      </div>
+    </div>
+
+    <p class="text-center text-sm text-graphite/50 mt-10">
+      Acesso à plataforma válido até 4 de outubro de 2026. Arquivos disponíveis para download por 30 dias após a eleição.
+    </p>
+  </div>
+</section>
+
+<!-- ================ EXEMPLOS ================ -->
+<section id="exemplos" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 gap-6">
+      <div class="max-w-2xl">
+        <div class="text-xs font-bold tracking-widest uppercase text-gold mb-4">Exemplos</div>
+        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
+          Veja o que entregamos.
+        </h2>
+        <p class="mt-6 text-graphite/70 text-lg">
+          Exemplo real de um kit gerado para um candidato a Deputado Estadual.
+        </p>
+      </div>
+      <a href="kit.html" class="inline-flex items-center gap-2 text-navy font-semibold hover:gap-3 transition-all">
+        Ver kit completo
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href="kit.html" class="aspect-[3/4] bg-emerald-800 rounded-2xl p-6 text-cream relative overflow-hidden hover:scale-[1.02] transition">
+        <div class="absolute top-4 right-4 bg-cream text-emerald-900 text-xs font-black px-2 py-1 rounded">15.789</div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="font-serif text-xl font-bold leading-tight mb-2">Por um Vale do Aço com saúde de verdade.</div>
+          <div class="text-[10px] uppercase tracking-wider opacity-70">Rafael Costa · Dep. Estadual</div>
+        </div>
+      </a>
+      <a href="kit.html" class="aspect-[3/4] bg-cream rounded-2xl p-6 border border-creamDark relative overflow-hidden hover:scale-[1.02] transition">
+        <div class="text-[10px] font-bold tracking-widest uppercase text-graphite/50 mb-4">Santinho · Frente</div>
+        <div class="font-serif text-7xl font-black text-emerald-800 leading-none">15.789</div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <div class="font-serif text-lg font-bold text-emerald-900 leading-tight">Rafael Costa</div>
+          <div class="text-xs text-graphite/60 mt-1">Deputado Estadual · MDB</div>
+          <div class="gold-line my-3"></div>
+          <div class="text-xs text-graphite/70 italic">"Compromisso com quem trabalha."</div>
+        </div>
+      </a>
+      <a href="kit.html" class="aspect-[3/4] bg-navy rounded-2xl p-6 text-cream relative overflow-hidden hover:scale-[1.02] transition">
+        <div class="text-[10px] font-bold tracking-widest uppercase text-gold mb-4">Jingle · Sertanejo</div>
+        <div class="flex items-end gap-1 h-20 mt-12 mb-6">
+          <div class="flex-1 bg-gold/40 rounded-t" style="height:40%"></div>
+          <div class="flex-1 bg-gold/60 rounded-t" style="height:70%"></div>
+          <div class="flex-1 bg-gold rounded-t" style="height:90%"></div>
+          <div class="flex-1 bg-gold/70 rounded-t" style="height:55%"></div>
+          <div class="flex-1 bg-gold/50 rounded-t" style="height:85%"></div>
+          <div class="flex-1 bg-gold/80 rounded-t" style="height:65%"></div>
+          <div class="flex-1 bg-gold/40 rounded-t" style="height:75%"></div>
+          <div class="flex-1 bg-gold/60 rounded-t" style="height:50%"></div>
+        </div>
+        <div class="absolute bottom-6 left-6 right-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="text-sm font-semibold">Rafael Costa</div>
+            <div class="text-xs text-cream/50">0:00 / 1:00</div>
+          </div>
+        </div>
+      </a>
+      <a href="kit.html" class="aspect-[3/4] bg-amber-50 rounded-2xl p-6 relative overflow-hidden hover:scale-[1.02] transition border border-amber-100">
+        <div class="text-[10px] font-bold tracking-widest uppercase text-graphite/50 mb-4">Site institucional</div>
+        <div class="bg-white rounded-lg shadow-sm p-4 mt-8">
+          <div class="flex gap-1 mb-3">
+            <div class="w-2 h-2 rounded-full bg-graphite/20"></div>
+            <div class="w-2 h-2 rounded-full bg-graphite/20"></div>
+            <div class="w-2 h-2 rounded-full bg-graphite/20"></div>
+          </div>
+          <div class="font-serif text-base font-bold text-emerald-900 leading-tight mb-2">Vale do Aço pode mais.</div>
+          <div class="h-1 w-12 bg-emerald-700 rounded mb-2"></div>
+          <div class="h-1 w-full bg-graphite/10 rounded mb-1"></div>
+          <div class="h-1 w-3/4 bg-graphite/10 rounded mb-3"></div>
+          <div class="h-6 w-20 bg-emerald-700 rounded text-cream text-[8px] flex items-center justify-center">apoie</div>
+        </div>
+        <div class="absolute bottom-6 left-6 right-6 text-xs text-graphite/60">
+          rafaelcosta.pulso.app
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FAQ ================ -->
+<section id="faq" class="py-24 lg:py-32 bg-white border-y border-creamDark">
+  <div class="max-w-3xl mx-auto px-6 lg:px-10">
+    <div class="text-center mb-16">
+      <div class="text-xs font-bold tracking-widest uppercase text-gold mb-4">Perguntas frequentes</div>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
+        Tudo o que você precisa saber.
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      <details class="bg-cream rounded-2xl p-6 group border border-creamDark">
+        <summary class="font-serif text-xl font-bold text-navy cursor-pointer list-none flex items-center justify-between">
+          O conteúdo gerado por IA está em conformidade com o TSE?
+          <svg class="group-open:rotate-45 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="text-graphite/70 mt-4 leading-relaxed">
+          Sim. Aplicamos a rotulagem obrigatória prevista na Resolução TSE 23.732/2024 em todo material gerado por IA. Jingles, vozes e imagens carregam disclaimer apropriado. Também filtramos conteúdo proibido (ataques pessoais, desinformação, discurso de ódio) antes da entrega.
+        </p>
+      </details>
+      <details class="bg-cream rounded-2xl p-6 group border border-creamDark">
+        <summary class="font-serif text-xl font-bold text-navy cursor-pointer list-none flex items-center justify-between">
+          E se eu não gostar de alguma peça?
+          <svg class="group-open:rotate-45 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="text-graphite/70 mt-4 leading-relaxed">
+          No plano Plus você pode regenerar cada peça até 3 vezes. No Pro, até 5 vezes. Textos podem ser editados livremente no painel. Se quiser ajustar o briefing e refazer tudo, fale com nosso time.
+        </p>
+      </details>
+      <details class="bg-cream rounded-2xl p-6 group border border-creamDark">
+        <summary class="font-serif text-xl font-bold text-navy cursor-pointer list-none flex items-center justify-between">
+          Quanto tempo leva para receber tudo?
+          <svg class="group-open:rotate-45 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="text-graphite/70 mt-4 leading-relaxed">
+          A maior parte do material fica pronta em até 1 hora após o pagamento. Peças que dependem de geração de áudio (jingle, spot, áudios de WhatsApp) podem levar até 24h. Garantimos entrega completa em até 72h.
+        </p>
+      </details>
+      <details class="bg-cream rounded-2xl p-6 group border border-creamDark">
+        <summary class="font-serif text-xl font-bold text-navy cursor-pointer list-none flex items-center justify-between">
+          Posso usar o material em rádio e TV?
+          <svg class="group-open:rotate-45 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="text-graphite/70 mt-4 leading-relaxed">
+          Sim. Jingles e spots são entregues em qualidade broadcast (WAV 48kHz). As licenças de uso comercial estão inclusas. Para emissoras que exigem rotulagem visual de IA, aplicamos automaticamente.
+        </p>
+      </details>
+      <details class="bg-cream rounded-2xl p-6 group border border-creamDark">
+        <summary class="font-serif text-xl font-bold text-navy cursor-pointer list-none flex items-center justify-between">
+          O que acontece depois da eleição?
+          <svg class="group-open:rotate-45 transition-transform" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="text-graphite/70 mt-4 leading-relaxed">
+          Em 4 de outubro de 2026 o acesso à plataforma de geração é encerrado. Você terá 30 dias adicionais para baixar todos os arquivos em ZIP. Depois disso, dados pessoais são anonimizados (LGPD).
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================ CTA FINAL ================ -->
+<section class="py-24 lg:py-32 bg-navy text-cream relative overflow-hidden">
+  <div class="absolute inset-0 grain"></div>
+  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center relative">
+    <div class="text-xs font-bold tracking-widest uppercase text-gold mb-6">Vagas limitadas · Eleição em 4 de outubro</div>
+    <h2 class="font-serif text-4xl lg:text-6xl font-bold leading-[1.05] text-balance mb-8">
+      Sua campanha não pode<br>esperar mais um dia.
+    </h2>
+    <p class="text-cream/70 text-lg max-w-2xl mx-auto mb-12">
+      Comece o briefing agora. Em 72 horas você tem identidade, jingle, site, posts, áudios e bot prontos pra começar a campanha de verdade.
+    </p>
+    <a href="onboarding.html" class="inline-flex items-center gap-2 bg-gold text-navy font-bold px-10 py-5 rounded-full hover:bg-goldLight transition text-lg">
+      Começar meu briefing
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer class="bg-navyDark text-cream/60 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="13" stroke="#D4A04A" stroke-width="1.5"/>
+          <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="font-serif text-lg font-bold text-cream">Pulso</span>
+      </div>
+      <div class="text-xs">
+        © 2026 Pulso. Todos os direitos reservados. CNPJ 41.019.805/0001-64.
+      </div>
+      <div class="flex gap-6 text-xs">
+        <a href="#" class="hover:text-cream">Política de privacidade</a>
+        <a href="#" class="hover:text-cream">Termos de uso</a>
+        <a href="#" class="hover:text-cream">Contato</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

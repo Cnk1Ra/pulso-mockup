@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulso — Seu kit está pronto</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: {
+        navy: '#0A1B3D', navyLight: '#162B5C', navyDark: '#06122A',
+        gold: '#D4A04A', goldLight: '#E5B96A', goldDark: '#B5832A',
+        cream: '#F8F6F0', creamDark: '#EDE8DA',
+        graphite: '#1A1A1A',
+      },
+      fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] }
+    }}
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-serif { font-family: 'Playfair Display', serif; }
+  .tab-active { background: #0A1B3D; color: #F8F6F0; }
+  .tab-active .tab-count { background: #D4A04A; color: #0A1B3D; }
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+</style>
+</head>
+<body class="bg-cream text-graphite">
+
+<!-- HEADER -->
+<header class="bg-cream border-b border-creamDark sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="13" stroke="#0A1B3D" stroke-width="1.5"/>
+        <path d="M5 14 L10 14 L12 8 L16 20 L18 14 L23 14" stroke="#D4A04A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="font-serif text-xl font-bold tracking-tight text-navy">Pulso</span>
+    </a>
+    <div class="flex items-center gap-4">
+      <a href="#" class="hidden md:flex items-center gap-2 text-sm font-semibold text-navy hover:text-navyLight">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Baixar kit completo (ZIP)
+      </a>
+      <div class="w-9 h-9 rounded-full bg-navy text-cream flex items-center justify-center font-bold text-sm">RC</div>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 lg:py-14">
+
+  <!-- HERO -->
+  <div class="bg-navy text-cream rounded-3xl p-10 lg:p-14 mb-10 relative overflow-hidden">
+    <div class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl"></div>
+    <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl"></div>
+
+    <div class="relative">
+      <div class="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-3 py-1 mb-6">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="text-xs font-bold tracking-wider uppercase text-emerald-300">Kit completo · 100% entregue</span>
+      </div>
+      <h1 class="font-serif text-4xl lg:text-6xl font-bold leading-[1.05] mb-4 max-w-3xl">
+        Seu kit de campanha está<br>
+        <span class="text-gold italic">pronto para ser usado.</span>
+      </h1>
+      <p class="text-cream/70 text-lg max-w-2xl mb-8">
+        47 peças geradas em 2h 34min. Identidade visual, jingle, áudios, posts, material gráfico, site no ar e bot WhatsApp ativo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#" class="inline-flex items-center gap-2 bg-gold text-navy font-bold px-7 py-3.5 rounded-full hover:bg-goldLight transition">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Baixar tudo em ZIP (412 MB)
+        </a>
+        <a href="#" class="inline-flex items-center gap-2 bg-cream/10 border border-cream/20 text-cream font-semibold px-7 py-3.5 rounded-full hover:bg-cream/20 transition">
+          Ver site no ar →
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-cream/10">
+        <div>
+          <div class="font-serif text-3xl font-bold text-gold">47</div>
+          <div class="text-xs uppercase tracking-wider text-cream/60 mt-1">peças entregues</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-bold text-gold">2h 34min</div>
+          <div class="text-xs uppercase tracking-wider text-cream/60 mt-1">tempo total</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-bold text-gold">412 MB</div>
+          <div class="text-xs uppercase tracking-wider text-cream/60 mt-1">tamanho do kit</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-bold text-gold">4 out</div>
+          <div class="text-xs uppercase tracking-wider text-cream/60 mt-1">acesso até</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="flex flex-wrap gap-2 mb-8 border-b border-creamDark pb-4 overflow-x-auto">
+    <button class="tab-active px-5 py-2.5 rounded-full font-semibold text-sm flex items-center gap-2 whitespace-nowrap">
+      Tudo <span class="tab-count text-xs px-2 py-0.5 rounded-full font-bold">47</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Identidade <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">4</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Áudio <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">7</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Posts <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">30</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Gráfico <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">8</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Site <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">5</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Textos <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">3</span>
+    </button>
+    <button class="px-5 py-2.5 rounded-full font-semibold text-sm text-graphite/70 hover:bg-white whitespace-nowrap flex items-center gap-2">
+      Bot WhatsApp <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-creamDark text-graphite/60">1</span>
+    </button>
+  </div>
+
+  <!-- ============ IDENTIDADE VISUAL ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Identidade visual</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Baixar pasta →</a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Logo -->
+      <div class="bg-white rounded-2xl p-6 border border-creamDark group hover:shadow-lg transition">
+        <div class="aspect-square bg-cream rounded-lg flex items-center justify-center mb-4">
+          <div class="text-center">
+            <div class="font-serif text-3xl font-black text-emerald-900 leading-none">RC</div>
+            <div class="h-0.5 w-12 bg-emerald-700 mx-auto my-2"></div>
+            <div class="text-[10px] font-bold tracking-widest text-emerald-900">RAFAEL COSTA</div>
+          </div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Logo principal</div>
+        <div class="text-sm font-semibold text-navy">PNG · SVG · PDF</div>
+      </div>
+      <!-- Número estilizado -->
+      <div class="bg-white rounded-2xl p-6 border border-creamDark group hover:shadow-lg transition">
+        <div class="aspect-square bg-emerald-800 rounded-lg flex items-center justify-center mb-4">
+          <div class="font-serif text-6xl font-black text-cream">15.789</div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Número estilizado</div>
+        <div class="text-sm font-semibold text-navy">PNG · SVG</div>
+      </div>
+      <!-- Paleta -->
+      <div class="bg-white rounded-2xl p-6 border border-creamDark group hover:shadow-lg transition">
+        <div class="aspect-square rounded-lg overflow-hidden mb-4 grid grid-cols-2 grid-rows-2">
+          <div class="bg-emerald-800 flex items-end p-2"><span class="text-cream text-[9px] font-bold">#1B5E20</span></div>
+          <div class="bg-amber-100 flex items-end p-2"><span class="text-graphite text-[9px] font-bold">#FFECB3</span></div>
+          <div class="bg-graphite flex items-end p-2"><span class="text-cream text-[9px] font-bold">#1A1A1A</span></div>
+          <div class="bg-rose-600 flex items-end p-2"><span class="text-cream text-[9px] font-bold">#E11D48</span></div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Paleta de cores</div>
+        <div class="text-sm font-semibold text-navy">ASE · Hex</div>
+      </div>
+      <!-- Manual -->
+      <div class="bg-white rounded-2xl p-6 border border-creamDark group hover:shadow-lg transition">
+        <div class="aspect-square bg-graphite rounded-lg flex items-center justify-center mb-4 relative overflow-hidden">
+          <div class="absolute top-3 left-3 text-[8px] text-cream/60 uppercase tracking-widest">Manual de marca</div>
+          <div class="text-center text-cream">
+            <div class="font-serif text-2xl font-bold leading-none">Rafael Costa</div>
+            <div class="text-[10px] uppercase tracking-widest text-gold mt-1">v1.0</div>
+          </div>
+          <div class="absolute bottom-3 right-3 text-[8px] text-cream/40">12 páginas</div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Manual de marca</div>
+        <div class="text-sm font-semibold text-navy">PDF · 12 páginas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÁUDIO ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Áudio & jingle</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Baixar pasta →</a>
+    </div>
+
+    <!-- Player de jingle principal -->
+    <div class="bg-navy text-cream rounded-2xl p-8 mb-4 relative overflow-hidden">
+      <div class="absolute top-4 right-4 bg-gold/20 text-gold text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+        ⚠ Gerado por IA · Rotulagem TSE
+      </div>
+
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-[10px] font-bold tracking-widest uppercase text-gold">Jingle principal · Sertanejo</span>
+      </div>
+      <div class="font-serif text-2xl lg:text-3xl font-bold leading-tight mb-6 max-w-2xl">
+        "Vale do Aço pode mais, com Rafael Costa, 15.789, deputado estadual."
+      </div>
+
+      <div class="flex items-center gap-5">
+        <button class="w-14 h-14 rounded-full bg-gold flex items-center justify-center hover:bg-goldLight transition flex-shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="flex-1">
+          <div class="flex items-end gap-1 h-12 mb-2">
+            <div class="flex-1 bg-gold rounded-t" style="height:30%"></div>
+            <div class="flex-1 bg-gold rounded-t" style="height:60%"></div>
+            <div class="flex-1 bg-gold rounded-t" style="height:90%"></div>
+            <div class="flex-1 bg-gold rounded-t" style="height:75%"></div>
+            <div class="flex-1 bg-gold rounded-t" style="height:95%"></div>
+            <div class="flex-1 bg-gold rounded-t" style="height:55%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:80%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:70%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:45%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:90%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:50%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:70%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:35%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:60%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:85%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:40%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:65%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:80%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:50%"></div>
+            <div class="flex-1 bg-gold/40 rounded-t" style="height:30%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-cream/50">
+            <span>0:24</span>
+            <span>1:00</span>
+          </div>
+        </div>
+        <a href="#" class="text-cream/70 hover:text-cream flex-shrink-0">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Outras versões -->
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-2xl p-5 border border-creamDark flex items-center gap-4">
+        <button class="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-0.5">Jingle Funk</div>
+          <div class="font-semibold text-navy truncate">Versão regional 2</div>
+        </div>
+        <span class="text-xs text-graphite/50">1:00</span>
+      </div>
+      <div class="bg-white rounded-2xl p-5 border border-creamDark flex items-center gap-4">
+        <button class="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-0.5">Spot rádio</div>
+          <div class="font-semibold text-navy truncate">"Eu sou Rafael Costa..."</div>
+        </div>
+        <span class="text-xs text-graphite/50">0:30</span>
+      </div>
+      <div class="bg-white rounded-2xl p-5 border border-creamDark flex items-center gap-4">
+        <button class="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-0.5">WhatsApp · Saudação</div>
+          <div class="font-semibold text-navy truncate">"Oi! Aqui é o Rafael..."</div>
+        </div>
+        <span class="text-xs text-graphite/50">0:18</span>
+      </div>
+      <div class="bg-white rounded-2xl p-5 border border-creamDark flex items-center gap-4">
+        <button class="w-10 h-10 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A1B3D"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-0.5">WhatsApp · Convocação</div>
+          <div class="font-semibold text-navy truncate">"Eleitor, vamos juntos!"</div>
+        </div>
+        <span class="text-xs text-graphite/50">0:22</span>
+      </div>
+    </div>
+    <button class="mt-4 text-sm font-semibold text-navy hover:text-gold">+ Ver mais 6 áudios</button>
+  </section>
+
+  <!-- ============ POSTS ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Posts para Instagram</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Baixar pasta →</a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+      <!-- Post 1 -->
+      <div class="aspect-square bg-emerald-800 rounded-xl p-4 text-cream relative overflow-hidden group">
+        <div class="absolute top-3 right-3 bg-cream text-emerald-900 text-[9px] font-black px-1.5 py-0.5 rounded">15.789</div>
+        <div class="absolute bottom-3 left-3 right-3">
+          <div class="font-serif text-xs font-bold leading-tight">Por um Vale do Aço com saúde de verdade.</div>
+          <div class="text-[7px] uppercase tracking-wider opacity-70 mt-1">Rafael Costa · Dep. Estadual</div>
+        </div>
+        <div class="absolute inset-0 bg-graphite/0 group-hover:bg-graphite/40 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        </div>
+      </div>
+      <!-- Post 2 -->
+      <div class="aspect-square bg-cream rounded-xl p-4 border border-creamDark relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-graphite/50 mb-2">Proposta 1</div>
+        <div class="font-serif text-sm font-bold text-emerald-900 leading-tight">Reabertura imediata da maternidade de Coronel Fabriciano.</div>
+        <div class="absolute bottom-3 right-3 font-serif text-3xl font-black text-emerald-700">15.789</div>
+      </div>
+      <!-- Post 3 -->
+      <div class="aspect-square bg-amber-100 rounded-xl p-4 relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-graphite/50">Carrossel · 1/5</div>
+        <div class="absolute inset-x-4 top-1/2 -translate-y-1/2">
+          <div class="font-serif text-xl font-bold text-emerald-900 leading-tight">Quem é Rafael?</div>
+        </div>
+        <div class="absolute bottom-3 left-4 text-[8px] text-graphite/50">arraste →</div>
+      </div>
+      <!-- Post 4 -->
+      <div class="aspect-square bg-emerald-700 rounded-xl p-4 text-cream relative">
+        <div class="absolute top-3 right-3 bg-cream text-emerald-900 text-[9px] font-black px-1.5 py-0.5 rounded">15.789</div>
+        <div class="text-[9px] font-bold tracking-widest uppercase text-cream/60 mb-2">Agenda</div>
+        <div class="font-serif text-base font-bold leading-tight">Caminhada no Bairro Cariru.</div>
+        <div class="absolute bottom-3 left-3 right-3 text-[10px] opacity-80">Sábado · 8h · Praça da Estação</div>
+      </div>
+      <!-- Post 5 -->
+      <div class="aspect-square bg-graphite rounded-xl p-4 text-cream relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-gold mb-1">Citação</div>
+        <div class="font-serif text-sm font-bold italic leading-tight mt-6">"Não é promessa. É compromisso com quem trabalha."</div>
+        <div class="absolute bottom-3 left-3 text-[8px] uppercase tracking-wider opacity-60">Rafael Costa</div>
+      </div>
+      <!-- Post 6 -->
+      <div class="aspect-square bg-emerald-800 rounded-xl p-4 text-cream relative overflow-hidden">
+        <div class="absolute top-3 right-3 bg-cream text-emerald-900 text-[9px] font-black px-1.5 py-0.5 rounded">15.789</div>
+        <div class="font-serif text-xs font-bold leading-tight">Crédito para o pequeno comércio do Vale.</div>
+      </div>
+      <!-- Post 7 -->
+      <div class="aspect-square bg-amber-100 rounded-xl p-4 relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-graphite/50 mb-2">Stories</div>
+        <div class="font-serif text-base font-bold text-emerald-900 mt-4 leading-tight">Você sabia?</div>
+        <div class="text-[10px] text-graphite/70 mt-2">O Vale do Aço tem mais de 500 mil habitantes.</div>
+      </div>
+      <!-- Post 8 -->
+      <div class="aspect-square bg-rose-600 rounded-xl p-4 text-cream relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-cream/70 mb-2">Urgência</div>
+        <div class="font-serif text-base font-bold leading-tight">Saúde pública<br>não pode esperar.</div>
+        <div class="absolute bottom-3 right-3 font-serif text-2xl font-black">15.789</div>
+      </div>
+      <!-- Post 9 -->
+      <div class="aspect-square bg-cream rounded-xl border border-creamDark p-4 relative">
+        <div class="text-[9px] font-bold tracking-widest uppercase text-graphite/50 mb-1">Q&A</div>
+        <div class="font-serif text-sm font-bold text-emerald-900 leading-tight mt-1">Como vou cuidar das escolas técnicas?</div>
+        <div class="text-[10px] text-graphite/60 mt-2 leading-snug">Investimento direto, parcerias com Senai e Cefet.</div>
+      </div>
+      <!-- Post 10 -->
+      <div class="aspect-square bg-emerald-900 rounded-xl p-4 text-cream relative flex items-center justify-center">
+        <div class="text-center">
+          <div class="font-serif text-3xl font-black text-gold">15.789</div>
+          <div class="h-0.5 w-16 bg-gold mx-auto my-2"></div>
+          <div class="text-[10px] uppercase tracking-widest">Rafael Costa</div>
+          <div class="text-[8px] uppercase tracking-wider opacity-60 mt-1">Dep. Estadual · MDB</div>
+        </div>
+      </div>
+    </div>
+    <button class="mt-4 text-sm font-semibold text-navy hover:text-gold">+ Ver mais 20 posts</button>
+  </section>
+
+  <!-- ============ MATERIAL GRÁFICO ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Material gráfico</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Baixar pasta →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <!-- Santinho -->
+      <div class="bg-white rounded-2xl p-5 border border-creamDark">
+        <div class="aspect-[3/4] bg-cream rounded-lg p-6 relative overflow-hidden mb-4 border border-creamDark">
+          <div class="font-serif text-6xl font-black text-emerald-800 leading-none">15.789</div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="font-serif text-xl font-bold text-emerald-900 leading-tight">Rafael Costa</div>
+            <div class="text-xs text-graphite/60 mt-1">Deputado Estadual · MDB</div>
+            <div class="h-px w-full bg-gold/40 my-3"></div>
+            <div class="text-xs text-graphite/70 italic">"Compromisso com quem trabalha."</div>
+          </div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Santinho</div>
+        <div class="text-sm font-semibold text-navy">Frente + Verso · 300dpi</div>
+      </div>
+
+      <!-- Adesivo -->
+      <div class="bg-white rounded-2xl p-5 border border-creamDark">
+        <div class="aspect-[3/4] bg-graphite rounded-lg flex items-center justify-center mb-4 relative">
+          <div class="bg-emerald-700 text-cream px-6 py-3 rounded-lg transform -rotate-3">
+            <div class="font-serif text-2xl font-black leading-none">RAFAEL 15.789</div>
+            <div class="text-[9px] uppercase tracking-widest text-gold mt-1">deputado estadual</div>
+          </div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Adesivo de carro</div>
+        <div class="text-sm font-semibold text-navy">3 modelos · vinil</div>
+      </div>
+
+      <!-- Outdoor -->
+      <div class="bg-white rounded-2xl p-5 border border-creamDark">
+        <div class="aspect-[3/4] bg-emerald-800 rounded-lg flex flex-col justify-between p-6 text-cream relative mb-4">
+          <div class="text-[9px] uppercase tracking-widest text-gold">Outdoor 9x3m</div>
+          <div>
+            <div class="font-serif text-xl font-bold leading-tight">Vale do Aço<br>pode mais.</div>
+            <div class="text-[10px] mt-2 opacity-70">Rafael Costa · Dep. Estadual</div>
+          </div>
+          <div class="font-serif text-4xl font-black text-gold leading-none">15.789</div>
+        </div>
+        <div class="text-xs font-bold tracking-wider uppercase text-graphite/50 mb-1">Outdoor</div>
+        <div class="text-sm font-semibold text-navy">9x3m · 300dpi · CMYK</div>
+      </div>
+    </div>
+    <button class="mt-4 text-sm font-semibold text-navy hover:text-gold">+ Ver mais 5 peças (panfleto, bandeira, faixa, crachá, convite)</button>
+  </section>
+
+  <!-- ============ SITE ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Site institucional</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Abrir site →</a>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3 border border-creamDark">
+      <!-- Browser bar -->
+      <div class="flex items-center gap-2 px-3 py-2 border-b border-creamDark">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-rose-400"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+        </div>
+        <div class="ml-4 flex-1 bg-cream rounded-md px-3 py-1 text-xs text-graphite/60 flex items-center gap-2">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          rafaelcosta.pulso.app
+        </div>
+      </div>
+
+      <!-- Site preview -->
+      <div class="bg-cream rounded-xl mt-3 p-8 lg:p-12 relative overflow-hidden">
+        <!-- Header do site -->
+        <div class="flex items-center justify-between mb-12">
+          <div class="font-serif font-black text-emerald-900">RAFAEL COSTA</div>
+          <div class="hidden md:flex gap-6 text-xs font-medium text-graphite/70">
+            <span>Início</span>
+            <span>Biografia</span>
+            <span>Propostas</span>
+            <span>Agenda</span>
+            <span>Contato</span>
+          </div>
+        </div>
+
+        <!-- Hero do site -->
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <div class="inline-block bg-emerald-700 text-cream text-[9px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+              Dep. Estadual · MDB
+            </div>
+            <h3 class="font-serif text-3xl lg:text-5xl font-bold text-emerald-900 leading-[1.05] mb-4">
+              Vale do Aço<br>pode <em class="text-gold">mais.</em>
+            </h3>
+            <p class="text-sm text-graphite/70 mb-6 max-w-md">
+              Rafael Costa, candidato a Deputado Estadual por Minas Gerais.
+              Compromisso com quem trabalha.
+            </p>
+            <div class="flex gap-3">
+              <button class="bg-emerald-700 text-cream text-xs font-bold px-4 py-2.5 rounded-full">Apoie a campanha</button>
+              <button class="border border-emerald-700 text-emerald-700 text-xs font-bold px-4 py-2.5 rounded-full">Conhecer propostas</button>
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <div class="bg-emerald-800 text-cream rounded-2xl p-8 text-center">
+              <div class="font-serif text-6xl lg:text-7xl font-black text-gold leading-none">15.789</div>
+              <div class="h-0.5 w-16 bg-gold mx-auto my-3"></div>
+              <div class="text-[10px] uppercase tracking-widest">Eleições 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEXTOS ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Textos & documentos</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Baixar pasta →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-white rounded-2xl p-6 border border-creamDark">
+        <div class="w-12 h-12 rounded-lg bg-navy/5 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="font-serif text-lg font-bold text-navy mb-1">Plano de governo</div>
+        <div class="text-xs text-graphite/60 mb-4">PDF · 28 páginas · diagramado</div>
+        <a href="#" class="text-sm font-semibold text-gold hover:text-goldDark">Baixar →</a>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-creamDark">
+        <div class="w-12 h-12 rounded-lg bg-navy/5 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <div class="font-serif text-lg font-bold text-navy mb-1">30 textos de copy</div>
+        <div class="text-xs text-graphite/60 mb-4">CSV + DOCX · prontos pra usar</div>
+        <a href="#" class="text-sm font-semibold text-gold hover:text-goldDark">Baixar →</a>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-creamDark">
+        <div class="w-12 h-12 rounded-lg bg-navy/5 flex items-center justify-center mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1B3D" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="font-serif text-lg font-bold text-navy mb-1">Q&A entrevistas</div>
+        <div class="text-xs text-graphite/60 mb-4">PDF · 10 perguntas + respostas</div>
+        <a href="#" class="text-sm font-semibold text-gold hover:text-goldDark">Baixar →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOT WHATSAPP ============ -->
+  <section class="mb-14">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="font-serif text-2xl lg:text-3xl font-bold text-navy">Bot de WhatsApp</h2>
+      <a href="#" class="text-sm font-semibold text-navy hover:text-gold">Configurar →</a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-emerald-50 rounded-2xl p-8 border border-emerald-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#F8F6F0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+          </div>
+          <div>
+            <div class="font-serif text-xl font-bold text-emerald-900">Bot Pro · IA Ativa</div>
+            <div class="text-xs text-emerald-700">Conectado · (31) 9 9876-5432</div>
+          </div>
+        </div>
+        <ul class="space-y-2 text-sm text-graphite/80 mb-5">
+          <li class="flex gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Respostas dinâmicas com IA</li>
+          <li class="flex gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Captura e qualifica leads automaticamente</li>
+          <li class="flex gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Lista de transmissão configurada</li>
+          <li class="flex gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>Base de conhecimento da campanha carregada</li>
+        </ul>
+        <button class="text-sm font-bold text-emerald-700 hover:text-emerald-900">Acessar painel do bot →</button>
+      </div>
+
+      <div class="bg-graphite rounded-2xl p-6 text-cream">
+        <div class="text-xs font-bold tracking-wider uppercase text-cream/50 mb-3">Conversa de exemplo</div>
+        <div class="space-y-2 text-sm">
+          <div class="bg-cream/10 rounded-2xl rounded-tl-sm p-3 max-w-[80%]">
+            Olá! Por que devo votar no Rafael?
+          </div>
+          <div class="bg-emerald-700 rounded-2xl rounded-tr-sm p-3 max-w-[85%] ml-auto">
+            Oi! O Rafael Costa é candidato a Deputado Estadual pelo Vale do Aço. Tem 3 propostas centrais:
+            <br>1. Reabertura da maternidade
+            <br>2. Investimento em escolas técnicas
+            <br>3. Crédito para o pequeno comércio
+            <br><br>Quer saber mais sobre alguma?
+          </div>
+          <div class="bg-cream/10 rounded-2xl rounded-tl-sm p-3 max-w-[80%]">
+            Como vai funcionar a maternidade?
+          </div>
+          <div class="bg-emerald-700 rounded-2xl rounded-tr-sm p-3 max-w-[85%] ml-auto">
+            O plano é destinar R$ 12 milhões já no primeiro ano para reativar a maternidade...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVISO COMPLIANCE -->
+  <div class="bg-navy text-cream rounded-2xl p-6 lg:p-8 mt-12">
+    <div class="flex items-start gap-4">
+      <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center flex-shrink-0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A04A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="flex-1">
+        <div class="font-serif text-lg font-bold text-gold mb-2">Conteúdo em conformidade com a Resolução TSE 23.732/2024</div>
+        <p class="text-sm text-cream/70 leading-relaxed">
+          Todo material gerado por inteligência artificial neste kit carrega a rotulagem obrigatória prevista em lei. Jingles, vozes sintetizadas e imagens identificam claramente sua origem em IA. O filtro de conteúdo proibido (ataques pessoais, desinformação, discurso de ódio) foi aplicado a todos os textos antes da entrega.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

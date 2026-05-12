@@ -169,47 +169,35 @@
     <div class="grid lg:grid-cols-12 gap-12 mb-12 pb-12 border-b border-paper/15">
       <div class="lg:col-span-7">
         <div class="flex items-baseline justify-between mb-6">
-          <span class="label text-gold">Jingle principal · 60 segundos</span>
-          <span class="text-[10px] font-medium text-mist tracking-wider uppercase">Conteúdo gerado por IA</span>
+          <span class="label text-gold">Áudio · Exemplo de referência</span>
+          <span class="text-[10px] font-medium text-mist tracking-wider uppercase">Voz real do candidato</span>
         </div>
 
         <p class="text-[24px] lg:text-[32px] leading-[1.25] tracking-ultratight font-medium max-w-xl mb-10">
-          "Gabriel quinze. Minas Gerais que cuida da sua família."
+          "Um político honesto custa caro."
         </p>
 
+        <audio id="audio-jingle" preload="metadata" src="public/gabriel/audio-exemplo.mp3"></audio>
+
         <div class="flex items-center gap-6">
-          <button class="w-14 h-14 rounded-full bg-gold text-ink flex items-center justify-center hover:bg-goldDark hover:text-paper transition flex-shrink-0">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <button id="play-jingle" onclick="togglePlay()" class="w-14 h-14 rounded-full bg-gold text-iris flex items-center justify-center hover:bg-sun transition flex-shrink-0 shadow-lg shadow-gold/30">
+            <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="icon-pause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
           </button>
           <div class="flex-1">
-            <div class="flex items-end gap-1 h-12 mb-2">
-              <div class="flex-1 bg-paper rounded-t" style="height:30%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:60%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:90%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:75%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:95%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:55%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:80%"></div>
-              <div class="flex-1 bg-paper rounded-t" style="height:35%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:65%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:50%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:80%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:40%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:70%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:55%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:85%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:45%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:60%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:75%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:35%"></div>
-              <div class="flex-1 bg-paper/30 rounded-t" style="height:50%"></div>
+            <div class="h-2 bg-paper/10 rounded-full overflow-hidden cursor-pointer" id="audio-track" onclick="seekAudio(event)">
+              <div id="audio-progress" class="h-full bg-gold rounded-full transition-all" style="width: 0%"></div>
             </div>
-            <div class="flex justify-between text-[11px] text-mist mono">
-              <span>0:24</span>
-              <span>1:00</span>
+            <div class="flex justify-between text-[11px] text-mist mono mt-2">
+              <span id="audio-current">0:00</span>
+              <span id="audio-duration">0:50</span>
             </div>
           </div>
         </div>
+
+        <p class="text-[11px] text-mist mt-6 max-w-md leading-relaxed">
+          Trecho ilustrativo extraído do canal oficial do candidato. Exemplo apenas para demonstração da interface — em produção, a Pulso gera jingles e spots originais a partir do briefing.
+        </p>
       </div>
 
       <div class="lg:col-span-5 lg:border-l lg:border-paper/15 lg:pl-12">
@@ -639,6 +627,56 @@
     </div>
   </div>
 </section>
+
+<script>
+  const audio = document.getElementById('audio-jingle');
+  const playBtn = document.getElementById('play-jingle');
+  const iconPlay = document.getElementById('icon-play');
+  const iconPause = document.getElementById('icon-pause');
+  const progress = document.getElementById('audio-progress');
+  const timeCurrent = document.getElementById('audio-current');
+  const timeDuration = document.getElementById('audio-duration');
+  const track = document.getElementById('audio-track');
+
+  function fmt(t) {
+    if (isNaN(t)) return '0:00';
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function togglePlay() {
+    if (audio.paused) {
+      audio.play();
+      iconPlay.classList.add('hidden');
+      iconPause.classList.remove('hidden');
+    } else {
+      audio.pause();
+      iconPlay.classList.remove('hidden');
+      iconPause.classList.add('hidden');
+    }
+  }
+
+  function seekAudio(e) {
+    const rect = track.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  }
+
+  audio.addEventListener('loadedmetadata', () => {
+    timeDuration.textContent = fmt(audio.duration);
+  });
+  audio.addEventListener('timeupdate', () => {
+    const pct = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = pct + '%';
+    timeCurrent.textContent = fmt(audio.currentTime);
+  });
+  audio.addEventListener('ended', () => {
+    iconPlay.classList.remove('hidden');
+    iconPause.classList.add('hidden');
+    progress.style.width = '0%';
+  });
+</script>
 
 </body>
 </html>

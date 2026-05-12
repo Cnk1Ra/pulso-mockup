@@ -125,15 +125,15 @@
   .btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     background: #2E1655;
     color: #FAFAF7;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    padding: 16px 32px;
+    padding: 11px 22px;
     border-radius: 999px;
     transition: all 0.2s ease;
-    box-shadow: 0 10px 20px -8px rgba(46, 22, 85, 0.4);
+    box-shadow: 0 6px 14px -6px rgba(46, 22, 85, 0.4);
     cursor: pointer;
     border: none;
   }
@@ -142,23 +142,23 @@
     background: #F4C430;
     color: #2E1655;
     font-weight: 700;
-    box-shadow: 0 10px 20px -8px rgba(244, 196, 48, 0.5);
+    box-shadow: 0 6px 14px -6px rgba(244, 196, 48, 0.5);
   }
   .btn-primary.final:hover { background: #F9D976; }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: #525252;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
-    padding: 16px 24px;
+    padding: 11px 18px;
     border-radius: 999px;
     transition: all 0.2s ease;
     cursor: pointer;
     background: transparent;
-    border: 2px solid #E5E5E5;
+    border: 1.5px solid #E5E5E5;
   }
   .btn-secondary:hover { border-color: #2E1655; color: #2E1655; background: #FBF8E9; }
   .btn-secondary:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -194,7 +194,7 @@
 </div>
 
 <!-- QUIZ CONTAINER -->
-<main class="max-w-[840px] mx-auto px-6 lg:px-8 py-12 lg:py-16 pb-32">
+<main class="max-w-[840px] mx-auto px-6 lg:px-8 py-12 lg:py-16 pb-40">
 
   <!-- ====== STEP 1 — FRASE ====== -->
   <section class="step active" data-step="1" data-name="Frase de campanha">
@@ -343,21 +343,21 @@
      BARRA DE NAVEGAÇÃO STICKY
      ============================================================ -->
 <div class="nav-bar">
-  <div class="max-w-[840px] mx-auto px-6 lg:px-8 py-5 flex items-center justify-between gap-4">
+  <div class="max-w-[840px] mx-auto px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
     <button id="btn-back" onclick="prevStep()" class="btn-secondary" disabled>
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 12L3 8l4-4"/></svg>
       Voltar
     </button>
 
-    <div class="hidden sm:flex items-center gap-2 text-[12px] text-mist">
+    <div class="hidden md:flex items-center gap-2 text-[11px] text-mist">
       <span>Use as setas</span>
-      <kbd class="px-2 py-1 border border-silver rounded text-[10px] bg-paper">←</kbd>
-      <kbd class="px-2 py-1 border border-silver rounded text-[10px] bg-paper">→</kbd>
+      <kbd class="px-1.5 py-0.5 border border-silver rounded text-[10px] bg-paper">←</kbd>
+      <kbd class="px-1.5 py-0.5 border border-silver rounded text-[10px] bg-paper">→</kbd>
     </div>
 
     <button id="btn-next" onclick="nextStep()" class="btn-primary">
       <span id="btn-next-text">Continuar</span>
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </button>
   </div>
 </div>

@@ -360,7 +360,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-silver border border-silver">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-silver border border-silver">
       <div class="bg-paper p-7">
         <div class="label mb-3">Palavras geradas</div>
         <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none" id="counter-words">12.847</div>
@@ -375,11 +375,6 @@
         <div class="label mb-3">Segundos de áudio</div>
         <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none" id="counter-audio">183</div>
         <div class="text-[12px] text-mist mt-2">Suno · ElevenLabs</div>
-      </div>
-      <div class="bg-paper p-7">
-        <div class="label mb-3">Custo de IA até agora</div>
-        <div class="mono text-[36px] lg:text-[44px] font-medium tracking-tightest text-iris leading-none">R$ <span id="counter-cost">14,32</span></div>
-        <div class="text-[12px] text-mist mt-2">Auditável no painel</div>
       </div>
     </div>
   </div>
@@ -478,14 +473,6 @@
     n += Math.floor(Math.random() * 3) + 1;
     el.textContent = n;
   }, 2400);
-
-  // Custo: incrementa devagar
-  setInterval(() => {
-    const el = document.getElementById('counter-cost');
-    let n = parseFloat(el.textContent.replace(',', '.'));
-    n += Math.random() * 0.07 + 0.02;
-    el.textContent = n.toFixed(2).replace('.', ',');
-  }, 1600);
 
   // Audio percentage subindo
   setInterval(() => {

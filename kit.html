@@ -14,9 +14,9 @@
       colors: {
         ink: '#0A0A0A', paper: '#FAFAF7', silver: '#E5E5E5',
         smoke: '#525252', mist: '#A3A3A3',
-        iris: '#2E1655', irisDeep: '#1F0F3D', plum: '#4A2B7E',
+        iris: '#2E1655', irisDeep: '#1F0F3D', plum: '#4A2B7E', irisLight: '#7256B1',
         gold: '#F4C430', goldDark: '#D4A715', sun: '#F9D976',
-        bone: '#FAF6E8', cream: '#FBF8E9', green: '#1B5E20', mdb: '#2E1655',
+        bone: '#FAF6E8', cream: '#FBF8E9',
       },
       letterSpacing: { tightest: '-0.05em', ultratight: '-0.04em' },
     }}
@@ -25,594 +25,118 @@
 <style>
   body { font-family: 'Inter Tight', system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
   .label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #525252; }
-  .rule { border-top: 1px solid #E5E5E5; }
   .mono { font-feature-settings: "tnum"; }
+
+  /* Item da sidebar */
+  .cat-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 13px;
+    font-weight: 500;
+    color: #525252;
+    text-align: left;
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+  }
+  .cat-item:hover { background: #FBF8E9; color: #0A0A0A; }
+  .cat-item.active {
+    background: #2E1655;
+    color: #F4C430;
+  }
+  .cat-item.locked {
+    color: #A3A3A3;
+    opacity: 0.85;
+  }
+  .cat-item.locked:hover { background: #FBF8E9; opacity: 1; }
+
+  .cat-icon {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Conteúdo */
+  .cat-content { display: none; animation: fadeIn 0.3s ease; }
+  .cat-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Modal de upgrade */
+  .lock-overlay {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FAF6E8;
+    padding: 64px 48px;
+    text-align: center;
+    border: 2px dashed rgba(244, 196, 48, 0.5);
+  }
+  .lock-overlay::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(46, 22, 85, 0.04), rgba(244, 196, 48, 0.04));
+    pointer-events: none;
+  }
+
+  /* Audio player elements (mantidos) */
 </style>
 </head>
 <body class="bg-paper text-ink">
 
 <!-- HEADER -->
 <header class="border-b border-silver bg-paper sticky top-0 z-50">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-baseline gap-2">
-      <span class="text-[19px] font-semibold tracking-tightest">Pulso Eleitoral</span>
+      <span class="text-[19px] font-semibold tracking-tightest text-iris">Pulso Eleitoral</span>
       <span class="label">Kit · Gabriel Azevedo</span>
     </a>
-    <a href="#" class="inline-flex items-center gap-3 bg-iris text-paper text-[14px] font-medium px-5 py-2.5 hover:bg-plum transition">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 11V2M3 7l5 5 5-5M2 14h12"/></svg>
-      Baixar kit completo
-    </a>
-  </div>
-</header>
-
-<!-- HERO EDITORIAL -->
-<section>
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-16 pb-20 lg:pt-24 lg:pb-32">
-    <div class="grid lg:grid-cols-12 gap-12 items-end">
-      <div class="lg:col-span-7">
-        <div class="label mb-8">Kit completo · Plano Pro</div>
-        <h1 class="text-[44px] sm:text-[64px] lg:text-[96px] leading-[0.95] tracking-tightest font-medium mb-10">
-          Gabriel Azevedo<span class="text-mist">.</span>
-        </h1>
-        <p class="text-[18px] lg:text-[22px] leading-[1.5] text-smoke font-light max-w-xl">
-          Cinquenta e duas peças produzidas em 38 horas. Identidade visual, jingles regionais, áudios, posts, materiais impressos, site institucional e bot conversacional — entregues para a candidatura ao Governo de Minas Gerais.
-        </p>
-      </div>
-
-      <div class="lg:col-span-5">
-        <div class="grid grid-cols-2 gap-px bg-silver border border-silver">
-          <div class="bg-paper p-6">
-            <div class="label mb-2">Peças</div>
-            <div class="mono text-[36px] font-medium tracking-ultratight">52</div>
-          </div>
-          <div class="bg-paper p-6">
-            <div class="label mb-2">Tempo</div>
-            <div class="mono text-[36px] font-medium tracking-ultratight">38h</div>
-          </div>
-          <div class="bg-paper p-6">
-            <div class="label mb-2">Tamanho</div>
-            <div class="mono text-[36px] font-medium tracking-ultratight">512<span class="text-mist text-[22px]">mb</span></div>
-          </div>
-          <div class="bg-paper p-6">
-            <div class="label mb-2">Acesso até</div>
-            <div class="mono text-[36px] font-medium tracking-ultratight">04·10</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     IDENTIDADE VISUAL
-     ============================================================ -->
-<section class="rule">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label">Capítulo 01</div>
-        <div class="mono text-[12px] text-mist mt-1">4 peças</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Identidade visual.
-        </h2>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-silver border border-silver">
-      <!-- LOGO -->
-      <div class="bg-paper p-8 lg:p-10">
-        <div class="aspect-square bg-bone mb-6 flex items-center justify-center p-8">
-          <div class="text-center">
-            <div class="text-[48px] lg:text-[56px] font-medium tracking-tightest text-ink leading-none">Gabriel</div>
-            <div class="h-px w-8 bg-gold mx-auto my-3"></div>
-            <div class="text-[10px] tracking-[0.3em] uppercase text-ink font-medium">Azevedo</div>
-          </div>
-        </div>
-        <div class="label mb-1">Logotipo</div>
-        <div class="text-[14px] text-mist">SVG · PNG · PDF</div>
-      </div>
-      <!-- NÚMERO -->
-      <div class="bg-paper p-8 lg:p-10">
-        <div class="aspect-square bg-mdb mb-6 flex items-center justify-center">
-          <div class="text-[120px] lg:text-[140px] font-medium tracking-tightest text-paper leading-none">15</div>
-        </div>
-        <div class="label mb-1">Número estilizado</div>
-        <div class="text-[14px] text-mist">SVG · PNG</div>
-      </div>
-      <!-- PALETA -->
-      <div class="bg-paper p-8 lg:p-10">
-        <div class="aspect-square mb-6 grid grid-cols-2 grid-rows-2 gap-1">
-          <div class="bg-mdb flex items-end p-3"><span class="text-paper text-[9px] font-medium tracking-wider">0F 3F 73</span></div>
-          <div class="bg-bone flex items-end p-3"><span class="text-ink text-[9px] font-medium tracking-wider">F2 EF E6</span></div>
-          <div class="bg-ink flex items-end p-3"><span class="text-paper text-[9px] font-medium tracking-wider">0A 0A 0A</span></div>
-          <div class="bg-gold flex items-end p-3"><span class="text-ink text-[9px] font-medium tracking-wider">B8 86 0B</span></div>
-        </div>
-        <div class="label mb-1">Paleta de cores</div>
-        <div class="text-[14px] text-mist">Adobe ASE · CSS</div>
-      </div>
-      <!-- MANUAL -->
-      <div class="bg-paper p-8 lg:p-10">
-        <div class="aspect-square bg-iris mb-6 p-6 flex flex-col justify-between text-paper">
-          <div class="label text-gold/80">Manual de marca</div>
-          <div>
-            <div class="text-[20px] tracking-tightest font-medium leading-tight">Gabriel<br>Azevedo</div>
-            <div class="text-[9px] tracking-[0.3em] uppercase text-gold mt-2">v1.0 · 2026</div>
-          </div>
-        </div>
-        <div class="label mb-1">Manual de marca</div>
-        <div class="text-[14px] text-mist">PDF · 24 páginas</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     ÁUDIO
-     ============================================================ -->
-<section class="rule bg-iris text-paper">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label text-mist">Capítulo 02</div>
-        <div class="mono text-[12px] text-mist mt-1">7 peças</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl text-paper">
-          Áudio e jingles.
-        </h2>
-      </div>
-    </div>
-
-    <!-- Player principal -->
-    <div class="grid lg:grid-cols-12 gap-12 mb-12 pb-12 border-b border-paper/15">
-      <div class="lg:col-span-7">
-        <div class="flex items-baseline justify-between mb-6">
-          <span class="label text-gold">Áudio · Exemplo de referência</span>
-          <span class="text-[10px] font-medium text-mist tracking-wider uppercase">Voz real do candidato</span>
-        </div>
-
-        <p class="text-[24px] lg:text-[32px] leading-[1.25] tracking-ultratight font-medium max-w-xl mb-10">
-          "Um político honesto custa caro."
-        </p>
-
-        <audio id="audio-jingle" preload="metadata" src="public/gabriel/audio-exemplo.mp3"></audio>
-
-        <div class="flex items-center gap-6">
-          <button id="play-jingle" onclick="togglePlay()" class="w-14 h-14 rounded-full bg-gold text-iris flex items-center justify-center hover:bg-sun transition flex-shrink-0 shadow-lg shadow-gold/30">
-            <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            <svg id="icon-pause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
-          </button>
-          <div class="flex-1">
-            <div class="h-2 bg-paper/10 rounded-full overflow-hidden cursor-pointer" id="audio-track" onclick="seekAudio(event)">
-              <div id="audio-progress" class="h-full bg-gold rounded-full transition-all" style="width: 0%"></div>
-            </div>
-            <div class="flex justify-between text-[11px] text-mist mono mt-2">
-              <span id="audio-current">0:00</span>
-              <span id="audio-duration">0:50</span>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-[11px] text-mist mt-6 max-w-md leading-relaxed">
-          Trecho ilustrativo extraído do canal oficial do candidato. Exemplo apenas para demonstração da interface — em produção, a Pulso gera jingles e spots originais a partir do briefing.
-        </p>
-      </div>
-
-      <div class="lg:col-span-5 lg:border-l lg:border-paper/15 lg:pl-12">
-        <div class="space-y-5 text-[13px]">
-          <div>
-            <div class="label text-mist mb-1">Estilo</div>
-            <div class="font-medium text-paper">Sertanejo universitário</div>
-          </div>
-          <div>
-            <div class="label text-mist mb-1">Formato</div>
-            <div class="font-medium text-paper">WAV 48 kHz · MP3 320 kbps</div>
-          </div>
-          <div>
-            <div class="label text-mist mb-1">Uso</div>
-            <div class="font-medium text-paper">Broadcast · digital · palanque</div>
-          </div>
-          <div>
-            <div class="label text-mist mb-1">Licença</div>
-            <div class="font-medium text-paper">Uso comercial irrestrito</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Outras peças -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-paper/15">
-      <div class="bg-irisDeep p-6">
-        <div class="label text-mist mb-3">Jingle · Funk</div>
-        <div class="text-[16px] font-medium mb-4">Versão regional · BH</div>
-        <div class="flex items-center gap-3 text-[12px] text-mist">
-          <button class="w-8 h-8 rounded-full bg-paper/10 hover:bg-paper/20 transition flex items-center justify-center"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="mono">1:00</span>
-        </div>
-      </div>
-      <div class="bg-irisDeep p-6">
-        <div class="label text-mist mb-3">Spot · Rádio</div>
-        <div class="text-[16px] font-medium mb-4">"Eu sou Gabriel..."</div>
-        <div class="flex items-center gap-3 text-[12px] text-mist">
-          <button class="w-8 h-8 rounded-full bg-paper/10 hover:bg-paper/20 transition flex items-center justify-center"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="mono">0:30</span>
-        </div>
-      </div>
-      <div class="bg-irisDeep p-6">
-        <div class="label text-mist mb-3">WhatsApp · Saudação</div>
-        <div class="text-[16px] font-medium mb-4">"Olá, aqui é o Gabriel..."</div>
-        <div class="flex items-center gap-3 text-[12px] text-mist">
-          <button class="w-8 h-8 rounded-full bg-paper/10 hover:bg-paper/20 transition flex items-center justify-center"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          <span class="mono">0:18</span>
-        </div>
-      </div>
-    </div>
-    <p class="text-[12px] text-mist mt-6">+ 4 áudios temáticos para WhatsApp.</p>
-  </div>
-</section>
-
-<!-- ============================================================
-     POSTS INSTAGRAM
-     ============================================================ -->
-<section class="rule">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label">Capítulo 03</div>
-        <div class="mono text-[12px] text-mist mt-1">50 peças · 20 stories</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Posts para Instagram.
-        </h2>
-      </div>
-    </div>
-
-    <!-- Mockup iPhone com feed -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-silver border border-silver">
-
-      <!-- Post 1: foto real Gabriel -->
-      <div class="aspect-square bg-paper relative overflow-hidden">
-        <img src="public/gabriel/ref-img.jpg" alt="" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/70"></div>
-        <div class="absolute top-3 right-3 bg-paper text-mdb px-2 py-0.5 text-[10px] font-bold tracking-widest">15</div>
-        <div class="absolute bottom-3 left-3 right-3">
-          <div class="text-paper font-medium text-[14px] leading-tight">A política se faz na rua, com a sua gente.</div>
-        </div>
-      </div>
-
-      <!-- Post 2: Citação -->
-      <div class="aspect-square bg-mdb p-5 flex flex-col justify-between text-paper">
-        <div class="label text-paper/60">Citação</div>
-        <div>
-          <div class="text-[17px] leading-tight tracking-ultratight font-medium">"Minas Gerais é maior do que qualquer projeto pessoal."</div>
-          <div class="text-[10px] tracking-widest uppercase text-paper/60 mt-3">Gabriel Azevedo</div>
-        </div>
-      </div>
-
-      <!-- Post 3: Proposta -->
-      <div class="aspect-square bg-bone p-5 flex flex-col justify-between">
-        <div class="label">Proposta 01</div>
-        <div>
-          <div class="text-[16px] leading-tight tracking-ultratight font-medium text-ink">Mais médicos em todas as cidades de Minas.</div>
-          <div class="mono text-[32px] font-medium tracking-ultratight text-mdb mt-3">15</div>
-        </div>
-      </div>
-
-      <!-- Post 4: Carrossel -->
-      <div class="aspect-square bg-paper border border-silver p-5 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <div class="label">Carrossel</div>
-          <div class="mono text-[10px] text-mist">1 / 5</div>
-        </div>
-        <div>
-          <div class="text-[20px] leading-tight tracking-ultratight font-medium text-ink">Quem<br>é<br>Gabriel?</div>
-        </div>
-        <div class="text-[10px] text-mist">Deslize para conhecer</div>
-      </div>
-
-      <!-- Post 5: Agenda -->
-      <div class="aspect-square bg-iris p-5 flex flex-col justify-between text-paper">
-        <div class="label text-gold/70">Agenda</div>
-        <div>
-          <div class="mono text-[42px] font-medium tracking-ultratight leading-none">17.05</div>
-          <div class="text-[12px] text-mist mt-2">Sábado · 10h</div>
-          <div class="text-[14px] mt-1 font-medium">Comício no Barreiro</div>
-        </div>
-        <div class="text-[10px] tracking-widest uppercase text-gold">Confirmar presença</div>
-      </div>
-
-      <!-- Post 6: Stat -->
-      <div class="aspect-square bg-paper border border-silver p-5 flex flex-col justify-between">
-        <div class="label">Dado</div>
-        <div>
-          <div class="mono text-[48px] font-medium tracking-ultratight text-ink leading-none">853</div>
-          <div class="text-[13px] text-smoke mt-2 leading-tight">municípios em Minas Gerais. Nenhum vai ficar para trás.</div>
-        </div>
-      </div>
-
-      <!-- Post 7: Q&A -->
-      <div class="aspect-square bg-bone p-5 flex flex-col justify-between">
-        <div class="label">Resposta</div>
-        <div>
-          <div class="text-[13px] tracking-wider uppercase text-mist mb-2">Pergunta:</div>
-          <div class="text-[14px] leading-tight tracking-ultratight font-medium text-ink">"Como vai melhorar a saúde pública?"</div>
-        </div>
-        <div class="text-[10px] tracking-widest uppercase text-mdb">Ver resposta →</div>
-      </div>
-
-      <!-- Post 8: Compromisso -->
-      <div class="aspect-square bg-mdb p-5 flex flex-col justify-between text-paper">
-        <div class="label text-paper/60">Compromisso</div>
-        <div>
-          <div class="text-[18px] leading-tight tracking-ultratight font-medium">Segurança pública integrada com municípios.</div>
-        </div>
-        <div class="flex items-baseline justify-between">
-          <div class="text-[10px] tracking-widest uppercase text-paper/60">Gabriel</div>
-          <div class="mono text-[24px] font-medium tracking-ultratight">15</div>
-        </div>
-      </div>
-
-      <!-- Post 9: Story-like -->
-      <div class="aspect-square bg-irisDeep p-5 flex flex-col justify-between text-paper">
-        <div class="label text-gold/70">Você sabia?</div>
-        <div>
-          <div class="text-[16px] leading-tight tracking-ultratight font-medium">A maioria das pequenas empresas mineiras nasce sem acesso a crédito.</div>
-        </div>
-        <div class="text-[10px] tracking-widest uppercase text-gold">Conheça a proposta</div>
-      </div>
-
-      <!-- Post 10: Final -->
-      <div class="aspect-square bg-paper border border-silver flex items-center justify-center p-5">
-        <div class="text-center">
-          <div class="mono text-[64px] font-medium tracking-tightest text-mdb leading-none">15</div>
-          <div class="h-px w-12 bg-gold mx-auto my-3"></div>
-          <div class="text-[11px] tracking-widest uppercase text-ink font-medium">Gabriel Azevedo</div>
-          <div class="text-[9px] tracking-widest uppercase text-mist mt-1">Governador · MDB</div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mt-8 flex items-baseline justify-between">
-      <p class="text-[13px] text-mist">Visualização parcial — 10 de 50 posts entregues.</p>
-      <a href="#" class="text-[14px] font-medium border-b border-ink hover:pb-0.5 transition-all">Ver biblioteca completa</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     MATERIAL IMPRESSO
-     ============================================================ -->
-<section class="rule">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label">Capítulo 04</div>
-        <div class="mono text-[12px] text-mist mt-1">12 peças</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Material impresso.
-        </h2>
-      </div>
-    </div>
-
-    <!-- Outdoor — destaque grande -->
-    <div class="mb-px">
-      <figure class="bg-paper">
-        <div class="aspect-[16/9] overflow-hidden bg-bone">
-          <img src="public/mockups/mockup-outdoor.png" alt="Outdoor 9×3m com a campanha do Gabriel Azevedo numa avenida em Belo Horizonte" class="w-full h-full object-cover">
-        </div>
-        <div class="grid lg:grid-cols-12 gap-8 p-8 lg:p-10 border-t border-silver">
-          <div class="lg:col-span-3">
-            <div class="label mb-1">Outdoor</div>
-            <div class="text-[14px] text-smoke">9 × 3 m · 300dpi · CMYK</div>
-          </div>
-          <div class="lg:col-span-9">
-            <p class="text-[15px] leading-[1.65] text-smoke font-light max-w-2xl">
-              Versão grande formato para frontlight ou backlight. Arquivos abertos em PDF e PSD entregues prontos para a gráfica do seu prestador local, com sangria e marcas de corte aplicadas.
-            </p>
-          </div>
-        </div>
-      </figure>
-    </div>
-
-    <!-- Santinho + Adesivo + Panfleto — grid 3 colunas -->
-    <div class="grid lg:grid-cols-3 gap-px bg-silver border-y border-silver">
-
-      <!-- Santinho -->
-      <article class="bg-paper">
-        <div class="aspect-[3/4] overflow-hidden bg-bone">
-          <img src="public/mockups/mockup-santinho.png" alt="Santinho de campanha do Gabriel Azevedo, 7x10cm" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8 lg:p-10">
-          <div class="label mb-1">Santinho</div>
-          <div class="text-[14px] text-smoke">Frente e verso · 300dpi · CMYK</div>
-          <div class="text-[12px] text-mist mt-1">7 × 10 cm · papel couchê 150g</div>
-        </div>
-      </article>
-
-      <!-- Adesivo -->
-      <article class="bg-paper">
-        <div class="aspect-[3/4] overflow-hidden bg-bone">
-          <img src="public/mockups/mockup-adesivo.png" alt="Adesivo veicular Gabriel 15 aplicado em carro" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8 lg:p-10">
-          <div class="label mb-1">Adesivo veicular</div>
-          <div class="text-[14px] text-smoke">3 modelos · vinil aderência alta</div>
-          <div class="text-[12px] text-mist mt-1">Recortes para carro, moto e caminhão</div>
-        </div>
-      </article>
-
-      <!-- Panfleto -->
-      <article class="bg-paper">
-        <div class="aspect-[3/4] overflow-hidden bg-bone">
-          <img src="public/mockups/mockup-panfleto.png" alt="Panfleto tri-fold da campanha do Gabriel Azevedo" class="w-full h-full object-cover">
-        </div>
-        <div class="p-8 lg:p-10">
-          <div class="label mb-1">Panfleto desdobrável</div>
-          <div class="text-[14px] text-smoke">3 abas · A4 dobrado · CMYK</div>
-          <div class="text-[12px] text-mist mt-1">Propostas detalhadas e biografia</div>
-        </div>
-      </article>
-    </div>
-
-    <p class="text-[13px] text-mist mt-8">
-      Demais peças entregues: bandeira, faixa, envelopamento de carro, crachá para cabos eleitorais, convite digital, banner para palanque, totem.
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     SITE INSTITUCIONAL
-     ============================================================ -->
-<section class="rule bg-bone">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label">Capítulo 05</div>
-        <div class="mono text-[12px] text-mist mt-1">5 páginas · no ar</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Site institucional.
-        </h2>
-      </div>
-    </div>
-
-    <!-- Browser mockup -->
-    <div class="bg-paper border border-silver shadow-2xl">
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-silver">
-        <div class="flex gap-1.5">
-          <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
-        </div>
-        <div class="ml-4 flex-1 bg-bone px-3 py-1 text-[12px] text-smoke font-mono">
-          gabriel.pulso.app
-        </div>
-      </div>
-
-      <!-- Conteúdo do site -->
-      <div class="p-8 lg:p-12 relative">
-        <!-- Header site -->
-        <div class="flex items-center justify-between mb-12">
-          <div class="text-[14px] tracking-tightest font-semibold text-mdb">GABRIEL AZEVEDO</div>
-          <div class="hidden md:flex gap-7 text-[11px] tracking-widest uppercase text-smoke font-medium">
-            <span>Início</span><span>Biografia</span><span>Propostas</span><span>Agenda</span><span>Contato</span>
-          </div>
-          <div class="text-[10px] tracking-widest uppercase text-mdb font-bold">15</div>
-        </div>
-
-        <!-- Hero site -->
-        <div class="grid lg:grid-cols-12 gap-10 items-center">
-          <div class="lg:col-span-7">
-            <div class="text-[10px] font-medium text-mdb tracking-[0.3em] uppercase mb-4">Governador · MDB</div>
-            <h3 class="text-[36px] lg:text-[64px] tracking-tightest font-medium text-ink leading-[0.95] mb-5">
-              Minas<br>pode mais.
-            </h3>
-            <p class="text-[15px] text-smoke leading-relaxed max-w-md mb-7">
-              Gabriel Azevedo, candidato a Governador de Minas Gerais. Vereador por três mandatos. Ex-presidente da Câmara Municipal de Belo Horizonte.
-            </p>
-            <div class="flex gap-3">
-              <button class="bg-mdb text-paper text-[12px] tracking-wider uppercase font-medium px-5 py-2.5">Apoie a campanha</button>
-              <button class="border border-mdb text-mdb text-[12px] tracking-wider uppercase font-medium px-5 py-2.5">Propostas</button>
-            </div>
-          </div>
-          <div class="lg:col-span-5">
-            <div class="aspect-[3/4] overflow-hidden">
-              <img src="public/gabriel/foto-entrevista.png" alt="" class="w-full h-full object-cover">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-8 flex items-baseline justify-between">
-      <div class="text-[13px] text-smoke">Domínio temporário · Pulso Eleitoral configura o domínio customizado após pagamento.</div>
-      <a href="#" class="inline-flex items-center gap-3 text-[14px] font-medium border-b border-ink hover:pb-0.5 transition-all">
-        Abrir site em nova aba
+    <div class="flex items-center gap-4">
+      <span class="hidden md:inline-flex items-center gap-2 text-[12px] text-mist">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Plano Plus · 52 peças
+      </span>
+      <a href="#" class="inline-flex items-center gap-2 bg-iris text-paper text-[13px] font-medium px-4 py-2 rounded-full hover:bg-plum transition">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Baixar tudo
       </a>
     </div>
   </div>
-</section>
+</header>
 
-<!-- ============================================================
-     BOT WHATSAPP
-     ============================================================ -->
-<section class="rule">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-12 gap-12 mb-12">
-      <div class="lg:col-span-3">
-        <div class="label">Capítulo 06</div>
-        <div class="mono text-[12px] text-mist mt-1">Conectado · IA conversacional</div>
-      </div>
-      <div class="lg:col-span-9">
-        <h2 class="text-[32px] lg:text-[48px] leading-[1.05] tracking-ultratight font-medium max-w-2xl">
-          Bot WhatsApp.
-        </h2>
-      </div>
-    </div>
-
-    <div class="grid lg:grid-cols-12 gap-12 items-start">
-      <!-- Status -->
-      <div class="lg:col-span-5">
-        <div class="space-y-6 text-[14px]">
-          <div class="flex items-baseline justify-between border-b border-silver pb-4">
-            <span class="label">Status</span>
-            <span class="text-green-700 font-medium">Conectado · Ativo</span>
-          </div>
-          <div class="flex items-baseline justify-between border-b border-silver pb-4">
-            <span class="label">Número</span>
-            <span class="font-medium">(31) 9 9876 5432</span>
-          </div>
-          <div class="flex items-baseline justify-between border-b border-silver pb-4">
-            <span class="label">Mensagens hoje</span>
-            <span class="font-medium mono">247</span>
-          </div>
-          <div class="flex items-baseline justify-between border-b border-silver pb-4">
-            <span class="label">Leads capturados</span>
-            <span class="font-medium mono">38</span>
-          </div>
-          <div class="flex items-baseline justify-between border-b border-silver pb-4">
-            <span class="label">Tempo de resposta</span>
-            <span class="font-medium">~3 segundos</span>
-          </div>
-        </div>
-
-        <p class="text-[14px] leading-relaxed text-smoke font-light mt-8 max-w-md">
-          O bot conhece todo o plano de governo, todas as propostas e a biografia. Captura contatos automaticamente e exporta para o painel.
-        </p>
-
-        <a href="#" class="inline-flex items-center gap-3 mt-8 text-[14px] font-medium border-b border-ink hover:pb-0.5 transition-all">
-          Acessar painel do bot
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-      </div>
-
-      <!-- Mockup conversa -->
+<!-- HERO COMPACTO -->
+<section class="border-b border-silver bg-bone">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 lg:py-12">
+    <div class="grid lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-7">
-        <div class="bg-bone p-5 lg:p-8">
-          <div class="label mb-4">Exemplo de conversa</div>
-          <div class="space-y-3 text-[14px]">
-            <div class="bg-paper border border-silver px-4 py-3 max-w-[80%]">
-              Olá! Por que devo votar no Gabriel?
-            </div>
-            <div class="bg-mdb text-paper px-4 py-3 max-w-[85%] ml-auto">
-              Boa noite. O Gabriel é candidato a Governador de Minas Gerais pelo MDB. Atuou como vereador de Belo Horizonte por três mandatos e foi presidente da Câmara Municipal.<br><br>Posso te contar mais sobre as três propostas centrais da candidatura?
-            </div>
-            <div class="bg-paper border border-silver px-4 py-3 max-w-[80%]">
-              Sim, pode contar.
-            </div>
-            <div class="bg-mdb text-paper px-4 py-3 max-w-[85%] ml-auto">
-              <strong>Saúde:</strong> mais médicos e estrutura nos hospitais das 853 cidades.<br>
-              <strong>Educação:</strong> escolas em tempo integral nos bairros periféricos.<br>
-              <strong>Economia:</strong> linha de crédito estadual para pequenos comerciantes.<br><br>
-              Qual delas é mais importante para você?
-            </div>
+        <div class="label mb-3">Kit completo · Plano Plus</div>
+        <h1 class="text-[32px] lg:text-[48px] leading-[1] tracking-tightest font-medium text-iris">
+          Gabriel Azevedo<span class="text-mist">.</span>
+        </h1>
+        <p class="text-[15px] text-smoke mt-3">
+          52 peças entregues em 38 horas para a candidatura ao Governo de Minas Gerais.
+        </p>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="grid grid-cols-3 gap-px bg-silver border border-silver rounded-xl overflow-hidden">
+          <div class="bg-paper p-4">
+            <div class="label text-[10px] mb-1">Peças</div>
+            <div class="mono text-[24px] font-medium tracking-tightest">52</div>
+          </div>
+          <div class="bg-paper p-4">
+            <div class="label text-[10px] mb-1">Tempo</div>
+            <div class="mono text-[24px] font-medium tracking-tightest">38h</div>
+          </div>
+          <div class="bg-paper p-4">
+            <div class="label text-[10px] mb-1">Acesso até</div>
+            <div class="mono text-[24px] font-medium tracking-tightest">04·10</div>
           </div>
         </div>
       </div>
@@ -621,20 +145,648 @@
 </section>
 
 <!-- ============================================================
-     AVISO TSE
+     LAYOUT PRINCIPAL — SIDEBAR + CONTEÚDO
      ============================================================ -->
-<section class="rule bg-iris text-paper">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-16">
-    <div class="grid lg:grid-cols-12 gap-12">
+<div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 lg:py-12">
+  <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+
+    <!-- ============================================================
+         SIDEBAR
+         ============================================================ -->
+    <aside class="lg:col-span-3">
+      <div class="lg:sticky lg:top-24">
+
+        <!-- Card do plano atual -->
+        <div class="bg-iris text-paper rounded-2xl p-5 mb-6 relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-gold/10 blur-2xl"></div>
+          <div class="relative">
+            <div class="label text-gold">Seu plano</div>
+            <div class="text-[22px] tracking-tightest font-medium mt-1">Plus</div>
+            <div class="text-[11px] text-paper/60 mt-1">52 peças entregues · 7 categorias</div>
+
+            <div class="mt-4 pt-4 border-t border-paper/15">
+              <a href="#" class="inline-flex items-center gap-2 text-[12px] font-semibold text-gold hover:gap-3 transition-all">
+                Fazer upgrade pro Pro
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categorias incluídas -->
+        <div class="label mb-2">Incluído no seu plano</div>
+        <nav class="space-y-0.5 mb-6">
+          <button class="cat-item active" data-cat="identidade">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M5 5l2 2M17 17l2 2M2 12h3M19 12h3M5 19l2-2M17 7l2-2"/></svg>
+            <span>Identidade visual</span>
+          </button>
+          <button class="cat-item" data-cat="audio">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+            <span>Áudios e jingles</span>
+          </button>
+          <button class="cat-item" data-cat="posts">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r=".75" fill="currentColor"/></svg>
+            <span>Posts Instagram</span>
+          </button>
+          <button class="cat-item" data-cat="impresso">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+            <span>Material impresso</span>
+          </button>
+          <button class="cat-item" data-cat="site">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>Site institucional</span>
+          </button>
+          <button class="cat-item" data-cat="bot">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Bot WhatsApp</span>
+          </button>
+          <button class="cat-item" data-cat="plano">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Plano de governo</span>
+          </button>
+        </nav>
+
+        <!-- Categorias bloqueadas -->
+        <div class="flex items-baseline justify-between mb-2">
+          <div class="label">Desbloqueie no Pro</div>
+          <span class="text-[10px] font-semibold text-gold tracking-widest uppercase">+4</span>
+        </div>
+        <nav class="space-y-0.5">
+          <button class="cat-item locked" data-cat="videos">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="m21 8-4 4 4 4V8z"/></svg>
+            <span class="flex-1">Roteiros de vídeo</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+          <button class="cat-item locked" data-cat="defesa">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="flex-1">Kit de defesa</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+          <button class="cat-item locked" data-cat="cabos">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="9" cy="7" r="4"/></svg>
+            <span class="flex-1">Cabos eleitorais</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+          <button class="cat-item locked" data-cat="copy">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span class="flex-1">Banco de copy 90 dias</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         CONTEÚDO
+         ============================================================ -->
+    <main class="lg:col-span-9 min-w-0">
+
+      <!-- ====== IDENTIDADE VISUAL ====== -->
+      <section class="cat-content active" data-cat-content="identidade">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Identidade visual</h2>
+          <span class="text-[12px] text-mist">4 peças</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Logotipo, número estilizado, paleta oficial e manual de marca completo.</p>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-silver border border-silver">
+          <div class="bg-paper p-6">
+            <div class="aspect-square bg-bone mb-4 flex items-center justify-center p-6">
+              <div class="text-center">
+                <div class="text-[36px] tracking-tightest font-medium text-iris">Gabriel</div>
+                <div class="h-px w-8 bg-gold mx-auto my-2"></div>
+                <div class="text-[9px] tracking-[0.3em] uppercase text-iris">Azevedo</div>
+              </div>
+            </div>
+            <div class="label">Logotipo</div>
+            <div class="text-[12px] text-mist mt-1">SVG · PNG · PDF</div>
+          </div>
+          <div class="bg-paper p-6">
+            <div class="aspect-square bg-iris mb-4 flex items-center justify-center">
+              <div class="text-[100px] font-medium tracking-tightest text-gold leading-none">15</div>
+            </div>
+            <div class="label">Número</div>
+            <div class="text-[12px] text-mist mt-1">SVG · PNG</div>
+          </div>
+          <div class="bg-paper p-6">
+            <div class="aspect-square mb-4 grid grid-cols-2 grid-rows-2 gap-1">
+              <div class="bg-iris flex items-end p-2"><span class="text-paper text-[9px]">0F 3F 73</span></div>
+              <div class="bg-gold flex items-end p-2"><span class="text-ink text-[9px]">F4 C4 30</span></div>
+              <div class="bg-bone flex items-end p-2"><span class="text-ink text-[9px]">FA F6 E8</span></div>
+              <div class="bg-ink flex items-end p-2"><span class="text-paper text-[9px]">0A 0A 0A</span></div>
+            </div>
+            <div class="label">Paleta</div>
+            <div class="text-[12px] text-mist mt-1">ASE · CSS</div>
+          </div>
+          <div class="bg-paper p-6">
+            <div class="aspect-square bg-ink mb-4 p-4 flex flex-col justify-between text-paper">
+              <div class="label text-gold/80">Manual</div>
+              <div>
+                <div class="text-[18px] tracking-tightest font-medium leading-tight">Gabriel<br>Azevedo</div>
+                <div class="text-[8px] tracking-[0.3em] uppercase text-gold mt-2">v1.0 · 2026</div>
+              </div>
+            </div>
+            <div class="label">Manual de marca</div>
+            <div class="text-[12px] text-mist mt-1">PDF · 24 páginas</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== ÁUDIO ====== -->
+      <section class="cat-content" data-cat-content="audio">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Áudios e jingles</h2>
+          <span class="text-[12px] text-mist">5 peças</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Jingle principal, spot de rádio e áudios prontos para WhatsApp.</p>
+
+        <!-- Player principal -->
+        <div class="bg-iris text-paper p-8 rounded-xl mb-4 relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-gold/20 text-gold text-[10px] font-bold uppercase px-3 py-1 rounded-full">Voz real · Exemplo</div>
+          <div class="label text-gold mb-3">Áudio · Jingle principal · 60 segundos</div>
+          <p class="text-[22px] lg:text-[28px] tracking-ultratight font-medium leading-tight mb-8 max-w-xl">
+            "Um político honesto custa caro."
+          </p>
+
+          <audio id="audio-jingle" preload="metadata" src="public/gabriel/audio-exemplo.mp3"></audio>
+
+          <div class="flex items-center gap-5">
+            <button id="play-jingle" onclick="togglePlay()" class="w-14 h-14 rounded-full bg-gold text-iris flex items-center justify-center hover:bg-sun transition flex-shrink-0 shadow-lg shadow-gold/30">
+              <svg id="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg id="icon-pause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+            </button>
+            <div class="flex-1">
+              <div class="h-2 bg-paper/10 rounded-full overflow-hidden cursor-pointer" id="audio-track" onclick="seekAudio(event)">
+                <div id="audio-progress" class="h-full bg-gold rounded-full transition-all" style="width: 0%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-mist mono mt-2">
+                <span id="audio-current">0:00</span>
+                <span id="audio-duration">0:50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outros -->
+        <div class="grid sm:grid-cols-2 gap-3 mb-4">
+          <div class="bg-paper border border-silver p-5 flex items-center gap-4 rounded-xl">
+            <button class="w-10 h-10 rounded-full bg-iris text-paper flex items-center justify-center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="flex-1">
+              <div class="label">Spot de rádio</div>
+              <div class="text-[14px] font-medium text-iris mt-0.5">"Eu sou Gabriel..."</div>
+            </div>
+            <span class="mono text-[11px] text-mist">0:30</span>
+          </div>
+          <div class="bg-paper border border-silver p-5 flex items-center gap-4 rounded-xl">
+            <button class="w-10 h-10 rounded-full bg-iris text-paper flex items-center justify-center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="flex-1">
+              <div class="label">WhatsApp · Saudação</div>
+              <div class="text-[14px] font-medium text-iris mt-0.5">"Olá, aqui é o Gabriel..."</div>
+            </div>
+            <span class="mono text-[11px] text-mist">0:18</span>
+          </div>
+        </div>
+
+        <p class="text-[12px] text-mist">+ 8 áudios temáticos para listas de transmissão.</p>
+      </section>
+
+      <!-- ====== POSTS ====== -->
+      <section class="cat-content" data-cat-content="posts">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Posts Instagram</h2>
+          <span class="text-[12px] text-mist">30 peças</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Feed quadrado com a sua identidade. Templates editáveis no Figma também entregues.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-silver border border-silver">
+          <div class="aspect-square bg-paper relative overflow-hidden">
+            <img src="public/gabriel/ref-img.jpg" alt="" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink/70"></div>
+            <div class="absolute top-3 right-3 bg-paper text-iris px-2 py-0.5 text-[10px] font-bold tracking-widest">15</div>
+            <div class="absolute bottom-3 left-3 right-3"><div class="text-paper font-medium text-[12px] leading-tight">A política se faz na rua.</div></div>
+          </div>
+          <div class="aspect-square bg-iris p-5 flex flex-col justify-between text-paper">
+            <div class="label text-paper/60">Citação</div>
+            <div>
+              <div class="text-[16px] leading-tight tracking-ultratight font-medium">"Minas é maior do que qualquer projeto pessoal."</div>
+              <div class="text-[10px] tracking-widest uppercase text-paper/60 mt-3">Gabriel Azevedo</div>
+            </div>
+          </div>
+          <div class="aspect-square bg-bone p-5 flex flex-col justify-between">
+            <div class="label">Proposta 01</div>
+            <div>
+              <div class="text-[15px] leading-tight tracking-ultratight font-medium text-iris">Mais médicos em todas as cidades de Minas.</div>
+              <div class="mono text-[28px] font-medium tracking-ultratight text-iris mt-3">15</div>
+            </div>
+          </div>
+          <div class="aspect-square bg-paper border-l border-silver p-5 flex flex-col justify-between">
+            <div class="flex items-center justify-between"><div class="label">Carrossel</div><div class="mono text-[10px] text-mist">1/5</div></div>
+            <div><div class="text-[20px] leading-tight tracking-ultratight font-medium text-iris">Quem<br>é<br>Gabriel?</div></div>
+            <div class="text-[10px] text-mist">Deslize →</div>
+          </div>
+          <div class="aspect-square bg-ink p-5 flex flex-col justify-between text-paper">
+            <div class="label text-mist">Agenda</div>
+            <div>
+              <div class="mono text-[36px] font-medium tracking-ultratight leading-none">17.05</div>
+              <div class="text-[11px] text-mist mt-2">Sábado · 10h</div>
+              <div class="text-[13px] mt-1 font-medium">Comício no Barreiro</div>
+            </div>
+            <div class="text-[10px] tracking-widest uppercase text-gold">Confirmar →</div>
+          </div>
+          <div class="aspect-square bg-paper border border-silver p-5 flex flex-col justify-between">
+            <div class="label">Dado</div>
+            <div>
+              <div class="mono text-[42px] font-medium tracking-ultratight text-iris leading-none">853</div>
+              <div class="text-[12px] text-smoke mt-2 leading-tight">municípios em Minas Gerais.</div>
+            </div>
+          </div>
+          <div class="aspect-square bg-bone p-5 flex flex-col justify-between">
+            <div class="label">Resposta</div>
+            <div>
+              <div class="text-[11px] tracking-wider uppercase text-mist mb-1">Pergunta:</div>
+              <div class="text-[13px] leading-tight tracking-ultratight font-medium text-iris">"Como vai melhorar a saúde pública?"</div>
+            </div>
+            <div class="text-[10px] tracking-widest uppercase text-iris">Ver →</div>
+          </div>
+          <div class="aspect-square bg-iris p-5 flex flex-col justify-between text-paper">
+            <div class="label text-paper/60">Compromisso</div>
+            <div><div class="text-[17px] leading-tight tracking-ultratight font-medium">Segurança pública integrada.</div></div>
+            <div class="flex items-baseline justify-between"><div class="text-[10px] tracking-widest uppercase text-paper/60">Gabriel</div><div class="mono text-[24px] font-medium tracking-ultratight">15</div></div>
+          </div>
+          <div class="aspect-square bg-ink p-5 flex flex-col justify-between text-paper">
+            <div class="label text-gold/70">Você sabia?</div>
+            <div><div class="text-[15px] leading-tight tracking-ultratight font-medium">A maioria das pequenas empresas mineiras nasce sem crédito.</div></div>
+            <div class="text-[10px] tracking-widest uppercase text-gold">Conheça →</div>
+          </div>
+          <div class="aspect-square bg-paper border border-silver flex items-center justify-center p-5">
+            <div class="text-center">
+              <div class="mono text-[56px] font-medium tracking-tightest text-iris leading-none">15</div>
+              <div class="h-px w-10 bg-gold mx-auto my-2"></div>
+              <div class="text-[10px] tracking-widest uppercase text-ink font-medium">Gabriel Azevedo</div>
+            </div>
+          </div>
+        </div>
+        <button class="mt-5 text-[13px] font-semibold text-iris hover:text-plum">Ver mais 20 posts →</button>
+      </section>
+
+      <!-- ====== MATERIAL IMPRESSO ====== -->
+      <section class="cat-content" data-cat-content="impresso">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Material impresso</h2>
+          <span class="text-[12px] text-mist">5 peças</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Arquivos prontos para gráfica em alta resolução, com sangria e marcas de corte.</p>
+
+        <figure class="mb-px">
+          <div class="aspect-[16/9] overflow-hidden bg-bone rounded-xl">
+            <img src="public/mockups/mockup-outdoor.png" alt="Outdoor 9×3m" class="w-full h-full object-cover">
+          </div>
+          <figcaption class="grid lg:grid-cols-12 gap-6 p-6 border-t border-silver bg-paper rounded-b-xl">
+            <div class="lg:col-span-3">
+              <div class="label">Outdoor</div>
+              <div class="text-[13px] text-smoke mt-1">9×3m · 300dpi · CMYK</div>
+            </div>
+            <div class="lg:col-span-9 text-[14px] text-smoke">
+              Versão grande formato para frontlight ou backlight. Arquivos abertos em PDF e PSD prontos para a gráfica.
+            </div>
+          </figcaption>
+        </figure>
+
+        <div class="grid md:grid-cols-3 gap-px bg-silver border border-silver mt-4">
+          <article class="bg-paper">
+            <div class="aspect-[3/4] overflow-hidden bg-bone">
+              <img src="public/mockups/mockup-santinho.png" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="label">Santinho</div>
+              <div class="text-[12px] text-smoke mt-1">7×10cm · couchê 150g</div>
+            </div>
+          </article>
+          <article class="bg-paper">
+            <div class="aspect-[3/4] overflow-hidden bg-bone">
+              <img src="public/mockups/mockup-adesivo.png" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="label">Adesivo veicular</div>
+              <div class="text-[12px] text-smoke mt-1">3 modelos · vinil</div>
+            </div>
+          </article>
+          <article class="bg-paper">
+            <div class="aspect-[3/4] overflow-hidden bg-bone">
+              <img src="public/mockups/mockup-panfleto.png" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <div class="label">Panfleto tri-fold</div>
+              <div class="text-[12px] text-smoke mt-1">A4 dobrado · CMYK</div>
+            </div>
+          </article>
+        </div>
+        <p class="text-[12px] text-mist mt-4">+ bandeira e faixa de palanque.</p>
+      </section>
+
+      <!-- ====== SITE ====== -->
+      <section class="cat-content" data-cat-content="site">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Site institucional</h2>
+          <span class="text-[12px] text-mist">5 páginas · no ar</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Hospedagem em domínio próprio incluída. Otimizado para Google.</p>
+
+        <div class="bg-paper border border-silver rounded-xl shadow-2xl overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-silver">
+            <div class="flex gap-1.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-silver"></div>
+            </div>
+            <div class="ml-4 flex-1 bg-bone px-3 py-1 text-[12px] text-smoke font-mono">gabriel.pulso.app</div>
+          </div>
+          <div class="p-6 lg:p-10">
+            <div class="flex items-center justify-between mb-10">
+              <div class="text-[14px] tracking-tightest font-semibold text-iris">GABRIEL AZEVEDO</div>
+              <div class="hidden md:flex gap-6 text-[11px] tracking-widest uppercase text-smoke font-medium">
+                <span>Início</span><span>Biografia</span><span>Propostas</span><span>Agenda</span><span>Contato</span>
+              </div>
+            </div>
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-7">
+                <div class="text-[10px] font-medium text-iris tracking-[0.3em] uppercase mb-4">Governador · MDB</div>
+                <h3 class="text-[32px] lg:text-[56px] tracking-tightest font-medium text-ink leading-[0.95] mb-5">
+                  Minas<br>pode mais.
+                </h3>
+                <p class="text-[14px] text-smoke leading-relaxed max-w-md mb-6">
+                  Gabriel Azevedo, candidato a Governador. Vereador por três mandatos. Ex-presidente da Câmara Municipal de BH.
+                </p>
+                <div class="flex gap-3">
+                  <button class="bg-iris text-paper text-[12px] tracking-wider uppercase font-medium px-5 py-2.5">Apoie</button>
+                  <button class="border border-iris text-iris text-[12px] tracking-wider uppercase font-medium px-5 py-2.5">Propostas</button>
+                </div>
+              </div>
+              <div class="lg:col-span-5">
+                <div class="aspect-[3/4] overflow-hidden rounded-lg">
+                  <img src="public/gabriel/ref-quem-sou.png" alt="" class="w-full h-full object-cover">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== BOT WHATSAPP ====== -->
+      <section class="cat-content" data-cat-content="bot">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Bot WhatsApp</h2>
+          <span class="text-[12px] text-mist">Ativo · respostas automáticas</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Treinado com seu plano de governo e biografia. Responde dúvidas e captura contatos.</p>
+
+        <div class="grid lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5">
+            <div class="bg-paper border border-silver rounded-xl p-6 space-y-4 text-[13px]">
+              <div class="flex items-baseline justify-between border-b border-silver pb-3">
+                <span class="label">Status</span>
+                <span class="text-emerald-700 font-medium">Conectado</span>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-silver pb-3">
+                <span class="label">Número</span>
+                <span class="font-medium">(31) 9 9876 5432</span>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-silver pb-3">
+                <span class="label">Hoje</span>
+                <span class="font-medium mono">247 mensagens</span>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <span class="label">Leads</span>
+                <span class="font-medium mono">38 capturados</span>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="bg-bone rounded-xl p-5">
+              <div class="label mb-4">Exemplo de conversa</div>
+              <div class="space-y-3 text-[13px]">
+                <div class="bg-paper border border-silver px-4 py-3 max-w-[80%] rounded-r-2xl rounded-bl-2xl">Por que devo votar no Gabriel?</div>
+                <div class="bg-iris text-paper px-4 py-3 max-w-[85%] ml-auto rounded-l-2xl rounded-br-2xl">
+                  O Gabriel é candidato a Governador pelo MDB. Atuou como vereador de BH por 3 mandatos e foi presidente da Câmara. Posso te contar as propostas centrais?
+                </div>
+                <div class="bg-paper border border-silver px-4 py-3 max-w-[80%] rounded-r-2xl rounded-bl-2xl">Sim, pode contar.</div>
+                <div class="bg-iris text-paper px-4 py-3 max-w-[85%] ml-auto rounded-l-2xl rounded-br-2xl">
+                  <strong>Saúde:</strong> mais médicos nas 853 cidades.<br>
+                  <strong>Educação:</strong> escolas técnicas integrais.<br>
+                  <strong>Economia:</strong> crédito para o pequeno comércio.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== PLANO DE GOVERNO ====== -->
+      <section class="cat-content" data-cat-content="plano">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Plano de governo</h2>
+          <span class="text-[12px] text-mist">PDF · 12 páginas</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Versão resumida do plano, diagramada profissionalmente. Pronta para imprimir ou distribuir digital.</p>
+
+        <div class="grid lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7">
+            <div class="aspect-[16/9] overflow-hidden rounded-xl bg-bone">
+              <img src="public/cards/card-plano.png" alt="" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="lg:col-span-5 space-y-4 text-[14px]">
+            <div class="border-b border-silver pb-3">
+              <div class="label">Formato</div>
+              <div class="font-medium text-iris mt-1">PDF · A4 retrato</div>
+            </div>
+            <div class="border-b border-silver pb-3">
+              <div class="label">Páginas</div>
+              <div class="font-medium text-iris mt-1">12 (versão Plus)</div>
+            </div>
+            <div class="border-b border-silver pb-3">
+              <div class="label">Diagramação</div>
+              <div class="font-medium text-iris mt-1">Tipografia editorial, infográficos, fotos</div>
+            </div>
+            <div class="border-b border-silver pb-3">
+              <div class="label">Eixos cobertos</div>
+              <div class="font-medium text-iris mt-1">4 (Inovação, Educação, Saúde, Economia)</div>
+            </div>
+            <a href="#" class="inline-flex items-center gap-2 bg-iris text-paper text-[13px] font-medium px-5 py-3 rounded-full hover:bg-plum transition mt-4">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Baixar PDF
+            </a>
+            <div class="pt-4 border-t border-silver">
+              <div class="text-[12px] text-mist">Quer a versão completa com 40 páginas, diagramação de e-book e capa hardcover?</div>
+              <a href="#" class="text-[12px] font-semibold text-iris mt-2 inline-block">Fazer upgrade pro Pro →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CATEGORIAS BLOQUEADAS
+           ============================================================ -->
+
+      <!-- ====== VÍDEOS ====== -->
+      <section class="cat-content" data-cat-content="videos">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Roteiros de vídeo</h2>
+          <span class="text-[11px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-3 py-1">Plano Pro</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Dez roteiros estruturados para você gravar com smartphone — apresentação, propostas, depoimentos, agenda, encerramento.</p>
+
+        <div class="lock-overlay">
+          <svg class="mx-auto mb-6" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
+          <h3 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-4 max-w-2xl mx-auto leading-tight">
+            10 roteiros prontos para gravação
+          </h3>
+          <p class="text-[15px] leading-relaxed text-smoke mb-8 max-w-xl mx-auto">
+            Estrutura cena-a-cena, falas no seu tom de voz, sugestões de enquadramento e timing. Você só precisa do celular.
+          </p>
+
+          <ul class="text-left max-w-md mx-auto space-y-2.5 mb-10 text-[14px]">
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vídeo de apresentação (60s)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>4 vídeos por eixo de proposta</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vídeo de convocação para eventos</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vídeo de agradecimento e fechamento</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3 vídeos de resposta a temas polêmicos</span></li>
+          </ul>
+
+          <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
+            Fazer upgrade pro Pro
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ====== KIT DE DEFESA ====== -->
+      <section class="cat-content" data-cat-content="defesa">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Kit de defesa argumentativa</h2>
+          <span class="text-[11px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-3 py-1">Plano Pro</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Resposta pronta para 5 temas polêmicos. Você nunca mais é pego de surpresa em entrevista ou debate.</p>
+
+        <div class="lock-overlay">
+          <svg class="mx-auto mb-6" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
+          <h3 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-4 max-w-2xl mx-auto leading-tight">
+            Argumentação para 5 temas difíceis
+          </h3>
+          <p class="text-[15px] leading-relaxed text-smoke mb-8 max-w-xl mx-auto">
+            Você responde a temas como aborto, segurança pública, privatização e religião com posição clara, sem ser surpreendido por ataque ou pergunta capciosa.
+          </p>
+
+          <ul class="text-left max-w-md mx-auto space-y-2.5 mb-10 text-[14px]">
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>5 temas escolhidos com base na sua candidatura</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Resposta curta para WhatsApp e redes (até 280 caracteres)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Resposta longa para entrevistas (2-3 minutos falando)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Argumentos de defesa contra ataques específicos previstos</span></li>
+          </ul>
+
+          <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
+            Fazer upgrade pro Pro
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ====== CABOS ELEITORAIS ====== -->
+      <section class="cat-content" data-cat-content="cabos">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Cadastro de cabos eleitorais</h2>
+          <span class="text-[11px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-3 py-1">Plano Pro</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Sistema completo para gerenciar sua rede de apoiadores em cada bairro e cidade.</p>
+
+        <div class="lock-overlay">
+          <svg class="mx-auto mb-6" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
+          <h3 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-4 max-w-2xl mx-auto leading-tight">
+            Sua rede de cabos no painel
+          </h3>
+          <p class="text-[15px] leading-relaxed text-smoke mb-8 max-w-xl mx-auto">
+            Cadastro online, geração de crachá, mapa de cobertura por bairro e exportação para Excel. Tudo em conformidade com a Lei das Eleições.
+          </p>
+
+          <ul class="text-left max-w-md mx-auto space-y-2.5 mb-10 text-[14px]">
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Formulário público de inscrição (link compartilhável)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Geração automática de crachá com foto, número e identificação</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Mapa de calor por bairro e cidade</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Lista de transmissão segmentada por região</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Exportação CSV/Excel para prestação de contas</span></li>
+          </ul>
+
+          <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
+            Fazer upgrade pro Pro
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ====== BANCO DE COPY ====== -->
+      <section class="cat-content" data-cat-content="copy">
+        <div class="flex items-baseline justify-between mb-2">
+          <h2 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris">Banco de copy 90 dias</h2>
+          <span class="text-[11px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-3 py-1">Plano Pro</span>
+        </div>
+        <p class="text-[14px] text-smoke mb-8">Noventa textos prontos para os 90 dias finais de campanha. Um para cada dia, organizados estrategicamente.</p>
+
+        <div class="lock-overlay">
+          <svg class="mx-auto mb-6" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2E1655" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <div class="text-[11px] font-bold tracking-widest uppercase text-gold mb-3">Desbloqueio Pro</div>
+          <h3 class="text-[28px] lg:text-[36px] tracking-ultratight font-medium text-iris mb-4 max-w-2xl mx-auto leading-tight">
+            90 textos para os 90 dias finais
+          </h3>
+          <p class="text-[15px] leading-relaxed text-smoke mb-8 max-w-xl mx-auto">
+            Você nunca mais fica sem o que postar. Cada texto pensado para um dia específico da campanha, com tema rotativo entre proposta, agenda, citação, depoimento e convocação.
+          </p>
+
+          <ul class="text-left max-w-md mx-auto space-y-2.5 mb-10 text-[14px]">
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>90 textos organizados por dia (calendário editorial)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Variação por formato (post, story, twit, WhatsApp)</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Rotação temática: proposta, agenda, citação, depoimento</span></li>
+            <li class="flex items-start gap-3"><svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>Exportação para CSV (use em qualquer ferramenta de scheduling)</span></li>
+          </ul>
+
+          <a href="#" class="inline-flex items-center gap-2 bg-gold text-iris text-[15px] font-bold px-7 py-4 rounded-full hover:bg-sun transition shadow-lg shadow-gold/30">
+            Fazer upgrade pro Pro
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- AVISO TSE -->
+<section class="border-t border-silver bg-iris text-paper">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 py-12">
+    <div class="grid lg:grid-cols-12 gap-8">
       <div class="lg:col-span-3">
         <div class="label text-gold">Conformidade</div>
       </div>
-      <div class="lg:col-span-9">
-        <h3 class="text-[22px] lg:text-[28px] tracking-ultratight font-medium mb-5 text-paper">
+      <div class="lg:col-span-9 max-w-2xl">
+        <h3 class="text-[20px] lg:text-[26px] tracking-ultratight font-medium mb-4">
           Em conformidade com a Resolução TSE 23.732/2024.
         </h3>
-        <p class="text-[14px] leading-[1.7] text-mist font-light max-w-2xl">
-          Todo material produzido por inteligência artificial carrega a rotulagem obrigatória prevista em lei. Jingles, vozes sintetizadas e imagens geradas identificam claramente sua origem. Filtros automáticos bloqueiam conteúdo proibido — ataques pessoais, desinformação e discurso de ódio — antes da entrega.
+        <p class="text-[14px] leading-relaxed text-paper/70">
+          Todo material produzido por inteligência artificial carrega a rotulagem obrigatória prevista em lei. Filtros automáticos bloqueiam conteúdo proibido — ataques pessoais, desinformação e discurso de ódio — antes da entrega.
         </p>
       </div>
     </div>
@@ -642,6 +794,22 @@
 </section>
 
 <script>
+  // Navegação entre categorias
+  document.querySelectorAll('.cat-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.cat;
+
+      document.querySelectorAll('.cat-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.cat-content').forEach(c => c.classList.remove('active'));
+      document.querySelector(`[data-cat-content="${target}"]`).classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Audio player
   const audio = document.getElementById('audio-jingle');
   const playBtn = document.getElementById('play-jingle');
   const iconPlay = document.getElementById('icon-play');
@@ -676,19 +844,19 @@
     audio.currentTime = pct * audio.duration;
   }
 
-  audio.addEventListener('loadedmetadata', () => {
-    timeDuration.textContent = fmt(audio.duration);
-  });
-  audio.addEventListener('timeupdate', () => {
-    const pct = (audio.currentTime / audio.duration) * 100;
-    progress.style.width = pct + '%';
-    timeCurrent.textContent = fmt(audio.currentTime);
-  });
-  audio.addEventListener('ended', () => {
-    iconPlay.classList.remove('hidden');
-    iconPause.classList.add('hidden');
-    progress.style.width = '0%';
-  });
+  if (audio) {
+    audio.addEventListener('loadedmetadata', () => { timeDuration.textContent = fmt(audio.duration); });
+    audio.addEventListener('timeupdate', () => {
+      const pct = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = pct + '%';
+      timeCurrent.textContent = fmt(audio.currentTime);
+    });
+    audio.addEventListener('ended', () => {
+      iconPlay.classList.remove('hidden');
+      iconPause.classList.add('hidden');
+      progress.style.width = '0%';
+    });
+  }
 </script>
 
 </body>

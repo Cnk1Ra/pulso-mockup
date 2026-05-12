@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulso — Infraestrutura completa de campanha eleitoral. Em 72 horas.</title>
+<title>Pulso — Toda a infraestrutura da sua campanha. Em 72 horas.</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,18 +13,21 @@
     theme: { extend: {
       colors: {
         ink:    '#0A0A0A',
+        iris:   '#2E1655',
+        irisDeep: '#1F0F3D',
+        plum:   '#4A2B7E',
+        irisLight: '#7256B1',
         paper:  '#FAFAF7',
         silver: '#E5E5E5',
         smoke:  '#525252',
         mist:   '#A3A3A3',
-        gold:   '#B8860B',
-        goldDark: '#8B6914',
-        bone:   '#F2EFE6',
+        gold:   '#F4C430',
+        goldDark: '#D4A715',
+        sun:    '#F9D976',
+        bone:   '#FAF6E8',
+        cream:  '#FBF8E9',
       },
-      letterSpacing: {
-        tightest: '-0.05em',
-        ultratight: '-0.04em',
-      },
+      letterSpacing: { tightest: '-0.05em', ultratight: '-0.04em' },
     }}
   }
 </script>
@@ -34,7 +37,6 @@
     font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "ss01", "cv01", "cv02";
   }
   .label {
     font-size: 11px;
@@ -44,16 +46,21 @@
     color: #525252;
   }
   .rule { border-top: 1px solid #E5E5E5; }
-  .hero-num {
-    font-variant-numeric: lining-nums;
-    font-feature-settings: "ss01";
-  }
+  .mono { font-feature-settings: "tnum"; }
   a.cta-text {
-    border-bottom: 1px solid #0A0A0A;
+    border-bottom: 1px solid currentColor;
     padding-bottom: 2px;
     transition: padding 0.2s;
   }
   a.cta-text:hover { padding-bottom: 4px; }
+
+  .deliverable-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .deliverable-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -16px rgba(46, 22, 85, 0.18);
+  }
 </style>
 </head>
 <body class="bg-paper text-ink">
@@ -64,48 +71,49 @@
 <header class="border-b border-silver">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
     <a href="index.html" class="flex items-baseline gap-2">
-      <span class="text-[19px] font-semibold tracking-tightest text-ink">Pulso</span>
+      <span class="text-[19px] font-semibold tracking-tightest text-iris">Pulso</span>
       <span class="label hidden sm:inline">Plataforma de campanha</span>
     </a>
     <nav class="hidden md:flex items-center gap-10 text-[14px] font-medium text-smoke">
-      <a href="#contexto" class="hover:text-ink transition">Contexto</a>
-      <a href="#capacidades" class="hover:text-ink transition">Capacidades</a>
-      <a href="#exemplo" class="hover:text-ink transition">Exemplo</a>
-      <a href="#perguntas" class="hover:text-ink transition">Perguntas</a>
+      <a href="#entregaveis" class="hover:text-iris transition">Entregáveis</a>
+      <a href="#capacidades" class="hover:text-iris transition">Capacidades</a>
+      <a href="#exemplo" class="hover:text-iris transition">Exemplo</a>
+      <a href="#perguntas" class="hover:text-iris transition">Perguntas</a>
     </nav>
-    <a href="onboarding.html" class="text-[14px] font-medium text-ink cta-text">Acessar</a>
+    <a href="onboarding.html" class="text-[14px] font-medium text-iris cta-text">Acessar</a>
   </div>
 </header>
 
 <!-- ============================================================
      HERO
      ============================================================ -->
-<section class="relative">
+<section class="relative bg-paper">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 pt-20 pb-24 lg:pt-28 lg:pb-32">
     <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-      <!-- Coluna esquerda — texto -->
       <div class="lg:col-span-7">
-        <div class="label mb-10">Plataforma · Eleições 2026</div>
+        <div class="flex items-center gap-3 mb-10">
+          <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+          <div class="label text-iris">Plataforma · Eleições 2026</div>
+        </div>
 
-        <h1 class="text-[44px] sm:text-[56px] lg:text-[88px] leading-[0.95] tracking-tightest font-medium text-ink mb-10">
-          Toda a sua<br>
-          campanha.<br>
-          <span class="text-mist">Em 72 horas.</span>
+        <h1 class="text-[44px] sm:text-[60px] lg:text-[92px] leading-[0.95] tracking-tightest font-medium text-iris mb-10">
+          Sua campanha,<br>
+          pronta antes<br>
+          de você <span class="italic text-gold relative inline-block">precisar dela</span>.
         </h1>
 
-        <p class="max-w-xl text-[18px] lg:text-[20px] leading-[1.55] text-smoke mb-12 font-light">
-          Identidade visual, jingle, site, atendimento, posts e materiais impressos.
-          Sob medida para o seu cargo, sua região e suas propostas.
-          Operado por inteligência artificial. Conferido por humanos.
+        <p class="max-w-xl text-[18px] lg:text-[21px] leading-[1.55] text-smoke mb-12 font-light">
+          Em vez de contratar quinze fornecedores e esperar dois meses, você responde um briefing de 15 minutos.
+          Em 72 horas, identidade, jingles, site, bot, posts e materiais impressos estão prontos no seu painel —
+          sob medida para o seu cargo, sua região e suas propostas.
         </p>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <a href="onboarding.html" class="inline-flex items-center gap-3 bg-ink text-paper text-[15px] font-medium px-7 py-4 hover:bg-smoke transition">
+          <a href="onboarding.html" class="inline-flex items-center gap-3 bg-iris text-paper text-[15px] font-medium px-7 py-4 rounded-full hover:bg-plum transition shadow-lg shadow-iris/20">
             Iniciar briefing
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
-          <a href="kit.html" class="text-[15px] font-medium text-ink cta-text">
+          <a href="kit.html" class="text-[15px] font-medium text-iris cta-text">
             Ver kit de exemplo
           </a>
         </div>
@@ -113,26 +121,26 @@
         <div class="mt-16 pt-10 border-t border-silver flex flex-col sm:flex-row sm:items-baseline gap-6 sm:gap-12 text-[13px]">
           <div>
             <div class="label mb-1.5">Vagas</div>
-            <div class="text-ink font-medium">Inscrições abertas</div>
+            <div class="text-iris font-medium">Inscrições abertas</div>
           </div>
           <div>
             <div class="label mb-1.5">Eleição</div>
-            <div class="text-ink font-medium">4 de outubro · 2026</div>
+            <div class="text-iris font-medium">4 de outubro · 2026</div>
           </div>
           <div>
             <div class="label mb-1.5">Conformidade</div>
-            <div class="text-ink font-medium">Resolução TSE 23.732</div>
+            <div class="text-iris font-medium">Resolução TSE 23.732</div>
           </div>
         </div>
       </div>
 
-      <!-- Coluna direita — foto Gabriel -->
-      <div class="lg:col-span-5">
-        <figure>
-          <div class="aspect-[4/5] overflow-hidden bg-bone">
+      <div class="lg:col-span-5 relative">
+        <figure class="relative">
+          <div class="absolute -top-4 -left-4 right-4 bottom-4 bg-gold rounded-md -z-0"></div>
+          <div class="aspect-[4/5] overflow-hidden bg-bone relative z-10">
             <img src="public/gabriel/foto-entrevista.png"
                  alt="Gabriel Azevedo durante entrevista"
-                 class="w-full h-full object-cover grayscale">
+                 class="w-full h-full object-cover">
           </div>
           <figcaption class="mt-4 text-[12px] text-mist leading-relaxed">
             <span class="text-smoke font-medium">Exemplo de uso</span> —
@@ -145,27 +153,53 @@
 </section>
 
 <!-- ============================================================
+     BARRA DE NÚMEROS (autoridade)
+     ============================================================ -->
+<section class="bg-iris text-paper">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+      <div>
+        <div class="mono text-[44px] lg:text-[56px] font-medium tracking-tightest text-gold leading-none">52</div>
+        <div class="label text-paper/60 mt-3">peças entregues por candidatura</div>
+      </div>
+      <div>
+        <div class="mono text-[44px] lg:text-[56px] font-medium tracking-tightest text-gold leading-none">72<span class="text-paper/40 text-[32px]">h</span></div>
+        <div class="label text-paper/60 mt-3">tempo máximo de produção</div>
+      </div>
+      <div>
+        <div class="mono text-[44px] lg:text-[56px] font-medium tracking-tightest text-gold leading-none">15<span class="text-paper/40 text-[32px]">min</span></div>
+        <div class="label text-paper/60 mt-3">para preencher o briefing</div>
+      </div>
+      <div>
+        <div class="mono text-[44px] lg:text-[56px] font-medium tracking-tightest text-gold leading-none">15<span class="text-paper/40 text-[32px]">×</span></div>
+        <div class="label text-paper/60 mt-3">mais rápido que contratar agência</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      CONTEXTO
      ============================================================ -->
 <section id="contexto" class="rule">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-28">
     <div class="grid lg:grid-cols-12 gap-12">
       <div class="lg:col-span-3">
         <div class="label">O contexto</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-ink mb-10 max-w-3xl">
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.05] tracking-ultratight font-medium text-iris mb-10 max-w-3xl">
           Em 2026, campanhas serão definidas pela velocidade.
         </h2>
-        <div class="max-w-2xl space-y-6 text-[17px] lg:text-[18px] leading-[1.7] text-smoke font-light">
+        <div class="max-w-2xl space-y-6 text-[17px] lg:text-[19px] leading-[1.7] text-smoke font-light">
           <p>
-            Entre a convenção partidária e a urna restam poucos meses.
-            Candidatos passam mais da metade desse tempo contratando, alinhando e revisando fornecedores
-            antes de qualquer material chegar à rua.
+            Entre a convenção partidária e a urna restam poucos meses. Candidatos passam mais da metade desse tempo
+            contratando, alinhando e revisando fornecedores antes de qualquer material chegar à rua.
           </p>
           <p>
-            A Pulso resolve essa camada inteira em uma única operação. Você responde um briefing.
-            A plataforma entrega a infraestrutura completa antes de você precisar dela.
+            <span class="text-iris font-medium">Cada hora gasta com fornecedores é uma hora a menos com eleitores.</span>
+            A Pulso resolve essa camada inteira em uma única operação — você responde um briefing,
+            a plataforma entrega toda a infraestrutura.
           </p>
         </div>
       </div>
@@ -183,50 +217,47 @@
         <div class="label">Como funciona</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-ink max-w-2xl">
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-2xl">
           Três passos. Setenta e duas horas.
         </h2>
       </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-px bg-silver border border-silver">
-      <!-- 01 -->
       <article class="bg-paper p-10 lg:p-12">
         <div class="flex items-start justify-between mb-12">
-          <span class="hero-num text-[14px] font-semibold tracking-wider text-gold">01</span>
+          <span class="mono text-[14px] font-semibold tracking-wider text-gold">01</span>
           <span class="label">15 minutos</span>
         </div>
-        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-ink mb-5">
+        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-iris mb-5">
           Briefing
         </h3>
         <p class="text-[15px] leading-[1.65] text-smoke font-light">
-          Você responde sobre cargo, propostas, estilo de comunicação e referências regionais.
-          Anexa fotos e plano de governo. O sistema valida tudo automaticamente.
+          Você responde 27 perguntas sobre cargo, propostas, estilo de comunicação e referências regionais.
+          Anexa fotos e plano de governo. O sistema valida tudo em tempo real.
         </p>
       </article>
 
-      <!-- 02 -->
       <article class="bg-paper p-10 lg:p-12">
         <div class="flex items-start justify-between mb-12">
-          <span class="hero-num text-[14px] font-semibold tracking-wider text-gold">02</span>
+          <span class="mono text-[14px] font-semibold tracking-wider text-gold">02</span>
           <span class="label">Até 72 horas</span>
         </div>
-        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-ink mb-5">
+        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-iris mb-5">
           Produção
         </h3>
         <p class="text-[15px] leading-[1.65] text-smoke font-light">
-          Geramos identidade, jingle, áudios, posts, materiais impressos, site e bot.
-          Cada peça segue suas referências e o tom de voz definido no briefing.
+          A plataforma orquestra 47 sistemas em paralelo para gerar tudo — identidade visual, jingles,
+          áudios, posts, materiais impressos, site e bot — calibrados ao seu tom de voz.
         </p>
       </article>
 
-      <!-- 03 -->
       <article class="bg-paper p-10 lg:p-12">
         <div class="flex items-start justify-between mb-12">
-          <span class="hero-num text-[14px] font-semibold tracking-wider text-gold">03</span>
+          <span class="mono text-[14px] font-semibold tracking-wider text-gold">03</span>
           <span class="label">Até 4 · out</span>
         </div>
-        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-ink mb-5">
+        <h3 class="text-[26px] lg:text-[32px] leading-[1.1] tracking-ultratight font-medium text-iris mb-5">
           Entrega
         </h3>
         <p class="text-[15px] leading-[1.65] text-smoke font-light">
@@ -239,44 +270,339 @@
 </section>
 
 <!-- ============================================================
-     KIT DEMONSTRAÇÃO (imagem hero gerada)
+     ENTREGÁVEIS — copy persuasiva, cards visuais
      ============================================================ -->
-<section class="rule">
+<section id="entregaveis" class="rule">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
-    <div class="grid lg:grid-cols-12 gap-12 mb-16">
+    <div class="grid lg:grid-cols-12 gap-12 mb-16 lg:mb-20">
       <div class="lg:col-span-3">
-        <div class="label">O kit</div>
+        <div class="label">O que você recebe</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-ink max-w-3xl">
-          Cinquenta peças. Uma única operação.
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.02] tracking-ultratight font-medium text-iris mb-8 max-w-3xl">
+          Oito linhas de produção. Uma operação.
+        </h2>
+        <p class="text-[17px] lg:text-[19px] leading-[1.6] text-smoke font-light max-w-2xl">
+          O que você normalmente contrataria de oito agências diferentes, entregamos em um único kit consistente.
+          Mesma identidade. Mesmo tom de voz. Mesma qualidade — do santinho ao outdoor.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid de entregáveis -->
+    <div class="grid md:grid-cols-2 gap-px bg-silver border border-silver">
+
+      <!-- 01 — IDENTIDADE VISUAL -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10 relative">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">01 · IDENTIDADE</span>
+        </div>
+        <!-- Preview visual -->
+        <div class="grid grid-cols-3 gap-2 mb-8 aspect-[3/1]">
+          <div class="bg-iris flex items-center justify-center">
+            <div class="text-center text-paper">
+              <div class="mono text-[28px] font-medium leading-none">15</div>
+            </div>
+          </div>
+          <div class="bg-bone flex items-center justify-center">
+            <div class="text-center text-iris">
+              <div class="text-[14px] tracking-tightest font-semibold leading-none">Gabriel</div>
+              <div class="h-px w-4 bg-gold mx-auto my-1"></div>
+              <div class="text-[7px] tracking-widest">AZEVEDO</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 grid-rows-2 gap-px">
+            <div class="bg-iris"></div>
+            <div class="bg-gold"></div>
+            <div class="bg-ink"></div>
+            <div class="bg-bone border border-silver"></div>
+          </div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          Sua marca não é o nome. É a impressão que fica.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Logo, número estilizado, paleta oficial e manual de aplicação. Tudo pronto para ir do santinho ao outdoor sem perder coerência.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Logotipo em SVG, PNG e PDF</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Número estilizado para todos os formatos</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Paleta de cores com versão impressão e digital</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Manual de marca de 24 páginas</li>
+        </ul>
+      </article>
+
+      <!-- 02 — JINGLES E ÁUDIO -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">02 · ÁUDIO</span>
+        </div>
+        <div class="bg-iris aspect-[3/1] flex items-center justify-center mb-8 p-4">
+          <div class="flex items-end gap-1 h-12 w-full max-w-[280px]">
+            <div class="flex-1 bg-gold rounded-sm" style="height:30%"></div>
+            <div class="flex-1 bg-gold rounded-sm" style="height:60%"></div>
+            <div class="flex-1 bg-gold rounded-sm" style="height:90%"></div>
+            <div class="flex-1 bg-gold rounded-sm" style="height:75%"></div>
+            <div class="flex-1 bg-gold rounded-sm" style="height:95%"></div>
+            <div class="flex-1 bg-gold rounded-sm" style="height:55%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:80%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:35%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:65%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:50%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:85%"></div>
+            <div class="flex-1 bg-gold/60 rounded-sm" style="height:40%"></div>
+            <div class="flex-1 bg-gold/30 rounded-sm" style="height:70%"></div>
+            <div class="flex-1 bg-gold/30 rounded-sm" style="height:55%"></div>
+            <div class="flex-1 bg-gold/30 rounded-sm" style="height:75%"></div>
+            <div class="flex-1 bg-gold/30 rounded-sm" style="height:30%"></div>
+          </div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          O que toca no rádio precisa ficar na cabeça.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Música principal em quatro versões regionais. Spot para rádio. Vinte e cinco áudios prontos para listas de transmissão no WhatsApp.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>4 versões do jingle (sertanejo, funk, forró, axé)</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Spot de rádio de 30 segundos</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>25 áudios temáticos para WhatsApp</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Qualidade broadcast WAV 48 kHz</li>
+        </ul>
+      </article>
+
+      <!-- 03 — SITE -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">03 · SITE</span>
+        </div>
+        <div class="bg-paper border border-silver p-3 aspect-[3/1] mb-8 flex items-center">
+          <div class="flex-1">
+            <div class="flex gap-1 mb-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-silver"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-silver"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-silver"></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div>
+                <div class="text-[10px] font-semibold tracking-tightest text-iris">Gabriel</div>
+                <div class="h-px w-6 bg-gold my-0.5"></div>
+                <div class="text-[7px] tracking-widest text-iris">PROPOSTAS</div>
+              </div>
+              <div class="text-[10px] text-mist">Minas pode mais.</div>
+              <div class="ml-auto mono text-[16px] font-medium text-iris">15</div>
+            </div>
+          </div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          A primeira coisa que checam antes de votar.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Site profissional com cinco páginas, formulário de apoiadores, agenda dinâmica e otimização para Google. Hospedagem inclusa em domínio próprio.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>5 páginas: Home, Bio, Propostas, Agenda, Contato</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Formulário de captação de apoiadores</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>SEO otimizado · Google indexa em 24h</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Hospedagem em domínio próprio incluída</li>
+        </ul>
+      </article>
+
+      <!-- 04 — BOT WHATSAPP -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">04 · BOT WHATSAPP</span>
+        </div>
+        <div class="bg-bone p-3 aspect-[3/1] mb-8 flex flex-col justify-center gap-1.5">
+          <div class="bg-paper text-iris text-[10px] px-2 py-1 self-start rounded max-w-[60%]">Por que devo votar no Gabriel?</div>
+          <div class="bg-iris text-paper text-[10px] px-2 py-1 self-end rounded max-w-[70%]">Gabriel é candidato a Governador. Posso te contar as 3 propostas centrais...</div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          Responde a milhares. Em três segundos.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          IA treinada com seu plano de governo e biografia. Responde dúvidas, captura contatos e qualifica leads enquanto você dorme.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Setup completo no seu número</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Respostas dinâmicas com IA conversacional</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Captura automática de contatos</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Lista de transmissão pré-configurada</li>
+        </ul>
+      </article>
+
+      <!-- 05 — POSTS INSTAGRAM -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">05 · REDES SOCIAIS</span>
+        </div>
+        <div class="grid grid-cols-6 gap-1 aspect-[3/1] mb-8">
+          <div class="bg-iris"></div>
+          <div class="bg-bone border border-silver"></div>
+          <div class="bg-gold"></div>
+          <div class="bg-plum"></div>
+          <div class="bg-bone border border-silver"></div>
+          <div class="bg-iris"></div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          Conteúdo para 90 dias. Pronto no dia um.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Cinquenta posts feed, vinte stories e dez carrosséis. Diagramados com sua identidade, suas propostas e suas fotos. Templates editáveis para ajustes.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>50 posts feed quadrado</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>20 stories vertical</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>10 carrosséis temáticos</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Templates Figma editáveis</li>
+        </ul>
+      </article>
+
+      <!-- 06 — MATERIAL IMPRESSO -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">06 · IMPRESSO</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 aspect-[3/1] mb-8">
+          <div class="bg-bone p-2 border border-silver">
+            <div class="mono text-[14px] font-medium text-iris leading-none">15</div>
+            <div class="text-[6px] text-iris mt-1">SANTINHO</div>
+          </div>
+          <div class="bg-iris flex items-center justify-center p-2">
+            <div class="text-[9px] font-bold text-gold tracking-tightest text-center">OUTDOOR<br>9×3m</div>
+          </div>
+          <div class="bg-ink flex items-center justify-center p-2">
+            <div class="bg-iris text-paper text-[8px] px-1.5 py-0.5 transform -rotate-3 rounded">G15</div>
+          </div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          Da impressão à colagem na rua.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Doze peças em alta resolução, prontas para gráfica. Inclui outdoor, envelopamento de carro e crachá para cabos eleitorais.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Santinho, panfleto desdobrável, faixa</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>3 modelos de adesivo + envelopamento de carro</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Outdoor 9×3m em 300dpi</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Bandeira, crachá e convite digital</li>
+        </ul>
+      </article>
+
+      <!-- 07 — PLANO DE GOVERNO -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">07 · DOCUMENTOS</span>
+        </div>
+        <div class="bg-bone aspect-[3/1] mb-8 p-4 flex items-center">
+          <div class="flex-1">
+            <div class="label text-iris mb-1">Plano de governo</div>
+            <div class="text-[16px] tracking-tightest font-medium text-iris leading-tight">40 páginas<br><span class="text-mist">diagramadas</span></div>
+          </div>
+          <div class="grid grid-cols-3 gap-1 h-12 w-20">
+            <div class="bg-iris/20"></div>
+            <div class="bg-iris/40"></div>
+            <div class="bg-iris/60"></div>
+            <div class="bg-iris/30"></div>
+            <div class="bg-iris/50"></div>
+            <div class="bg-iris/70"></div>
+          </div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          O documento que define se sua candidatura é séria.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          E-book diagramado de 40 páginas com suas propostas detalhadas, dados, fontes e linha do tempo de execução. Pronto para imprimir e distribuir.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>E-book PDF de 40 páginas</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Versão para impressão A4</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Resumo executivo de 4 páginas</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Dados e fontes referenciadas</li>
+        </ul>
+      </article>
+
+      <!-- 08 — KIT ESTRATÉGICO -->
+      <article class="deliverable-card bg-paper p-8 lg:p-10">
+        <div class="flex items-start justify-between mb-8">
+          <span class="mono text-[12px] font-bold tracking-widest text-gold">08 · ESTRATÉGIA</span>
+        </div>
+        <div class="bg-iris aspect-[3/1] mb-8 p-4 flex flex-col justify-center">
+          <div class="text-paper text-[11px] tracking-widest uppercase text-gold mb-2">Tema polêmico 01</div>
+          <div class="text-paper text-[13px] tracking-tightest font-medium leading-tight">"Como responder<br>sobre privatização?"</div>
+        </div>
+        <h3 class="text-[24px] lg:text-[28px] tracking-ultratight font-medium text-iris mb-3 leading-tight">
+          Você ganha antes da campanha começar.
+        </h3>
+        <p class="text-[15px] leading-[1.65] text-smoke font-light mb-6">
+          Argumentação pronta para temas polêmicos, roteiros de vídeo, discurso de palanque, banco de copy e sistema completo de cadastro de cabos eleitorais.
+        </p>
+        <ul class="space-y-2 text-[13px] text-smoke">
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>5 temas de defesa argumentativa</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>10 roteiros de vídeo para você gravar</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Discurso de palanque modelo</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Banco com 90 textos de copy para 90 dias</li>
+          <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-gold"></span>Sistema completo de cabos eleitorais</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <!-- CTA inline -->
+    <div class="mt-16 lg:mt-20 bg-iris text-paper p-10 lg:p-14 rounded-md flex flex-col lg:flex-row items-start lg:items-center gap-8 justify-between">
+      <div>
+        <div class="label text-gold mb-3">Pronto para ver tudo isso aplicado?</div>
+        <h3 class="text-[26px] lg:text-[36px] tracking-ultratight font-medium leading-tight max-w-xl">
+          Veja como ficou o kit completo do Gabriel Azevedo.
+        </h3>
+      </div>
+      <a href="kit.html" class="inline-flex items-center gap-3 bg-gold text-iris font-bold px-7 py-4 rounded-full hover:bg-sun transition whitespace-nowrap shadow-lg shadow-gold/20">
+        Ver kit de exemplo
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     KIT FLATLAY
+     ============================================================ -->
+<section class="rule bg-bone">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-28">
+    <div class="grid lg:grid-cols-12 gap-12 mb-16">
+      <div class="lg:col-span-3">
+        <div class="label">Kit completo</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-3xl">
+          Cinquenta e duas peças. Uma única operação.
         </h2>
       </div>
     </div>
 
     <figure>
-      <div class="aspect-[16/9] overflow-hidden bg-bone">
+      <div class="aspect-[16/9] overflow-hidden bg-paper">
         <img src="public/hero-flatlay.png" alt="Materiais de campanha produzidos pela Pulso" class="w-full h-full object-cover">
       </div>
       <figcaption class="mt-4 text-[12px] text-mist max-w-lg">
-        Composição ilustrativa de um kit Plus. Identidade visual, jingle, materiais impressos, posts, site e bot — entregues em arquivos finais prontos para uso.
+        Composição ilustrativa de um kit Pro entregue para uma candidatura ao Governo de Minas Gerais.
       </figcaption>
     </figure>
   </div>
 </section>
 
 <!-- ============================================================
-     CAPACIDADES (tabela)
+     CAPACIDADES (tabela Plus vs Pro)
      ============================================================ -->
-<section id="capacidades" class="rule bg-ink text-paper">
+<section id="capacidades" class="rule bg-iris text-paper">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
     <div class="grid lg:grid-cols-12 gap-12 mb-16 lg:mb-20">
       <div class="lg:col-span-3">
-        <div class="label text-mist">Capacidades</div>
+        <div class="label text-gold">Capacidades</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-paper max-w-2xl">
-          Duas configurações. Pagamento único.
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.05] tracking-ultratight font-medium text-paper max-w-2xl">
+          Duas configurações.<br>Pagamento único.
         </h2>
       </div>
     </div>
@@ -285,98 +611,97 @@
     <div class="grid grid-cols-12 gap-8 pb-8 border-b border-paper/15 mb-2">
       <div class="col-span-12 md:col-span-6"></div>
       <div class="col-span-6 md:col-span-3">
-        <div class="label text-mist mb-3">Plus</div>
-        <div class="hero-num text-[34px] lg:text-[42px] font-medium tracking-ultratight">R$ 4.997</div>
+        <div class="label text-paper/60 mb-3">Plus</div>
+        <div class="mono text-[34px] lg:text-[42px] font-medium tracking-ultratight">R$ ****,**</div>
       </div>
       <div class="col-span-6 md:col-span-3">
         <div class="flex items-center gap-3 mb-3">
           <div class="label text-gold">Pro</div>
           <div class="text-[10px] font-semibold tracking-widest uppercase text-gold border border-gold/40 px-2 py-0.5">Mais escolhido</div>
         </div>
-        <div class="hero-num text-[34px] lg:text-[42px] font-medium tracking-ultratight text-gold">R$ 9.997</div>
+        <div class="mono text-[34px] lg:text-[42px] font-medium tracking-ultratight text-gold">R$ ****,**</div>
       </div>
     </div>
 
-    <!-- Linhas da tabela -->
+    <!-- Linhas -->
     <div class="divide-y divide-paper/10 text-[15px]">
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Identidade visual completa</div>
-        <div class="col-span-6 md:col-span-3 text-mist">Logo, número, paleta</div>
-        <div class="col-span-6 md:col-span-3 text-mist">+ manual estendido</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">Logo, número, paleta</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">+ manual de 24 páginas</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Jingle</div>
-        <div class="col-span-6 md:col-span-3 text-mist">1 versão · 60s + cortes</div>
-        <div class="col-span-6 md:col-span-3 text-mist">4 versões regionais</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">1 versão · 60s + cortes</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">4 versões regionais</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Spot de rádio</div>
-        <div class="col-span-6 md:col-span-3 text-mist">30 segundos</div>
-        <div class="col-span-6 md:col-span-3 text-mist">30s + 60s</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">30 segundos</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">30s + 60s</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Áudios para WhatsApp</div>
-        <div class="col-span-6 md:col-span-3 text-mist">10 áudios</div>
-        <div class="col-span-6 md:col-span-3 text-mist">25 áudios</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">10 áudios</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">25 áudios</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Site institucional</div>
-        <div class="col-span-6 md:col-span-3 text-mist">5 páginas</div>
-        <div class="col-span-6 md:col-span-3 text-mist">5 páginas + agenda dinâmica</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">5 páginas</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">5 páginas + agenda dinâmica</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Bot de WhatsApp</div>
-        <div class="col-span-6 md:col-span-3 text-mist">Respostas automáticas</div>
-        <div class="col-span-6 md:col-span-3 text-mist">IA conversacional + leads</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">Respostas automáticas</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">IA conversacional + leads</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Posts para Instagram</div>
-        <div class="col-span-6 md:col-span-3 text-mist">30 posts feed</div>
-        <div class="col-span-6 md:col-span-3 text-mist">50 posts + 20 stories</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">30 posts feed</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">50 posts + 20 stories</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Material gráfico</div>
-        <div class="col-span-6 md:col-span-3 text-mist">Santinho, panfleto, adesivo, faixa, bandeira</div>
-        <div class="col-span-6 md:col-span-3 text-mist">+ outdoor, envelopamento, crachá</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">5 peças</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">12 peças + outdoor</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Plano de governo</div>
-        <div class="col-span-6 md:col-span-3 text-mist">PDF resumo (12 páginas)</div>
-        <div class="col-span-6 md:col-span-3 text-mist">E-book diagramado (40 páginas)</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">PDF resumo (12 páginas)</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">E-book diagramado (40 páginas)</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Roteiros de vídeo</div>
-        <div class="col-span-6 md:col-span-3 text-mist text-mist/40">Não incluso</div>
-        <div class="col-span-6 md:col-span-3 text-mist">10 roteiros</div>
+        <div class="col-span-6 md:col-span-3 text-paper/40">Não incluso</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">10 roteiros</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Kit de defesa argumentativa</div>
-        <div class="col-span-6 md:col-span-3 text-mist text-mist/40">Não incluso</div>
-        <div class="col-span-6 md:col-span-3 text-mist">5 temas</div>
+        <div class="col-span-6 md:col-span-3 text-paper/40">Não incluso</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">5 temas</div>
       </div>
       <div class="grid grid-cols-12 gap-8 py-5">
         <div class="col-span-12 md:col-span-6 font-medium">Cadastro de cabos eleitorais</div>
-        <div class="col-span-6 md:col-span-3 text-mist text-mist/40">Não incluso</div>
-        <div class="col-span-6 md:col-span-3 text-mist">Sistema completo</div>
+        <div class="col-span-6 md:col-span-3 text-paper/40">Não incluso</div>
+        <div class="col-span-6 md:col-span-3 text-paper/70">Sistema completo</div>
       </div>
     </div>
 
-    <!-- Botões -->
     <div class="grid grid-cols-12 gap-8 mt-12">
       <div class="col-span-12 md:col-span-6"></div>
       <div class="col-span-6 md:col-span-3">
-        <a href="onboarding.html" class="block text-center border border-paper/30 text-paper font-medium py-4 hover:bg-paper/5 transition text-[14px]">
+        <a href="onboarding.html" class="block text-center border-2 border-paper/30 text-paper font-medium py-4 hover:bg-paper/5 transition text-[14px] rounded-full">
           Escolher Plus
         </a>
       </div>
       <div class="col-span-6 md:col-span-3">
-        <a href="onboarding.html" class="block text-center bg-gold text-ink font-medium py-4 hover:bg-goldDark hover:text-paper transition text-[14px]">
+        <a href="onboarding.html" class="block text-center bg-gold text-iris font-bold py-4 hover:bg-sun transition text-[14px] rounded-full">
           Escolher Pro
         </a>
       </div>
     </div>
 
-    <p class="text-[12px] text-mist mt-10 max-w-2xl leading-relaxed">
+    <p class="text-[12px] text-paper/60 mt-10 max-w-2xl leading-relaxed">
       Pagamento único, à vista ou em até 12 parcelas no cartão. Acesso à plataforma garantido até 4 de outubro de 2026. Download dos arquivos disponível por mais 30 dias após a eleição.
     </p>
   </div>
@@ -392,57 +717,56 @@
         <div class="label">Em uso</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-ink max-w-3xl">
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-3xl">
           Como ficaria uma candidatura ao governo de Minas.
         </h2>
       </div>
     </div>
 
     <div class="grid lg:grid-cols-12 gap-12 items-start">
-      <!-- Foto -->
       <div class="lg:col-span-7">
-        <figure>
-          <div class="aspect-[5/6] overflow-hidden bg-bone">
+        <figure class="relative">
+          <div class="absolute -top-3 -left-3 right-3 bottom-3 bg-gold rounded-md -z-0"></div>
+          <div class="aspect-[5/6] overflow-hidden bg-bone relative z-10">
             <img src="public/gabriel/foto-1.png"
                  alt="Gabriel Azevedo em visita a eleitora"
                  class="w-full h-full object-cover">
           </div>
-          <figcaption class="mt-4 text-[12px] text-mist max-w-md leading-relaxed">
-            Gabriel Azevedo durante visita comunitária. Fotografia disponibilizada pela campanha — usada aqui como simulação de uso da plataforma.
-          </figcaption>
         </figure>
+        <p class="mt-5 text-[12px] text-mist max-w-md leading-relaxed">
+          Gabriel Azevedo durante visita comunitária. Fotografia disponibilizada pela campanha — usada aqui como simulação de uso da plataforma.
+        </p>
       </div>
 
-      <!-- Texto + dados -->
       <div class="lg:col-span-5 lg:pt-8">
-        <blockquote class="text-[26px] lg:text-[32px] leading-[1.25] tracking-ultratight font-medium text-ink mb-10">
+        <blockquote class="text-[26px] lg:text-[36px] leading-[1.25] tracking-ultratight font-medium text-iris mb-10">
           "Uma campanha estadual exige consistência de mensagem em 853 municípios. A Pulso entrega essa consistência."
         </blockquote>
 
         <div class="space-y-6 text-[14px] border-t border-silver pt-8">
           <div class="grid grid-cols-3 gap-6">
             <div class="label">Candidato</div>
-            <div class="col-span-2 text-ink font-medium">Gabriel Azevedo</div>
+            <div class="col-span-2 text-iris font-medium">Gabriel Azevedo</div>
           </div>
           <div class="grid grid-cols-3 gap-6">
             <div class="label">Cargo</div>
-            <div class="col-span-2 text-ink font-medium">Governador de Minas Gerais</div>
+            <div class="col-span-2 text-iris font-medium">Governador de Minas Gerais</div>
           </div>
           <div class="grid grid-cols-3 gap-6">
             <div class="label">Partido</div>
-            <div class="col-span-2 text-ink font-medium">MDB · 15</div>
+            <div class="col-span-2 text-iris font-medium">MDB · 15</div>
           </div>
           <div class="grid grid-cols-3 gap-6">
             <div class="label">Configuração</div>
-            <div class="col-span-2 text-ink font-medium">Pro · R$ 9.997</div>
+            <div class="col-span-2 text-iris font-medium">Pro · R$ ****,**</div>
           </div>
           <div class="grid grid-cols-3 gap-6">
             <div class="label">Entrega</div>
-            <div class="col-span-2 text-ink font-medium">52 peças · 38 horas</div>
+            <div class="col-span-2 text-iris font-medium">52 peças · 38 horas</div>
           </div>
         </div>
 
-        <a href="kit.html" class="inline-flex items-center gap-3 mt-12 text-[15px] font-medium text-ink cta-text">
+        <a href="kit.html" class="inline-flex items-center gap-3 mt-12 text-[15px] font-medium text-iris cta-text">
           Ver kit completo
         </a>
       </div>
@@ -453,14 +777,14 @@
 <!-- ============================================================
      PERGUNTAS
      ============================================================ -->
-<section id="perguntas" class="rule">
+<section id="perguntas" class="rule bg-bone">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
     <div class="grid lg:grid-cols-12 gap-12 mb-16">
       <div class="lg:col-span-3">
         <div class="label">Perguntas frequentes</div>
       </div>
       <div class="lg:col-span-9">
-        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-ink max-w-2xl">
+        <h2 class="text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.05] tracking-ultratight font-medium text-iris max-w-2xl">
           O que você precisa saber.
         </h2>
       </div>
@@ -473,8 +797,8 @@
 
           <details class="group py-7">
             <summary class="flex items-baseline justify-between gap-6 cursor-pointer list-none">
-              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight">Como a Pulso garante conformidade com o TSE?</span>
-              <span class="text-mist group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
+              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight text-iris">Como a Pulso garante conformidade com o TSE?</span>
+              <span class="text-gold group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
             </summary>
             <p class="text-[15px] leading-[1.7] text-smoke font-light mt-5 max-w-2xl">
               Aplicamos a rotulagem obrigatória prevista na Resolução TSE 23.732/2024 em todo material gerado por inteligência artificial. Jingles, vozes sintetizadas e imagens identificam claramente a origem em IA. Um filtro automático bloqueia conteúdo proibido — ataques pessoais, desinformação, discurso de ódio — antes da entrega final.
@@ -483,8 +807,8 @@
 
           <details class="group py-7">
             <summary class="flex items-baseline justify-between gap-6 cursor-pointer list-none">
-              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight">O que acontece se eu não gostar de uma peça?</span>
-              <span class="text-mist group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
+              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight text-iris">O que acontece se eu não gostar de uma peça?</span>
+              <span class="text-gold group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
             </summary>
             <p class="text-[15px] leading-[1.7] text-smoke font-light mt-5 max-w-2xl">
               Cada peça pode ser regenerada — até três vezes no plano Plus, cinco vezes no plano Pro. Textos podem ser editados livremente no painel. Em caso de necessidade, sua candidatura tem acesso direto ao nosso time de produção.
@@ -493,8 +817,8 @@
 
           <details class="group py-7">
             <summary class="flex items-baseline justify-between gap-6 cursor-pointer list-none">
-              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight">Qual é o prazo real de entrega?</span>
-              <span class="text-mist group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
+              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight text-iris">Qual é o prazo real de entrega?</span>
+              <span class="text-gold group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
             </summary>
             <p class="text-[15px] leading-[1.7] text-smoke font-light mt-5 max-w-2xl">
               A maior parte dos materiais — identidade, textos, materiais gráficos — fica pronta em uma hora após a confirmação do pagamento. Peças que dependem de síntese de áudio levam até 24 horas. Garantimos a entrega completa do kit em até 72 horas.
@@ -503,8 +827,8 @@
 
           <details class="group py-7">
             <summary class="flex items-baseline justify-between gap-6 cursor-pointer list-none">
-              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight">Posso usar o material em rádio e TV?</span>
-              <span class="text-mist group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
+              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight text-iris">Posso usar o material em rádio e TV?</span>
+              <span class="text-gold group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
             </summary>
             <p class="text-[15px] leading-[1.7] text-smoke font-light mt-5 max-w-2xl">
               Sim. Jingles e spots são entregues em qualidade broadcast (WAV 48kHz). As licenças de uso comercial estão incluídas. Para emissoras que exigem rotulagem visual de conteúdo gerado por IA, aplicamos automaticamente.
@@ -513,8 +837,8 @@
 
           <details class="group py-7">
             <summary class="flex items-baseline justify-between gap-6 cursor-pointer list-none">
-              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight">O que acontece com meus dados depois da eleição?</span>
-              <span class="text-mist group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
+              <span class="text-[18px] lg:text-[20px] font-medium tracking-ultratight text-iris">O que acontece com meus dados depois da eleição?</span>
+              <span class="text-gold group-open:rotate-45 transition-transform text-[20px] flex-shrink-0 leading-none">+</span>
             </summary>
             <p class="text-[15px] leading-[1.7] text-smoke font-light mt-5 max-w-2xl">
               Em 4 de outubro de 2026 o acesso à plataforma é encerrado. Você tem 30 dias adicionais para baixar todos os arquivos em ZIP. Após esse prazo, dados pessoais são anonimizados conforme a Lei Geral de Proteção de Dados. Logs de auditoria são mantidos por cinco anos, obrigação legal.
@@ -530,19 +854,22 @@
 <!-- ============================================================
      CTA FINAL
      ============================================================ -->
-<section class="rule bg-ink text-paper">
-  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
-    <div class="max-w-3xl">
-      <div class="label text-mist mb-10">Próximo passo</div>
-      <h2 class="text-[40px] sm:text-[56px] lg:text-[80px] leading-[0.98] tracking-tightest font-medium mb-14">
+<section class="rule bg-iris text-paper">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-12 py-32 lg:py-40 relative overflow-hidden">
+    <div class="absolute -right-32 -top-32 w-96 h-96 rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-plum blur-3xl"></div>
+
+    <div class="max-w-3xl relative">
+      <div class="label text-gold mb-10">Próximo passo</div>
+      <h2 class="text-[44px] sm:text-[60px] lg:text-[88px] leading-[0.98] tracking-tightest font-medium mb-14">
         Sua campanha começa<br>antes da urna.
       </h2>
-      <p class="text-[18px] lg:text-[20px] leading-[1.55] text-mist font-light max-w-xl mb-14">
+      <p class="text-[18px] lg:text-[21px] leading-[1.55] text-paper/70 font-light max-w-xl mb-14">
         Quinze minutos de briefing. Setenta e duas horas de produção. Uma campanha pronta para começar de verdade.
       </p>
-      <a href="onboarding.html" class="inline-flex items-center gap-3 bg-paper text-ink text-[15px] font-medium px-8 py-4 hover:bg-bone transition">
-        Iniciar briefing
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      <a href="onboarding.html" class="inline-flex items-center gap-3 bg-gold text-iris text-[16px] font-bold px-8 py-5 rounded-full hover:bg-sun transition shadow-2xl shadow-gold/30">
+        Iniciar briefing agora
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
     </div>
   </div>
@@ -551,12 +878,12 @@
 <!-- ============================================================
      FOOTER
      ============================================================ -->
-<footer class="bg-ink text-mist py-12 border-t border-paper/10">
+<footer class="bg-irisDeep text-paper/60 py-12 border-t border-paper/10">
   <div class="max-w-[1280px] mx-auto px-6 lg:px-12">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-[13px]">
       <div class="flex items-baseline gap-3">
-        <span class="text-[19px] font-semibold tracking-tightest text-paper">Pulso</span>
-        <span class="text-mist">© 2026</span>
+        <span class="text-[19px] font-semibold tracking-tightest text-gold">Pulso</span>
+        <span class="text-paper/40">© 2026</span>
       </div>
       <div class="flex flex-wrap gap-x-8 gap-y-2">
         <a href="#" class="hover:text-paper transition">Privacidade</a>
@@ -564,7 +891,7 @@
         <a href="#" class="hover:text-paper transition">Compliance TSE</a>
         <a href="#" class="hover:text-paper transition">Contato</a>
       </div>
-      <div class="text-mist">CNPJ 41.019.805/0001-64</div>
+      <div class="text-paper/40">CNPJ 41.019.805/0001-64</div>
     </div>
   </div>
 </footer>
